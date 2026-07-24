@@ -1,0 +1,20 @@
+# Configurarea reala, cu parole. Se creeaza din config.example.php la instalare.
+/config/config.php
+
+# Imaginile incarcate de client. Se sincronizeaza separat, nu prin git.
+/public_html/uploads/*
+!/public_html/uploads/.gitkeep
+
+# Dependinte JS — folosite doar local, pentru a construi bundle-ul editorului.
+# Bundle-ul rezultat SE COMITE (nu exista pas de build pe server).
+/node_modules/
+
+# Fisiere de lucru
+*.log
+.DS_Store
+Thumbs.db
+
+# Skill-uri instalate prin npx skills / impeccable — nu fac parte din site
+/.agents/
+/.codex/
+/skills-lock.json
