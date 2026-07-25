@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- „Firul": o linie verticala cu un nod si o ramificatie laterala.
+     Acelasi motiv ca elementul-semnatura al site-ului. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#16211C"/>
+  <line x1="13" y1="6" x2="13" y2="26" stroke="#B07D2B" stroke-width="1.5"/>
+  <line x1="13" y1="15" x2="22" y2="15" stroke="#B07D2B" stroke-width="1.5"/>
+  <circle cx="13" cy="11" r="2.4" fill="#B07D2B"/>
+</svg>

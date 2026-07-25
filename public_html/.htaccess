@@ -1,0 +1,125 @@
+# ============================================================================
+# .htaccess — configurare Apache pentru gazduire partajata cu cPanel
+#
+# Testat pe SiteBunker si Hostico. Compatibil cu AutoSSL din cPanel: regula de
+# redirectionare catre HTTPS exclude explicit /.well-known/, altfel reinnoirea
+# automata a certificatului esueaza.
+# ============================================================================
+
+Options -Indexes -MultiViews
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # ------------------------------------------------------------------------
+    # Validarea certificatului Let's Encrypt trebuie sa treaca pe HTTP simplu.
+    # Regula asta e prima; orice altceva inaintea ei rupe AutoSSL.
+    # ------------------------------------------------------------------------
+    RewriteRule ^\.well-known/ - [L]
+
+    # ------------------------------------------------------------------------
+    # HTTPS obligatoriu.
+    # Verificam si HTTP_X_FORWARDED_PROTO: pe gazduirile cu proxy in fata,
+    # %{HTTPS} ramane "off" chiar si pe cereri securizate, iar fara conditia
+    # a doua se produce o bucla infinita de redirectionari.
+    # ------------------------------------------------------------------------
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+    # ------------------------------------------------------------------------
+    # www -> fara www. O singura forma canonica, altfel SEO se imparte in doua.
+    # ------------------------------------------------------------------------
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+    # ------------------------------------------------------------------------
+    # Front controller: tot ce nu e fisier sau director real merge la index.php
+    # ------------------------------------------------------------------------
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# ============================================================================
+# Compresie
+# ============================================================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+    # woff2 e deja comprimat cu Brotli in interior. A doua compresie il face
+    # mai mare, nu mai mic.
+</IfModule>
+
+# ============================================================================
+# Cache
+#
+# CSS si JS primesc un an pentru ca URL-urile lor poarta ?v=<mtime> (vezi
+# functia asset() din src/helpers.php). Cand fisierul se schimba, se schimba
+# si URL-ul, deci vizitatorul nu ramane niciodata cu o versiune veche.
+# HTML nu se pune niciodata in cache: continutul se schimba din admin.
+# ============================================================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault                          "access plus 1 month"
+
+    ExpiresByType text/css                  "access plus 1 year"
+    ExpiresByType application/javascript    "access plus 1 year"
+    ExpiresByType font/woff2                "access plus 1 year"
+
+    ExpiresByType image/webp                "access plus 6 months"
+    ExpiresByType image/svg+xml             "access plus 6 months"
+    ExpiresByType image/x-icon              "access plus 6 months"
+
+    ExpiresByType text/html                 "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js|woff2)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.php$">
+        Header set Cache-Control "no-store, must-revalidate"
+    </FilesMatch>
+
+    # Antete de securitate. Cele care depind de request se pun din PHP;
+    # aici stau doar cele constante.
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), interest-cohort=()"
+    # HSTS: se activeaza DUPA ce confirmi ca HTTPS merge corect pe toate
+    # subdomeniile. Activat prea devreme, blocheaza accesul pana expira.
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # Fonturile sunt servite de pe acelasi domeniu, dar antetul ramane pentru
+    # cazul in care site-ul ajunge in spatele unui CDN.
+    <FilesMatch "\.woff2$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+</IfModule>
+
+# ============================================================================
+# Pagini de eroare
+# ============================================================================
+ErrorDocument 404 /404
+ErrorDocument 403 /404
+ErrorDocument 500 /500.html
+
+# ============================================================================
+# Blocari
+# ============================================================================
+
+# Fisiere care nu au ce cauta in web, chiar daca ajung din greseala aici.
+<FilesMatch "(^\.|\.(sql|md|json|lock|log|ini|sh|example)$)">
+    Require all denied
+</FilesMatch>
+# Exceptie: robots.txt si sitemap.xml sunt generate de PHP, nu sunt fisiere.
+
+# Blocarea executiei de PHP in directorul uploads/ se face din
+# public_html/uploads/.htaccess, NU aici — aici ar opri PHP pe tot site-ul.
+
+# UTF-8 implicit
+AddDefaultCharset UTF-8

@@ -14,7 +14,12 @@
 .DS_Store
 Thumbs.db
 
-# Skill-uri instalate prin npx skills / impeccable — nu fac parte din site
+# Skill-uri instalate prin npx skills / impeccable — tooling, nu fac parte din site.
+# Pastram .claude/settings.local.json (hook-urile), dar nu si skill-urile vendorizate.
 /.agents/
 /.codex/
 /skills-lock.json
+/.claude/skills/
+
+# Dependinte JS pentru build (esbuild + TipTap). Bundle-ul rezultat SE comite.
+/package-lock.json

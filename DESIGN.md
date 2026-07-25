@@ -1,11 +1,15 @@
 ---
 typography:
   scale:
+    micut: 0.75rem
     nota: 0.8125rem
     mic: 0.9375rem
+    baza: 1rem
+    corpMobil: 1.0625rem
     corp: 1.125rem
     corpMare: 1.25rem
     h3: 1.375rem
+    titlu: 1.5rem
     h2: 1.75rem
     h1: 2.5rem
   corp:
@@ -26,6 +30,24 @@ colors:
   hartieUmbra: "#E0E2D8"
   caramida: "#8C3A2B"
   alb: "#FFFFFF"
+  # Rampa de neutre pentru suprafata de admin ("Operate"). Partea publica
+  # foloseste doar hartie/hartieUmbra; panoul are nevoie de mai multe trepte
+  # pentru borduri, fundaluri de tabel si stari de hover. Toate au o urma de
+  # verde, ca sa se lege de accent in loc sa para gri de birou.
+  n50: "#F7F8F3"
+  n100: "#F4F5EF"
+  n200: "#E4E6DD"
+  n300: "#D5D8CE"
+  n400: "#B7BCB0"
+  n500: "#9AA39C"
+  # Tonuri pentru textul de pe bara laterala inchisa (fundal = cerneala).
+  inkHover: "#223029"
+  onInk: "#D6DAD4"
+  onInkDim: "#A9B3AC"
+  # Spalari palide ale semanticelor, pentru fundalul etichetelor de stare.
+  bineTint: "#E5EFE9"
+  atentieTint: "#F3EAD7"
+  rauTint: "#F3E3E0"
 rounded:
   none: 0
   mic: 2px
