@@ -16,15 +16,63 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ---------------------------------------------------------------------------
 -- Utilizatori. Doar clienta. Nu exista inregistrare publica.
 -- ---------------------------------------------------------------------------
+-- Cele doua psiholoage sunt admini EGALI — `rol` exista pentru claritate si
+-- pentru o eventuala extindere, dar nu introduce ierarhie in acest build.
+-- `psiholog_id` leaga contul de biografia publica, ca articolele scrise de acest
+-- cont sa fie atribuite automat persoanei potrivite.
 CREATE TABLE IF NOT EXISTS utilizatori (
     id              INT UNSIGNED NOT NULL AUTO_INCREMENT,
     email           VARCHAR(190) NOT NULL,
     parola_hash     VARCHAR(255) NOT NULL,
     nume            VARCHAR(120) NOT NULL,
+    rol             ENUM('admin') NOT NULL DEFAULT 'admin',
+    psiholog_id     INT UNSIGNED NULL,
     creat_la        DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     ultima_autentificare DATETIME NULL,
     PRIMARY KEY (id),
-    UNIQUE KEY uq_utilizatori_email (email)
+    UNIQUE KEY uq_utilizatori_email (email),
+    KEY idx_utilizatori_psiholog (psiholog_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------------------------------------------------------------------------
+-- Psihologii cabinetului. O tabela separata de `utilizatori`: aici sta
+-- biografia PUBLICA (nume, cod CPR, abordare), acolo sta contul de acces.
+-- Le tinem separate ca un cont sters sa nu stearga si biografia afisata public.
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS psihologi (
+    id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nume         VARCHAR(120) NOT NULL,
+    slug         VARCHAR(120) NOT NULL,
+    titlu_scurt  VARCHAR(160) NOT NULL DEFAULT '',   -- ex. „Psiholog clinician"
+    cod_cpr      VARCHAR(20)  NOT NULL DEFAULT '',    -- cod personal Colegiul Psihologilor
+    judet        VARCHAR(60)  NOT NULL DEFAULT '',
+    filiala      VARCHAR(60)  NOT NULL DEFAULT '',
+    bio          MEDIUMTEXT   NOT NULL,               -- Markdown
+    foto         VARCHAR(255) NULL,
+    ordine       SMALLINT     NOT NULL DEFAULT 0,
+    activ        TINYINT(1)   NOT NULL DEFAULT 1,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_psihologi_slug (slug)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------------------------------------------------------------------------
+-- Specializarile fiecarui psiholog, cu NIVELUL si REGIMUL de practica.
+-- O tabela proprie pentru ca o persoana are mai multe specializari, fiecare cu
+-- regimul ei — de exemplu psihologie clinica in regim autonom SI psihoterapie
+-- de familie in regim de supervizare. Regimul se afiseaza corect si onest:
+-- „autonom" vs „sub supervizare", conform statutului real din registrul COPSI.
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS psihologi_specializari (
+    id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    psiholog_id  INT UNSIGNED NOT NULL,
+    nume         VARCHAR(120) NOT NULL,               -- ex. „Psihologie clinica"
+    nivel        VARCHAR(60)  NOT NULL DEFAULT '',    -- ex. „Practicant"
+    regim        ENUM('autonom','supervizare') NOT NULL DEFAULT 'supervizare',
+    ordine       SMALLINT     NOT NULL DEFAULT 0,
+    PRIMARY KEY (id),
+    KEY idx_spec_psiholog (psiholog_id),
+    CONSTRAINT fk_spec_psiholog FOREIGN KEY (psiholog_id)
+        REFERENCES psihologi (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------------
@@ -67,6 +115,7 @@ CREATE TABLE IF NOT EXISTS articole (
     titlu            VARCHAR(200) NOT NULL,
     slug             VARCHAR(200) NOT NULL,
     categorie_id     INT UNSIGNED NULL,
+    autor_id         INT UNSIGNED NULL,   -- care psihologa a scris articolul
     rezumat          VARCHAR(400) NOT NULL DEFAULT '',
     continut         MEDIUMTEXT   NOT NULL,
     imagine          VARCHAR(255) NULL,
@@ -80,8 +129,11 @@ CREATE TABLE IF NOT EXISTS articole (
     UNIQUE KEY uq_articole_slug (slug),
     KEY idx_articole_stare_data (stare, publicat_la),
     KEY idx_articole_categorie (categorie_id),
+    KEY idx_articole_autor (autor_id),
     CONSTRAINT fk_articole_categorie FOREIGN KEY (categorie_id)
-        REFERENCES categorii (id) ON DELETE SET NULL
+        REFERENCES categorii (id) ON DELETE SET NULL,
+    CONSTRAINT fk_articole_autor FOREIGN KEY (autor_id)
+        REFERENCES psihologi (id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------------
@@ -129,12 +181,18 @@ CREATE TABLE IF NOT EXISTS mesaje_contact (
     nume_cif      TEXT         NOT NULL,   -- criptat
     contact_cif   TEXT         NOT NULL,   -- criptat (email sau telefon)
     situatie      VARCHAR(80)  NOT NULL DEFAULT '',
+    -- Preferinta de psiholog NU e data sensibila (nu spune nimic despre starea
+    -- persoanei), deci se pastreaza in clar, ca sa se poata filtra mesajele.
+    psiholog_preferat_id INT UNSIGNED NULL,
     mesaj_cif     TEXT         NULL,       -- criptat
     citit         TINYINT(1)   NOT NULL DEFAULT 0,
     primit_la     DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     sters_la      DATETIME     NULL,
     PRIMARY KEY (id),
-    KEY idx_mesaje_primit (sters_la, primit_la)
+    KEY idx_mesaje_primit (sters_la, primit_la),
+    KEY idx_mesaje_psiholog (psiholog_preferat_id),
+    CONSTRAINT fk_mesaje_psiholog FOREIGN KEY (psiholog_preferat_id)
+        REFERENCES psihologi (id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------------

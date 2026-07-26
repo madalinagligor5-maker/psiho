@@ -121,7 +121,7 @@ $whatsapp = (string) config('site', 'whatsapp');
     <img src="<?= e(asset('assets/images/harta.webp')) ?>"
          alt="Hartă cu locația cabinetului: <?= e(setare('adresa')) ?>"
          width="1200" height="600" loading="lazy"
-         style="border-radius: var(--raza-mediu); border: 1px solid var(--hartie-umbra)">
+         style="border-radius: var(--raza-mediu); border: 1px solid var(--greige)">
     <figcaption class="meta" style="margin-top: var(--s1)">
       <a href="https://www.openstreetmap.org/search?query=<?= rawurlencode(setare('adresa')) ?>" target="_blank" rel="noopener">Deschide harta →</a>
     </figcaption>

@@ -116,7 +116,7 @@ function porneisteIncarcareCoperta() {
     text.textContent = 'Se încarcă...';
     try {
       const r = await incarcaImagine(fisier, urlIncarca, csrf, (p) => {
-        bara.style.width = Math.round(p * 100) + '%';
+        bara.style.transform = 'scaleX(' + p + ')';
       });
       campUrl.value = r.nume;
       previzualizare.innerHTML =
@@ -125,7 +125,7 @@ function porneisteIncarcareCoperta() {
     } catch (err) {
       text.textContent = 'Eroare: ' + err.message + ' Încearcă din nou.';
     } finally {
-      setTimeout(() => { progres.hidden = true; bara.style.width = '0'; }, 600);
+      setTimeout(() => { progres.hidden = true; bara.style.transform = 'scaleX(0)'; }, 600);
     }
   }
 

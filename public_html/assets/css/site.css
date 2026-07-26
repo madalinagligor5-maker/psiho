@@ -79,37 +79,45 @@
    -------------------------------------------------------------------------- */
 
 :root {
-  /* Culori */
-  --cerneala:      #16211C;
-  --brad:          #2C5545;
-  --brad-clar:     #3D6B58;
-  --ocru:          #B07D2B;
-  --ocru-inchis:   #8A5F1C;
-  --piatra:        #56615B;
-  --hartie:        #EDEEE7;
-  --hartie-umbra:  #E0E2D8;
-  --caramida:      #8C3A2B;
-  --alb:           #FFFFFF;
+  /* Paleta e identitatea vizuala REALA a clientei, de pe @terapie.cu.cristina
+     (avatar + postari), extrasa prin sampling de culoare si verificata pentru
+     WCAG 2.1 AA. Nu e o directie inventata — vezi DESIGN.md.
 
-  /* Rampa de neutre — folosita de panoul de admin. Documentata in DESIGN.md.
-     Fiecare treapta are o urma de verde, ca sa se lege de accent. */
-  --n-50:  #F7F8F3;
-  --n-100: #F4F5EF;
-  --n-200: #E4E6DD;
-  --n-300: #D5D8CE;
-  --n-400: #B7BCB0;
-  --n-500: #9AA39C;
-  --ink-hover:  #223029;
-  --on-ink:     #D6DAD4;
-  --on-ink-dim: #A9B3AC;
-  --bine-tint:    #E5EFE9;
-  --atentie-tint: #F3EAD7;
+     Nuantele deschise (--salvie, --teracota) sunt DECORATIVE: umpluturi,
+     linework botanic ambiental. Ce poarta informatie — text, linkuri, borduri,
+     inelul de focus, liniile structurale — foloseste variantele inchise. */
+  --cerneala:       #2E2B26;  /* text principal, brun-cald, nu negru pur */
+  --cerneala-moale: #403A32;
+  --salvie:         #8FA093;  /* verde salvie — DECORATIV (umplutura, frunze) */
+  --salvie-inchis:  #3F5247;  /* linkuri, fundal CTA, linework structural, focus */
+  --salvie-mediu:   #4E6357;  /* hover pe CTA */
+  --teracota:       #C9A48C;  /* accent cald — DECORATIV, punctual, nu dominant */
+  --teracota-text:  #8A5638;  /* teracota cand trebuie sa fie text lizibil */
+  --piatra:         #635B50;  /* text secundar, cald */
+  --crem:           #F7EEE4;  /* fundalul dominant, crem/blush cald */
+  --greige:         #DBDCCF;  /* suprafata secundara: casete, inserturi */
+  --caramida:       #8C3A2B;  /* eroare si nota de criza — nicaieri altundeva */
+  --alb:            #FFFFFF;
+
+  /* Rampa de neutre CALDE — folosita de panoul de admin. Documentata in
+     DESIGN.md. Fiecare treapta e trasa spre cald, ca sa se lege de crem. */
+  --n-50:  #F3EFE8;
+  --n-100: #EFE9DF;
+  --n-200: #E4DCCE;
+  --n-300: #D6CDBC;
+  --n-400: #B3A896;
+  --n-500: #8F8676;
+  --ink-hover:  #3A362F;
+  --on-ink:     #DDD6C9;
+  --on-ink-dim: #A79E8F;
+  --bine-tint:    #E6ECE7;
+  --atentie-tint: #F1E7DD;
   --rau-tint:     #F3E3E0;
 
-  /* Semantice. Alias-uri catre paleta: verdele confirma, ocrul avertizeaza,
-     caramida semnaleaza. Nu introduc culori noi. */
-  --bine:    var(--brad);
-  --atentie: var(--ocru-inchis);
+  /* Semantice. Alias-uri: verdele confirma, teracota avertizeaza, caramida
+     semnaleaza. Nu introduc culori noi. */
+  --bine:    var(--salvie-inchis);
+  --atentie: var(--teracota-text);
   --rau:     var(--caramida);
 
   /* Tipografie */
@@ -168,7 +176,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--hartie);
+  background: var(--crem);
   color: var(--cerneala);
   font-family: var(--font-corp);
   font-size: var(--t-corp-mobil);   /* 17px pe mobil */
@@ -195,7 +203,7 @@ button, input, select, textarea {
 /* Inelul de focus. Vizibil peste tot, niciodata scos fara inlocuitor —
    e singurul mod in care cineva care navigheaza cu tastatura stie unde e. */
 :focus-visible {
-  outline: 2px solid var(--brad);
+  outline: 2px solid var(--salvie-inchis);
   outline-offset: 3px;
   border-radius: var(--raza-mic);
 }
@@ -208,7 +216,7 @@ button, input, select, textarea {
   top: 0;
   z-index: 100;
   padding: var(--s2) var(--s3);
-  background: var(--brad);
+  background: var(--salvie-inchis);
   color: var(--alb);
   text-decoration: none;
 }
@@ -235,12 +243,12 @@ p { margin: 0 0 var(--s3); max-width: var(--masura); }
 p:last-child { margin-bottom: 0; }
 
 a {
-  color: var(--brad);
+  color: var(--salvie-inchis);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
   transition: color var(--d-rapid) var(--usor);
 }
-a:hover { color: var(--brad-clar); }
+a:hover { color: var(--salvie-mediu); }
 
 strong { font-weight: 700; }
 
@@ -338,7 +346,7 @@ strong { font-weight: 700; }
   width: 1.5rem;
   height: 2px;
   margin-bottom: var(--s2);
-  background: var(--ocru);
+  background: var(--teracota);
 }
 .sectiune > h2:not(:first-child)::before { display: none; }
 
@@ -354,7 +362,7 @@ strong { font-weight: 700; }
     bottom: 0;
     left: calc(50% - var(--masura) / 2 - var(--gol-margine));
     width: 1px;
-    background: var(--ocru);
+    background: var(--teracota);
     opacity: 0.55;
   }
 
@@ -367,7 +375,7 @@ strong { font-weight: 700; }
     width: 6px;
     height: 6px;
     border-radius: var(--raza-pastila);
-    background: var(--ocru);
+    background: var(--teracota);
   }
   .sectiune + .sectiune::before { top: 0; }
 }
@@ -380,7 +388,7 @@ strong { font-weight: 700; }
   font-size: var(--t-nota);
   line-height: 1.55;
   color: var(--piatra);
-  border-left: 2px solid var(--ocru);
+  border-left: 2px solid var(--teracota);
   padding-left: var(--s2);
   margin-bottom: var(--s3);
   max-width: 46ch;
@@ -403,7 +411,7 @@ strong { font-weight: 700; }
     right: calc(var(--gol-margine) - var(--latime-margine) + 100%);
     width: 1rem;
     height: 1px;
-    background: var(--ocru);
+    background: var(--teracota);
   }
 }
 
@@ -417,8 +425,8 @@ strong { font-weight: 700; }
   position: relative;
   z-index: 20;
   padding-block: var(--s3);
-  border-bottom: 1px solid var(--hartie-umbra);
-  background: var(--hartie);
+  border-bottom: 1px solid var(--greige);
+  background: var(--crem);
 }
 
 .antet__interior {
@@ -461,8 +469,10 @@ strong { font-weight: 700; }
     border-bottom: 1px solid transparent;
     transition: border-color var(--d-rapid) var(--usor);
   }
-  .navigatie a:hover,
-  .navigatie a[aria-current="page"] { border-bottom-color: var(--ocru); }
+  .navigatie a:hover { border-bottom-color: var(--teracota); }
+  /* Pagina curenta e o stare, nu decor: sublinierea foloseste varianta inchisa,
+     lizibila (3:1+), nu teracota decorativa care ar fi prea slaba ca indicator. */
+  .navigatie a[aria-current="page"] { border-bottom-color: var(--salvie-inchis); }
 }
 
 /* Butonul de meniu, doar pe mobil. */
@@ -471,7 +481,7 @@ strong { font-weight: 700; }
   align-items: center;
   gap: var(--s1);
   background: none;
-  border: 1px solid var(--hartie-umbra);
+  border: 1px solid var(--greige);
   border-radius: var(--raza-mediu);
   padding: var(--s1) var(--s2);
   font-size: var(--t-mic);
@@ -501,7 +511,7 @@ strong { font-weight: 700; }
   color: var(--cerneala);
   text-decoration: none;
   padding-block: var(--s1);
-  border-bottom: 1px solid var(--hartie-umbra);
+  border-bottom: 1px solid var(--greige);
 }
 @media (min-width: 60rem) { .meniu-mobil { display: none; } }
 
@@ -529,22 +539,22 @@ strong { font-weight: 700; }
 
 /* CTA-ul principal. Exista unul singur per viewport, peste tot in site. */
 .buton--principal {
-  background: var(--brad);
+  background: var(--salvie-inchis);
   color: var(--alb);
 }
-.buton--principal:hover { background: var(--brad-clar); color: var(--alb); }
+.buton--principal:hover { background: var(--salvie-mediu); color: var(--alb); }
 
 .buton--secundar {
   background: transparent;
-  border-color: var(--brad);
-  color: var(--brad);
+  border-color: var(--salvie-inchis);
+  color: var(--salvie-inchis);
 }
-.buton--secundar:hover { background: var(--hartie-umbra); }
+.buton--secundar:hover { background: var(--greige); }
 
 /* --- Blocul de CTA -------------------------------------------------------- */
 
 .chemare {
-  background: var(--hartie-umbra);
+  background: var(--greige);
   padding: var(--s5) var(--s4);
   border-radius: var(--raza-mediu);
 }
@@ -566,7 +576,7 @@ strong { font-weight: 700; }
   font-weight: 400;
   line-height: 1.5;
   padding-left: var(--s3);
-  border-left: 2px solid var(--hartie-umbra);
+  border-left: 2px solid var(--greige);
   max-width: 54ch;
 }
 
@@ -575,10 +585,10 @@ strong { font-weight: 700; }
 .servicii { display: grid; gap: var(--s3); }
 
 .serviciu {
-  border: 1px solid var(--hartie-umbra);
+  border: 1px solid var(--greige);
   border-radius: var(--raza-mediu);
   padding: var(--s4);
-  background: var(--hartie);
+  background: var(--crem);
 }
 .serviciu h3 { margin-bottom: var(--s1); }
 .serviciu__pret {
@@ -618,12 +628,12 @@ strong { font-weight: 700; }
   height: 2rem;
   display: grid;
   place-items: center;
-  border: 1px solid var(--ocru);
+  border: 1px solid var(--teracota);
   border-radius: var(--raza-pastila);
   font-family: var(--font-display);
   font-size: var(--t-mic);
   font-weight: 600;
-  color: var(--ocru-inchis);
+  color: var(--teracota-text);
 }
 .pas h3 { margin-bottom: var(--s1); }
 
@@ -632,9 +642,9 @@ strong { font-weight: 700; }
 .faq { display: grid; }
 
 .intrebare {
-  border-bottom: 1px solid var(--hartie-umbra);
+  border-bottom: 1px solid var(--greige);
 }
-.intrebare:first-child { border-top: 1px solid var(--hartie-umbra); }
+.intrebare:first-child { border-top: 1px solid var(--greige); }
 
 .intrebare summary {
   display: flex;
@@ -650,7 +660,7 @@ strong { font-weight: 700; }
   transition: color var(--d-rapid) var(--usor);
 }
 .intrebare summary::-webkit-details-marker { display: none; }
-.intrebare summary:hover { color: var(--brad); }
+.intrebare summary:hover { color: var(--salvie-inchis); }
 
 .intrebare summary::after {
   content: "+";
@@ -658,7 +668,7 @@ strong { font-weight: 700; }
   font-family: var(--font-corp);
   font-size: var(--t-h3);
   font-weight: 400;
-  color: var(--ocru-inchis);
+  color: var(--teracota-text);
 }
 .intrebare[open] summary::after { content: "–"; }
 
@@ -671,16 +681,19 @@ strong { font-weight: 700; }
 .articol-card { display: grid; gap: var(--s1); }
 .articol-card h3 { font-size: var(--t-h3); }
 .articol-card h3 a { color: var(--cerneala); text-decoration: none; }
-.articol-card h3 a:hover { color: var(--brad); text-decoration: underline; }
+.articol-card h3 a:hover { color: var(--salvie-inchis); text-decoration: underline; }
 .articol-card p { margin-bottom: 0; }
 
 /* --- Nota de criza. Discreta, dar prezenta. ------------------------------- */
 
+/* Panou, nu bara laterala colorata: fundal spalat + contur fin de jur imprejur.
+   Evita „side-tab"-ul (bara groasa pe o latura), tiparul recognoscibil de UI
+   generat automat, si se leaga mai bine de suprafetele calme din rest. */
 .nota-criza {
-  border-left: 3px solid var(--caramida);
   padding: var(--s3);
-  background: var(--hartie-umbra);
-  border-radius: 0 var(--raza-mediu) var(--raza-mediu) 0;
+  background: var(--rau-tint);
+  border: 1px solid var(--caramida);
+  border-radius: var(--raza-mediu);
   font-size: var(--t-mic);
 }
 .nota-criza strong { color: var(--caramida); }
@@ -697,12 +710,12 @@ strong { font-weight: 700; }
   width: 3rem;
   height: 3rem;
   border-radius: var(--raza-pastila);
-  background: var(--brad);
+  background: var(--salvie-inchis);
   color: var(--alb);
-  box-shadow: 0 1px 3px rgb(22 33 28 / 0.2);
+  box-shadow: 0 1px 3px rgb(46 43 38 / 0.2);
   transition: background-color var(--d-rapid) var(--usor);
 }
-.whatsapp:hover { background: var(--brad-clar); color: var(--alb); }
+.whatsapp:hover { background: var(--salvie-mediu); color: var(--alb); }
 .whatsapp svg { width: 1.5rem; height: 1.5rem; fill: currentColor; }
 
 /* --- Subsol --------------------------------------------------------------- */
@@ -710,7 +723,7 @@ strong { font-weight: 700; }
 .subsol {
   margin-top: var(--s7);
   padding-block: var(--s5);
-  border-top: 1px solid var(--hartie-umbra);
+  border-top: 1px solid var(--greige);
   font-size: var(--t-mic);
   color: var(--piatra);
 }
@@ -732,7 +745,7 @@ strong { font-weight: 700; }
 }
 .subsol ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s1); }
 .subsol a { color: var(--piatra); text-decoration: none; }
-.subsol a:hover { color: var(--brad); text-decoration: underline; }
+.subsol a:hover { color: var(--salvie-inchis); text-decoration: underline; }
 
 /* --- Corpul unui articol -------------------------------------------------- */
 
@@ -746,7 +759,7 @@ strong { font-weight: 700; }
 .proza blockquote {
   margin: var(--s4) 0;
   padding-left: var(--s3);
-  border-left: 2px solid var(--ocru);
+  border-left: 2px solid var(--teracota);
   font-family: var(--font-display);
   font-size: var(--t-corp-mare);
   font-weight: 400;
@@ -757,7 +770,7 @@ strong { font-weight: 700; }
 .proza hr {
   margin: var(--s5) 0;
   border: 0;
-  border-top: 1px solid var(--hartie-umbra);
+  border-top: 1px solid var(--greige);
   max-width: var(--masura);
 }
 
@@ -769,12 +782,12 @@ strong { font-weight: 700; }
 .proza code {
   font-size: 0.9em;
   padding: 0.1em 0.3em;
-  background: var(--hartie-umbra);
+  background: var(--greige);
   border-radius: var(--raza-mic);
 }
 .proza pre {
   padding: var(--s3);
-  background: var(--hartie-umbra);
+  background: var(--greige);
   border-radius: var(--raza-mediu);
   overflow-x: auto;
 }
@@ -803,7 +816,7 @@ strong { font-weight: 700; }
   border-radius: var(--raza-mediu);
   transition: border-color var(--d-rapid) var(--usor);
 }
-.camp input:hover, .camp select:hover, .camp textarea:hover { border-color: var(--brad); }
+.camp input:hover, .camp select:hover, .camp textarea:hover { border-color: var(--salvie-inchis); }
 .camp textarea { min-height: 7rem; resize: vertical; }
 
 .camp [aria-invalid="true"] { border-color: var(--caramida); }
@@ -835,10 +848,10 @@ strong { font-weight: 700; }
   padding: var(--s3);
   border-radius: var(--raza-mediu);
   margin-bottom: var(--s4);
-  border-left: 3px solid var(--brad);
-  background: var(--hartie-umbra);
+  border: 1px solid var(--salvie-inchis);
+  background: var(--bine-tint);
 }
-.mesaj-eroare { border-left-color: var(--caramida); }
+.mesaj-eroare { border-color: var(--caramida); background: var(--rau-tint); }
 
 /* --- Bannerul de consimtamant --------------------------------------------- */
 
@@ -847,7 +860,7 @@ strong { font-weight: 700; }
   inset-inline: 0;
   bottom: 0;
   z-index: 40;
-  background: var(--hartie);
+  background: var(--crem);
   border-top: 1px solid var(--piatra);
   padding: var(--s3) 1.25rem;
 }
@@ -895,14 +908,14 @@ strong { font-weight: 700; }
 }
 .paginare a, .paginare span {
   padding: var(--s1) var(--s2);
-  border: 1px solid var(--hartie-umbra);
+  border: 1px solid var(--greige);
   border-radius: var(--raza-mediu);
   text-decoration: none;
   font-size: var(--t-mic);
 }
 .paginare [aria-current="page"] {
-  border-color: var(--brad);
-  color: var(--brad);
+  border-color: var(--salvie-inchis);
+  color: var(--salvie-inchis);
   font-weight: 700;
 }
 
@@ -916,17 +929,17 @@ strong { font-weight: 700; }
 }
 .categorii a {
   padding: var(--s1) var(--s2);
-  border: 1px solid var(--hartie-umbra);
+  border: 1px solid var(--greige);
   border-radius: var(--raza-pastila);
   font-size: var(--t-mic);
   text-decoration: none;
   color: var(--cerneala);
   transition: border-color var(--d-rapid) var(--usor);
 }
-.categorii a:hover { border-color: var(--ocru); }
+.categorii a:hover { border-color: var(--teracota); }
 .categorii a[aria-current="page"] {
-  border-color: var(--brad);
-  color: var(--brad);
+  border-color: var(--salvie-inchis);
+  color: var(--salvie-inchis);
   font-weight: 700;
 }
 

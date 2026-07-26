@@ -45,6 +45,95 @@ foreach ($categorii as [$nume, $slug, $descriere, $ordine]) {
 echo "  categorii: " . count($categorii) . "\n";
 
 // ---------------------------------------------------------------------------
+// Psihologi
+//
+// Datele de acreditare (cod CPR, judet, filiala, specializari, regim) sunt
+// REALE si verificate pe verificapsiholog.ro la 25 iulie 2026. Nu le
+// „imbunatati" retoric si nu inventa simetrie intre cele doua.
+//
+// Regula de acuratete, obligatorie: nicaieri nu se sugereaza ca vreuna
+// practica autonom pe o specializare aflata in regim de supervizare.
+// ---------------------------------------------------------------------------
+
+$psihologi = [
+    [
+        'nume'        => 'Adam Nicoleta-Cristina',
+        'titlu_scurt' => 'Psiholog clinician · psihoterapeut în formare',
+        'cod_cpr'     => '26689',
+        'judet'       => 'Caraș-Severin',
+        'filiala'     => 'Timiș',
+        'ordine'      => 1,
+        // Formare confirmata de clienta (WhatsApp, 16.07.2026). Numele
+        // institutului de psihoterapie ramane marcat pana la confirmarea vizuala
+        // a diplomei (clienta a scris „Aropagus", probabil „Areopagus").
+        'bio' => <<<'MD'
+Sunt psiholog clinician, acreditată de Colegiul Psihologilor din România. Lucrez cu oameni care trec prin anxietate, depresie sau epuizare, dar și cu familii și cupluri — pentru că de multe ori ceea ce doare la o persoană se înțelege abia privind relațiile din jurul ei.
+
+## Formare
+
+- Licență în Psihologie — Universitatea de Vest din Timișoara
+- Masterat în Psihologie Clinică și Psihoterapie — Universitatea de Vest din Timișoara
+- Psihoterapeut în formare în psihoterapie sistemică și de cuplu, la [COMPLETEZ EU: Areopagus — confirmă ortografia exactă cu diploma]
+- Formare în Cercul Siguranței (Circle of Security), program de parenting bazat pe teoria atașamentului
+
+## Cum lucrez
+
+Nu caut vinovatul, caut tiparul. Te privesc în context — în familie, în cuplu, în rolurile pe care le-ai preluat — nu ca pe un simptom izolat. Sunt directă, dar nu grăbită: ritmul îl dai tu.
+MD,
+        'specializari' => [
+            ['Psihologie clinică', 'Practicant', 'autonom', 1],
+            ['Psihoterapie de familie', 'Practicant', 'supervizare', 2],
+        ],
+    ],
+    [
+        'nume'        => 'Babotan Amalia-Alexandra',
+        'titlu_scurt' => 'Psiholog clinician, sub supervizare',
+        'cod_cpr'     => '27188',
+        'judet'       => 'Satu Mare',
+        'filiala'     => 'Satu Mare',
+        'ordine'      => 2,
+        // Formarea si serviciile pentru Babotan NU au fost confirmate inca.
+        // Nu presupune simetrie cu Adam; totul ramane [COMPLETEZ EU].
+        'bio' => <<<'MD'
+Sunt psiholog clinician, acreditată de Colegiul Psihologilor din România, și practic în regim de supervizare — sub îndrumarea unui psiholog specialist. Este statutul normal la nivel de practicant și înseamnă că munca mea e sprijinită de un cadru de verificare, nu că lucrez singură cu cazurile.
+
+## Formare
+
+[COMPLETEZ EU: formarea universitară, masteratul și eventualele cursuri de formare continuă ale Amaliei — nu au fost încă transmise. Nu completez cu presupuneri.]
+
+## Cum lucrez
+
+[COMPLETEZ EU: câteva rânduri în vocea Amaliei despre abordarea ei — la fel ca la Cristina, e paragraful care nu poate fi scris în locul ei.]
+MD,
+        'specializari' => [
+            ['Psihologie clinică', 'Practicant', 'supervizare', 1],
+        ],
+    ],
+];
+
+foreach ($psihologi as $p) {
+    $slug = slugify($p['nume']);
+    $existent = Database::value('SELECT id FROM psihologi WHERE slug = ?', [$slug]);
+    if ($existent !== null) {
+        $psihologId = (int) $existent;
+    } else {
+        $psihologId = Database::insert(
+            'INSERT INTO psihologi (nume, slug, titlu_scurt, cod_cpr, judet, filiala, bio, ordine, activ)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)',
+            [$p['nume'], $slug, $p['titlu_scurt'], $p['cod_cpr'], $p['judet'], $p['filiala'], $p['bio'], $p['ordine']]
+        );
+        foreach ($p['specializari'] as [$specNume, $nivel, $regim, $ord]) {
+            Database::run(
+                'INSERT INTO psihologi_specializari (psiholog_id, nume, nivel, regim, ordine)
+                 VALUES (?, ?, ?, ?, ?)',
+                [$psihologId, $specNume, $nivel, $regim, $ord]
+            );
+        }
+    }
+}
+echo "  psihologi: " . count($psihologi) . "\n";
+
+// ---------------------------------------------------------------------------
 // Setari
 //
 // Tot ce apare mai jos poate fi schimbat din admin, fara dezvoltator.
@@ -62,11 +151,15 @@ $setari = [
     // grup: contact
     ['adresa',               '[COMPLETEZ EU: strada, număr, oraș]', 'Adresa cabinetului', 'text', 'contact', 1],
     ['program',              "Luni – joi, 10:00 – 19:00\nVineri, 10:00 – 15:00", 'Program', 'textarea', 'contact', 2],
-    ['timp_raspuns',         'Răspund în maximum 48 de ore lucrătoare.', 'Timp de răspuns anunțat', 'text', 'contact', 3],
+    ['timp_raspuns',         'Răspundem în maximum 48 de ore lucrătoare.', 'Timp de răspuns anunțat', 'text', 'contact', 3],
 
     // grup: texte
     ['titlu_acasa',          'Nu caut vinovatul, caut tiparul.', 'Titlul de pe prima pagină', 'text', 'texte', 1],
-    ['acreditare',           '[COMPLETEZ EU: cod COPSI]', 'Cod de acreditare COPSI', 'text', 'texte', 2],
+
+    // grup: cabinet — entitatea legala reala (societate civila profesionala)
+    ['cabinet_nume',         'Adam și Babotan', 'Numele cabinetului (afișat)', 'text', 'cabinet', 1],
+    ['cabinet_entitate',     'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie', 'Denumire legală completă', 'text', 'cabinet', 2],
+    ['cabinet_certificat',   'Nr. certificat formă de exercitare: 109 · Filiala Timiș · 16.02.2023', 'Certificat formă de exercitare', 'text', 'cabinet', 3],
 ];
 
 foreach ($setari as [$cheie, $valoare, $eticheta, $tip, $grup, $ordine]) {
@@ -271,6 +364,9 @@ MD,
     ],
 ];
 
+// Cele doua autoare, dupa ordine, ca sa atribuim articolele alternativ.
+$autori = Database::all('SELECT id FROM psihologi ORDER BY ordine, id');
+
 $inserate = 0;
 foreach ($articole as $i => $a) {
     $slug = slugify($a['titlu']);
@@ -278,13 +374,15 @@ foreach ($articole as $i => $a) {
         continue;
     }
     $categorieId = Database::value('SELECT id FROM categorii WHERE slug = ?', [$a['categorie']]);
+    // Atribuire alternativa intre cele doua psiholoage.
+    $autorId = $autori[$i % max(1, count($autori))]['id'] ?? null;
 
     Database::run(
         'INSERT INTO articole
-            (titlu, slug, categorie_id, rezumat, continut, meta_descriere, stare, publicat_la)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+            (titlu, slug, categorie_id, autor_id, rezumat, continut, meta_descriere, stare, publicat_la)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [
-            $a['titlu'], $slug, $categorieId, $a['rezumat'], $a['continut'], $a['meta'],
+            $a['titlu'], $slug, $categorieId, $autorId, $a['rezumat'], $a['continut'], $a['meta'],
             'publicat',
             // Datate la cateva saptamani distanta, ca lista sa arate a site viu.
             date('Y-m-d H:i:s', strtotime("-" . (($i + 1) * 18) . " days")),
@@ -319,34 +417,49 @@ foreach ($resurse as [$titlu, $descriere, $pret, $ordine]) {
 echo "  resurse: " . count($resurse) . "\n";
 
 // ---------------------------------------------------------------------------
-// Primul utilizator de admin
+// Conturile de admin — cate unul pentru fiecare psihologa, egale ca drepturi.
+//
+// Fiecare cont e legat de biografia publica (psiholog_id), ca articolele scrise
+// din acel cont sa fie atribuite automat persoanei potrivite.
 // ---------------------------------------------------------------------------
 
 $nrUtilizatori = (int) Database::value('SELECT COUNT(*) FROM utilizatori');
 
 if ($nrUtilizatori > 0) {
-    echo "\nExistă deja un utilizator. Nu creez altul.\n";
+    echo "\nExistă deja utilizatori. Nu creez altele.\n";
 } else {
-    echo "\nCreez primul utilizator de admin.\n";
-    $email = trim((string) readline('  Email: '));
-    $nume  = trim((string) readline('  Nume afișat: '));
+    echo "\nCreez conturile de admin, câte unul pentru fiecare psihologă.\n";
+    $listaPsihologi = Database::all('SELECT id, nume FROM psihologi ORDER BY ordine, id');
 
-    // Ascunde parola la tastare, unde terminalul permite.
-    echo '  Parolă (minimum 12 caractere): ';
-    @shell_exec('stty -echo 2>/dev/null');
-    $parola = trim((string) fgets(STDIN));
-    @shell_exec('stty echo 2>/dev/null');
-    echo "\n";
+    // Citim tot prin fgets(STDIN), nu prin readline(): e mai portabil (extensia
+    // readline lipseste pe unele configurari CLI de gazduire partajata) si se
+    // comporta previzibil si cand intrarea vine dintr-un pipe.
+    $citeste = static function (string $prompt): string {
+        echo $prompt;
+        return trim((string) fgets(STDIN));
+    };
 
-    if (mb_strlen($parola) < 12) {
-        exit("\nParolă prea scurtă. Nu am creat utilizatorul. Rulează din nou.\n");
+    foreach ($listaPsihologi as $ps) {
+        echo "\n  Cont pentru {$ps['nume']}:\n";
+        $email = $citeste('    Email: ');
+
+        @shell_exec('stty -echo 2>/dev/null');
+        $parola = $citeste('    Parolă (minimum 12 caractere): ');
+        @shell_exec('stty echo 2>/dev/null');
+        echo "\n";
+
+        if (mb_strlen($parola) < 12) {
+            echo "    Parolă prea scurtă. Sar peste acest cont — rulează din nou pentru el.\n";
+            continue;
+        }
+
+        Database::run(
+            'INSERT INTO utilizatori (email, parola_hash, nume, rol, psiholog_id) VALUES (?, ?, ?, "admin", ?)',
+            [$email, password_hash($parola, PASSWORD_DEFAULT), $ps['nume'], $ps['id']]
+        );
+        echo "    Cont creat pentru {$ps['nume']}.\n";
     }
-
-    Database::run(
-        'INSERT INTO utilizatori (email, parola_hash, nume) VALUES (?, ?, ?)',
-        [$email, password_hash($parola, PASSWORD_DEFAULT), $nume]
-    );
-    echo "  Utilizator creat. Te poți autentifica la /admin/autentificare\n";
+    echo "\n  Vă puteți autentifica la /admin/autentificare\n";
 }
 
 echo "\nGata.\n";

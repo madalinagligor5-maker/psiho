@@ -12,7 +12,7 @@
 <?php else: ?>
   <div class="stiva--larg">
     <?php foreach ($mesaje as $m): ?>
-      <article style="background:var(--alb); border:1px solid var(--n-300); border-radius:var(--raza-mediu); padding:var(--s3);<?= $m['citit'] ? '' : ' border-left:3px solid var(--ocru);' ?>">
+      <article style="background:var(--alb); border:1px solid var(--n-300); border-radius:var(--raza-mediu); padding:var(--s3);<?= $m['citit'] ? '' : ' border-left:3px solid var(--teracota);' ?>">
         <div style="display:flex; justify-content:space-between; gap:var(--s3); flex-wrap:wrap; align-items:baseline">
           <strong style="font-size:var(--t-corp)"><?= e($m['nume']) ?></strong>
           <span class="meta"><?= e(data_ro($m['primit_la'])) ?> · <?= e(date('H:i', strtotime($m['primit_la']))) ?></span>

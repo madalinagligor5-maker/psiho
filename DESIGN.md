@@ -20,33 +20,36 @@ typography:
     fontFamily: "Source Serif 4"
     fontSize: clamp(2rem, 1.4rem + 2.4vw, 3.25rem)
 colors:
-  cerneala: "#16211C"
-  brad: "#2C5545"
-  bradClar: "#3D6B58"
-  ocru: "#B07D2B"
-  ocruInchis: "#8A5F1C"
-  piatra: "#56615B"
-  hartie: "#EDEEE7"
-  hartieUmbra: "#E0E2D8"
+  # Identitatea vizuala reala a clientei, de pe @terapie.cu.cristina, extrasa
+  # prin sampling de culoare si verificata pentru WCAG 2.1 AA.
+  cerneala: "#2E2B26"
+  cernealaMoale: "#403A32"
+  salvie: "#8FA093"
+  salvieInchis: "#3F5247"
+  salvieMediu: "#4E6357"
+  teracota: "#C9A48C"
+  teracotaText: "#8A5638"
+  piatra: "#635B50"
+  crem: "#F7EEE4"
+  greige: "#DBDCCF"
   caramida: "#8C3A2B"
   alb: "#FFFFFF"
-  # Rampa de neutre pentru suprafata de admin ("Operate"). Partea publica
-  # foloseste doar hartie/hartieUmbra; panoul are nevoie de mai multe trepte
-  # pentru borduri, fundaluri de tabel si stari de hover. Toate au o urma de
-  # verde, ca sa se lege de accent in loc sa para gri de birou.
-  n50: "#F7F8F3"
-  n100: "#F4F5EF"
-  n200: "#E4E6DD"
-  n300: "#D5D8CE"
-  n400: "#B7BCB0"
-  n500: "#9AA39C"
+  # Rampa de neutre CALDE pentru suprafata de admin ("Operate"). Partea publica
+  # foloseste doar crem/greige; panoul are nevoie de mai multe trepte pentru
+  # borduri, fundaluri de tabel si stari de hover, toate trase spre cald.
+  n50: "#F3EFE8"
+  n100: "#EFE9DF"
+  n200: "#E4DCCE"
+  n300: "#D6CDBC"
+  n400: "#B3A896"
+  n500: "#8F8676"
   # Tonuri pentru textul de pe bara laterala inchisa (fundal = cerneala).
-  inkHover: "#223029"
-  onInk: "#D6DAD4"
-  onInkDim: "#A9B3AC"
+  inkHover: "#3A362F"
+  onInk: "#DDD6C9"
+  onInkDim: "#A79E8F"
   # Spalari palide ale semanticelor, pentru fundalul etichetelor de stare.
-  bineTint: "#E5EFE9"
-  atentieTint: "#F3EAD7"
+  bineTint: "#E6ECE7"
+  atentieTint: "#F1E7DD"
   rauTint: "#F3E3E0"
 rounded:
   none: 0
