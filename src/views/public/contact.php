@@ -24,8 +24,8 @@ $whatsapp = (string) config('site', 'whatsapp');
   <?php if ($trimis): ?>
     <div class="mesaj-succes pe-tot-ecranul">
       <p class="fara-margine-jos">
-        <strong>Am primit mesajul.</strong> Îți răspund în maximum 48 de ore
-        lucrătoare. Dacă între timp e ceva urgent, mă găsești mai jos pe WhatsApp
+        <strong>Am primit mesajul.</strong> Îți răspundem în maximum 48 de ore
+        lucrătoare. Dacă între timp e ceva urgent, ne găsești mai jos pe WhatsApp
         sau telefon.
       </p>
     </div>
@@ -43,9 +43,9 @@ $whatsapp = (string) config('site', 'whatsapp');
       </div>
 
       <div class="camp">
-        <label for="nume">Cum să-ți spun?</label>
+        <label for="nume">Cum să-ți spunem?</label>
         <input type="text" id="nume" name="nume" required
-               data-eroare="Spune-mi cum să-ți spun."
+               data-eroare="Spune-ne cum să-ți spunem."
                value="<?= e($vechi['nume'] ?? '') ?>"
                autocomplete="given-name">
         <span class="eroare-camp" id="eroare-nume" data-vizibil="<?= isset($erori['nume']) ? 'true' : 'false' ?>"><?= e($erori['nume'] ?? '') ?></span>
@@ -54,10 +54,10 @@ $whatsapp = (string) config('site', 'whatsapp');
       <div class="camp">
         <label for="contact">Email sau telefon</label>
         <input type="text" id="contact" name="contact" required
-               data-eroare="Am nevoie de un email sau un telefon ca să-ți pot răspunde."
+               data-eroare="Am nevoie de un email sau un telefon ca să-ți putem răspunde."
                value="<?= e($vechi['contact'] ?? '') ?>"
                autocomplete="email">
-        <span class="ajutor">Cum preferi să te contactez. Nu apare nicăieri public.</span>
+        <span class="ajutor">Cum preferi să te contactăm. Nu apare nicăieri public.</span>
         <span class="eroare-camp" id="eroare-contact" data-vizibil="<?= isset($erori['contact']) ? 'true' : 'false' ?>"><?= e($erori['contact'] ?? '') ?></span>
       </div>
 
@@ -90,10 +90,10 @@ $whatsapp = (string) config('site', 'whatsapp');
 <!-- Alte cai de contact -->
 <section class="sectiune">
   <p class="eticheta">Sau direct</p>
-  <h2>Alte feluri de a mă găsi</h2>
+  <h2>Alte feluri de a ne găsi</h2>
   <div class="stiva" style="margin-top: var(--s3)">
     <?php if ($whatsapp !== '' && !str_contains($whatsapp, 'COMPLETEZ')): ?>
-      <p class="fara-margine-jos"><strong>WhatsApp:</strong> <a href="https://wa.me/<?= e($whatsapp) ?>" target="_blank" rel="noopener">scrie-mi un mesaj</a></p>
+      <p class="fara-margine-jos"><strong>WhatsApp:</strong> <a href="https://wa.me/<?= e($whatsapp) ?>" target="_blank" rel="noopener">scrie-ne un mesaj</a></p>
     <?php endif ?>
     <?php if ($email !== '' && !str_contains($email, 'COMPLETEZ')): ?>
       <p class="fara-margine-jos"><strong>Email:</strong> <a href="mailto:<?= e($email) ?>"><?= e($email) ?></a></p>
@@ -112,7 +112,7 @@ $whatsapp = (string) config('site', 'whatsapp');
     <p class="fara-margine-jos"><strong>Adresă:</strong> <?= e(setare('adresa')) ?></p>
     <p style="margin-top: var(--s2); white-space: pre-line"><strong>Program:</strong>
 <?= e(setare('program')) ?></p>
-    <p class="meta"><?= e(setare('timp_raspuns', 'Răspund în maximum 48 de ore lucrătoare.')) ?></p>
+    <p class="meta"><?= e(setare('timp_raspuns', 'Răspundem în maximum 48 de ore lucrătoare.')) ?></p>
   </div>
 
   <?php /* Harta statica: o imagine, nu un embed. Un embed Google Maps incarca
@@ -133,7 +133,7 @@ $whatsapp = (string) config('site', 'whatsapp');
   <div class="nota-criza pe-tot-ecranul">
     <p class="fara-margine-jos">
       <strong>Dacă ești în criză acum,</strong> acest formular nu e canalul
-      potrivit — nu îl citesc în timp real. Sună la <strong>112</strong>, sau la
+      potrivit — nu îl citim în timp real. Sună la <strong>112</strong>, sau la
       Telefonul de urgență pentru prevenirea suicidului,
       <strong>0800 801 200</strong> (gratuit, non-stop).
     </p>

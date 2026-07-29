@@ -339,7 +339,7 @@ function genereaza_sitemap(): void
 
     $urls = [
         ['/', '1.0'], ['/cum-functioneaza', '0.9'], ['/servicii', '0.8'],
-        ['/despre-mine', '0.7'], ['/articole', '0.7'], ['/resurse', '0.6'],
+        ['/echipa', '0.7'], ['/articole', '0.7'], ['/resurse', '0.6'],
         ['/contact', '0.8'],
     ];
 

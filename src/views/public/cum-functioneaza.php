@@ -29,19 +29,19 @@ $durata = setare('durata_cunoastere', '20');
   <ol class="pasi" style="margin-top: var(--s4)">
     <li class="pas">
       <h3>Primele minute</h3>
-      <p class="fara-margine-jos">Ne facem cunoștință. Îți spun cum lucrez, cât durează, cum decurge. Nu începem cu „spune-mi despre copilăria ta” — începem cu tine, azi.</p>
+      <p class="fara-margine-jos">Ne facem cunoștință. Îți spunem cum lucrăm, cât durează, cum decurge. Nu începem cu „spune-mi despre copilăria ta” — începem cu tine, azi.</p>
     </li>
     <li class="pas">
       <h3>Ce te-a adus</h3>
-      <p class="fara-margine-jos">Îmi povestești, în ritmul tău, ce te-a făcut să cauți pe cineva. Eu ascult și întreb — nu ca să te evaluez, ci ca să înțeleg cum se leagă lucrurile.</p>
+      <p class="fara-margine-jos">Ne povestești, în ritmul tău, ce te-a făcut să cauți pe cineva. Ascultăm și întrebăm — nu ca să te evaluez, ci ca să înțeleg cum se leagă lucrurile.</p>
     </li>
     <li class="pas">
       <h3>Prima hartă</h3>
-      <p class="fara-margine-jos">Spre final, îți spun ce am observat: nu un verdict, ci o primă schiță a tiparului. De multe ori e prima dată când cineva pune lucrurile împreună cu voce tare.</p>
+      <p class="fara-margine-jos">Spre final, îți spunem ce am observat: nu un verdict, ci o primă schiță a tiparului. De multe ori e prima dată când cineva pune lucrurile împreună cu voce tare.</p>
     </li>
     <li class="pas">
       <h3>Ce urmează</h3>
-      <p class="fara-margine-jos">Stabilim dacă și cum continuăm. Fără presiune să te hotărăști pe loc — poți să te gândești și să-mi scrii după.</p>
+      <p class="fara-margine-jos">Stabilim dacă și cum continuăm. Fără presiune să te hotărăști pe loc — poți să te gândești și să ne scrii după.</p>
     </li>
   </ol>
 </section>
@@ -74,7 +74,7 @@ $durata = setare('durata_cunoastere', '20');
   <p class="eticheta">Metoda</p>
   <h2>Ce e terapia sistemică și cu ce diferă</h2>
   <span class="nota-margine">
-    Nu înseamnă că aduci pe cineva cu tine. Lucrez cu tine individual — sistemul
+    Nu înseamnă că aduci pe cineva cu tine. Lucrăm cu tine individual — sistemul
     e în felul în care privim, nu neapărat în cine e în cameră.
   </span>
   <p style="margin-top: var(--s3)">
@@ -90,7 +90,7 @@ $durata = setare('durata_cunoastere', '20');
     ca ceva ce are sens în contextul din care faci parte.
   </p>
   <p>
-    De aceea nu caut vinovatul. Într-un tipar care se repetă, întrebarea „cine a
+    De aceea nu căutăm vinovatul. Într-un tipar care se repetă, întrebarea „cine a
     început” nu a rezolvat niciodată nimic. Întrebarea utilă e „ce urmează după
     ce” — și aceea se poate schimba.
   </p>
@@ -147,13 +147,13 @@ $durata = setare('durata_cunoastere', '20');
   <p class="eticheta">Dacă nu merge</p>
   <h2>Ce faci dacă nu ne potrivim</h2>
   <p style="margin-top: var(--s3)">
-    Îmi spui, și e în regulă. Potrivirea dintre om și terapeut e unul dintre
+    Ne spui, și e în regulă. Potrivirea dintre om și terapeut e unul dintre
     puținele lucruri despre care cercetarea e clară că influențează rezultatul —
     mai mult decât metoda.
   </p>
   <p>
     Dacă simți că nu e, nu e un eșec și nu trebuie să găsești o scuză politicoasă.
-    Te ajut să găsești pe altcineva, dacă vrei. A pleca e o opțiune care rămâne
+    Te ajutăm să găsești pe altcineva, dacă vrei. A pleca e o opțiune care rămâne
     mereu pe masă, și faptul că știi asta face de multe ori mai ușor să rămâi.
   </p>
 </section>
@@ -164,15 +164,15 @@ $durata = setare('durata_cunoastere', '20');
   <h2>Ce se întâmplă cu ce spui aici</h2>
   <p style="margin-top: var(--s3)">
     Rămâne aici. Confidențialitatea e o obligație profesională, nu o amabilitate.
-    Nu discut cu nimeni ce vorbim, nu confirm nimănui că ești în terapie.
+    Nu discutăm cu nimeni ce vorbim, nu confirmăm nimănui că ești în terapie.
   </p>
   <p>
-    Îmi notez, între ședințe, câteva lucruri pentru mine — ca să nu te pun să
-    reiei de fiecare dată de la capăt. Notele sunt păstrate în siguranță și intră
-    sub aceeași confidențialitate.
+    Notăm, între ședințe, câteva lucruri — ca să nu te punem să reiei de fiecare
+    dată de la capăt. Notele sunt păstrate în siguranță și intră sub aceeași
+    confidențialitate.
   </p>
   <p>
-    Există trei excepții, prevăzute de lege, și ți le spun din prima ședință, nu
+    Există trei excepții, prevăzute de lege, și ți le spunem din prima ședință, nu
     ascunse în subsol:
   </p>
   <ul>
@@ -191,7 +191,7 @@ $durata = setare('durata_cunoastere', '20');
   <div class="nota-criza pe-tot-ecranul">
     <p class="fara-margine-jos">
       <strong>Dacă ești în criză acum,</strong> acest site nu e canalul potrivit —
-      răspund la mesaje în câteva zile, nu în timp real. Pentru urgențe sună la
+      răspundem la mesaje în câteva zile, nu în timp real. Pentru urgențe sună la
       <strong>112</strong>, sau la Telefonul de urgență pentru prevenirea
       suicidului, <strong>0800 801 200</strong> (gratuit, non-stop).
     </p>
