@@ -33,7 +33,7 @@ $retentie = (int) config('retentie_mesaje_zile');
 
     <h2>Date de sănătate — categorie specială</h2>
     <p>
-      Dacă îmi devii client, prelucrez date despre starea ta psihică și fizică.
+      Dacă ne devii client, prelucrăm date despre starea ta psihică și fizică.
       Acestea sunt <strong>date de categorie specială</strong> în sensul
       articolului 9 din Regulamentul General privind Protecția Datelor (GDPR).
       Temeiul prelucrării lor este articolul 9(2)(h) — furnizarea de servicii de
@@ -52,7 +52,7 @@ $retentie = (int) config('retentie_mesaje_zile');
       <li>
         <strong>Formularul de contact:</strong> numele pe care îl dai, emailul
         sau telefonul, situația aleasă și mesajul opțional. Acestea sunt
-        <strong>criptate</strong> în baza de date și îmi folosesc doar ca să îți
+        <strong>criptate</strong> în baza de date și ne folosesc doar ca să îți
         pot răspunde.
       </li>
       <li>
@@ -76,7 +76,7 @@ $retentie = (int) config('retentie_mesaje_zile');
 
     <h2>Cui le transmit</h2>
     <p>
-      Nu vând și nu transmit datele tale nimănui în scop comercial. Le pot accesa
+      Nu vindem și nu transmitem datele tale nimănui în scop comercial. Le pot accesa doar
       doar furnizorii tehnici strict necesari (găzduire, serviciu de email), sub
       obligație de confidențialitate. Statisticile de vizitare, dacă le accepți,
       sunt prelucrate de [COMPLETEZ EU: Plausible / Matomo], care nu construiește
@@ -93,7 +93,7 @@ $retentie = (int) config('retentie_mesaje_zile');
       <li>să depui o plângere la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP), <a href="https://www.dataprotection.ro" target="_blank" rel="noopener">dataprotection.ro</a>.</li>
     </ul>
     <p>
-      Pentru oricare dintre ele, scrie-mi la
+      Pentru oricare dintre ele, scrie-ne la
       <a href="mailto:<?= e((string) config('site', 'email')) ?>"><?= e((string) config('site', 'email')) ?></a>.
     </p>
 

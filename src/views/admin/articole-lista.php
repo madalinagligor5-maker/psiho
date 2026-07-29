@@ -9,12 +9,13 @@
 <?php else: ?>
   <table class="admin-tabel">
     <thead>
-      <tr><th>Titlu</th><th>Categorie</th><th>Stare</th><th>Dată</th><th></th></tr>
+      <tr><th>Titlu</th><th>Autor</th><th>Categorie</th><th>Stare</th><th>Dată</th><th></th></tr>
     </thead>
     <tbody>
       <?php foreach ($articole as $a): ?>
         <tr>
           <td><a href="<?= e(url('admin/articole/' . $a['id'])) ?>"><?= e($a['titlu']) ?></a></td>
+          <td class="meta"><?= e($a['autor_nume'] ?? '—') ?></td>
           <td class="meta"><?= e($a['categorie_nume'] ?? '—') ?></td>
           <td>
             <span class="stare stare--<?= $a['stare'] === 'publicat' ? 'publicat' : 'ciorna' ?>">

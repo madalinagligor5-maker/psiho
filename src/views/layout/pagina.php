@@ -49,10 +49,20 @@ $analiza  = config('analiza');
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ro_RO">
+<meta property="og:site_name" content="<?= e(setare('cabinet_nume', 'Adam și Babotan')) ?>">
 <meta property="og:title" content="<?= e($titlu) ?>">
 <meta property="og:description" content="<?= e($descriere) ?>">
 <meta property="og:url" content="<?= e(url(ltrim($ruta, '/'))) ?>">
-<meta name="twitter:card" content="summary">
+<?php
+  /* Imaginea de previzualizare pe retele. Se ia coperta articolului daca exista,
+     altfel imaginea generala a cabinetului (o pune clienta — vezi CONTINUT.md).
+     Cardul e „summary_large_image" doar cand chiar avem o imagine. */
+  $ogImg = !empty($og_imagine) ? url('uploads/' . $og_imagine) : url('assets/images/og.webp');
+?>
+<meta property="og:image" content="<?= e($ogImg) ?>">
+<meta property="og:image:alt" content="<?= e(setare('cabinet_nume', 'Adam și Babotan')) ?> — cabinet de psihologie">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="<?= e($ogImg) ?>">
 
 <link rel="icon" href="<?= e(asset('assets/favicon.svg')) ?>" type="image/svg+xml">
 

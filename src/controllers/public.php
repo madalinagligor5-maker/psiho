@@ -151,6 +151,7 @@ function pagina_articol(string $slug): void
         'articol'   => $articol,
         'inrudite'  => Articol::inrudite($articol, 2),
         'schema'    => $schema,
+        'og_imagine'=> $articol['imagine'] ?? null,
     ]);
 }
 
