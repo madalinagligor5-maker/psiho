@@ -10,10 +10,10 @@
   <div class="proza">
     <h2>Despre acest site</h2>
     <p>
-      Acest site prezintă serviciile de psihoterapie oferite de
-      [COMPLETEZ EU: nume / formă de exercitare a profesiei] și permite
-      contactarea în vederea programării unei ședințe. Folosirea site-ului
-      înseamnă acceptarea acestor termeni.
+      Acest site prezintă serviciile de psihologie și psihoterapie oferite de
+      <strong><?= e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie')) ?></strong>
+      și permite contactarea în vederea programării unei ședințe. Folosirea
+      site-ului înseamnă acceptarea acestor termeni.
     </p>
 
     <h2>Ce nu este acest site</h2>

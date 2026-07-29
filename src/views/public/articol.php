@@ -13,6 +13,7 @@
     </p>
     <h1><?= e($articol['titlu']) ?></h1>
     <p class="meta" style="margin-top: var(--s2)">
+      <?php if (!empty($articol['autor_nume'])): ?>de <?= e($articol['autor_nume']) ?> · <?php endif ?>
       <?= reading_time($articol['continut']) ?> min de citit
       <?php if (!empty($articol['publicat_la'])): ?> · <?= e(data_ro($articol['publicat_la'])) ?><?php endif ?>
     </p>

@@ -20,7 +20,7 @@
 
         <p class="meta" style="margin:var(--s1) 0">
           <strong>Contact:</strong> <?= e($m['contact']) ?><br>
-          <strong>Unde e acum:</strong> <?= e($m['situatie_text']) ?>
+          <strong>Preferă să discute cu:</strong> <?= e($m['psiholog_preferat'] ?? 'nu a specificat') ?>
         </p>
 
         <?php if (!empty($m['mesaj'])): ?>

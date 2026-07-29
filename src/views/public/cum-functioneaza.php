@@ -118,6 +118,30 @@ $durata = setare('durata_cunoastere', '20');
   </p>
 </section>
 
+<!-- Cum alegi intre cele doua psiholoage -->
+<section class="sectiune">
+  <p class="eticheta">Cu cine lucrezi</p>
+  <h2>Cum alegi psihologul potrivit dintre noi</h2>
+  <p style="margin-top: var(--s3)">
+    Suntem două psiholoage, iar asta ridică o întrebare firească: cu cine începi?
+    De cele mai multe ori, contează mai puțin decât pare — abordarea e comună, iar
+    ședința de cunoaștere e exact locul unde se limpezește.
+  </p>
+  <p>
+    Dacă ai o preferință — pentru că ai citit un articol scris de una dintre noi,
+    sau pentru o specializare anume — o poți spune direct în formularul de contact.
+    Dacă nu, alegem împreună, în funcție de ce cauți: unele lucruri (evaluări, fișe,
+    terapie de familie) le oferă doar una dintre noi; vezi
+    <a href="<?= e(url('echipa')) ?>">pagina Echipa</a> pentru detalii.
+  </p>
+  <p>
+    <strong>Și dacă vrei să schimbi pe parcurs?</strong> Se poate, și nu e o
+    problemă. Îți spui, iar noi ne asigurăm că trecerea se face cu grijă, fără să
+    reiei totul de la capăt. Continuitatea îngrijirii e responsabilitatea noastră,
+    nu o povară pe care o duci tu.
+  </p>
+</section>
+
 <!-- Daca nu ne potrivim -->
 <section class="sectiune">
   <p class="eticheta">Dacă nu merge</p>

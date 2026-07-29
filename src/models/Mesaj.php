@@ -79,14 +79,14 @@ final class Mesaj
     // Operatii
     // -----------------------------------------------------------------------
 
-    public static function salveaza(string $nume, string $contact, string $situatie, string $mesaj): int
+    public static function salveaza(string $nume, string $contact, string $mesaj, ?int $psihologPreferatId = null): int
     {
         return Database::insert(
-            'INSERT INTO mesaje_contact (nume_cif, contact_cif, situatie, mesaj_cif) VALUES (?, ?, ?, ?)',
+            'INSERT INTO mesaje_contact (nume_cif, contact_cif, psiholog_preferat_id, mesaj_cif) VALUES (?, ?, ?, ?)',
             [
                 self::cripteaza($nume),
                 self::cripteaza($contact),
-                $situatie,
+                $psihologPreferatId,
                 $mesaj === '' ? null : self::cripteaza($mesaj),
             ]
         );
@@ -95,15 +95,19 @@ final class Mesaj
     /** Mesajele nesterse, decriptate pentru afisare in admin. */
     public static function toate(): array
     {
+        // Aducem si numele psihologului preferat (preferinta NU e criptata:
+        // nu spune nimic despre starea persoanei, doar cu cine ar vrea sa discute).
         $randuri = Database::all(
-            'SELECT * FROM mesaje_contact WHERE sters_la IS NULL ORDER BY primit_la DESC'
+            'SELECT m.*, p.nume AS psiholog_preferat
+             FROM mesaje_contact m
+             LEFT JOIN psihologi p ON p.id = m.psiholog_preferat_id
+             WHERE m.sters_la IS NULL ORDER BY m.primit_la DESC'
         );
 
         foreach ($randuri as &$r) {
             $r['nume']    = self::decripteaza($r['nume_cif'])    ?? '(nu s-a putut decripta)';
             $r['contact'] = self::decripteaza($r['contact_cif']) ?? '(nu s-a putut decripta)';
             $r['mesaj']   = self::decripteaza($r['mesaj_cif']);
-            $r['situatie_text'] = self::SITUATII[$r['situatie']] ?? $r['situatie'];
             unset($r['nume_cif'], $r['contact_cif'], $r['mesaj_cif']);
         }
         return $randuri;

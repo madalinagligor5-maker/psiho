@@ -19,6 +19,11 @@ typography:
   display:
     fontFamily: "Source Serif 4"
     fontSize: clamp(2rem, 1.4rem + 2.4vw, 3.25rem)
+  # Titlul de hero e o treaptă mai mare, fluidă — prezență mai puternică pe
+  # prima pagină și pe capetele de secțiune, fără a împinge restul scării.
+  hero:
+    fontFamily: "Source Serif 4"
+    fontSize: clamp(2.4rem, 1.5rem + 3.4vw, 3.75rem)
 colors:
   # Identitatea vizuala reala a clientei, de pe @terapie.cu.cristina, extrasa
   # prin sampling de culoare si verificata pentru WCAG 2.1 AA.
@@ -29,6 +34,12 @@ colors:
   salvieMediu: "#4E6357"
   teracota: "#C9A48C"
   teracotaText: "#8A5638"
+  # Bleu — ancora RECE, luminoasă, adăugată la cererea clientei pentru un aer
+  # modern și aerisit. Rol: butoane și accente (bleu mediu), panoul CTA și
+  # subsolul (bleu pal). Contrast: buton alb/crem 5.9/5.2, pal cu text închis 12.
+  bleu: "#3A6699"
+  bleuClar: "#315982"
+  bleuPal: "#E4EDF6"
   piatra: "#635B50"
   crem: "#F7EEE4"
   greige: "#DBDCCF"
@@ -62,6 +73,17 @@ rounded:
 
 Scris înainte de orice CSS, conform §4 din brief. Revizuit o dată — ce s-a
 schimbat la revizuire e notat la final.
+
+> **⚠ Actualizare — pivot „Adam & Babotan" + cererea clientei.** Sursa de
+> adevăr pentru CULORI e frontmatter-ul YAML de sus (deja actualizat), NU tabelul
+> §1 de mai jos, care descrie paleta inițială (verde pădure / ocru) și e păstrat
+> doar ca istoric. Paleta curentă e caldă — crem, salvie, teracotă — extrasă din
+> @terapie.cu.cristina, plus un **bleu deschis** (#3A6699 / #E4EDF6) adăugat ca
+> ancoră rece, modernă (butoane, blocul CTA, subsol, eyebrow). Elementul-semnătură
+> e acum ramura botanică (§4, rescris), nu „Firul". Politica de mișcare e
+> relaxată la „mișcare calmă" (§5 în PRODUCT.md, rescris) — apariții blânde la
+> scroll, legănarea botanică, ridicarea cardurilor la hover; totul dezactivat la
+> `prefers-reduced-motion`. Toate perechile noi de culori sunt verificate WCAG.
 
 ---
 
@@ -142,23 +164,24 @@ Pe mobil se pliază în coloană unică. Firul devine un semn scurt, de 24px,
 
 **Evită explicit:** hero centrat urmat de trei carduri. Nu apare nicăieri.
 
-## 4. Elementul-semnătură: „Firul"
+## 4. Elementul-semnătură: ramura botanică
 
-O linie de păr ocru, continuă, verticală, care curge prin marginea stângă pe
-toată înălțimea paginii. Unde începe o secțiune, are un nod mic, plin. Din loc
-în loc se ramifică lateral — o liniuță orizontală scurtă către o notă marginală.
+O ramură botanică delicată, în linework, în marginea hero-ului: o tulpină care
+se ramifică, cu frunze care alternează stânga/dreapta ca o plantă reală, plus
+câteva boabe calde (teracotă) în vârf. Codul: `src/views/public/_botanic.php`.
 
-De ce ăsta și nu altul: literalizează „nu caut vinovatul, caut tiparul". Leagă
-lucruri care par separate, și se ramifică lateral, nu doar în jos — exact ideea
-sistemică. Ramificația e ce îl deosebește de un timeline vertical: nu are date,
-nu are cronologie, nu numără pași decât pe pagina unde chiar sunt pași.
+De ce ăsta: vine direct din identitatea reală a clientei (@terapie.cu.cristina,
+unde motivele botanice apar sistematic), și literalizează în același timp „nu
+caut vinovatul, caut tiparul" — o tulpină care **se ramifică lateral**, nu doar
+crește în sus, exact ideea sistemică. E versiunea botanică a „Firului" din
+proiectul inițial: aceeași idee, limbajul clientei.
 
-E **static**. Nu se mișcă, nu se desenează la scroll, nu urmărește progresul.
-Asta nu e o limitare, e argumentul: firul e deja acolo când ajungi pe pagină,
-așa cum tiparul era deja acolo înainte să vină cineva la terapie.
+**Mișcare:** se leagănă foarte lent (7–9.5s, defazat între frunze, ca să nu pară
+mecanic) — „respiră". Static la `prefers-reduced-motion`. Apare și, discret, în
+colțul blocului CTA (pe fundal bleu pal), ca semnătură caldă recurentă.
 
-Unde se vede cel mai clar: pagina **Cum funcționează** (cei 4 pași și prima
-ședință minut cu minut), și marginea articolelor.
+Tulpina (linia structurală) e în salvie închis, lizibilă; frunzele umplute sunt
+decorative, în salvie și teracotă deschise (exceptate WCAG 1.4.11).
 
 ## 5. Politica de mișcare, declarată înapoi
 

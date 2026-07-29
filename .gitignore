@@ -23,3 +23,9 @@ Thumbs.db
 
 # Dependinte JS pentru build (esbuild + TipTap). Bundle-ul rezultat SE comite.
 /package-lock.json
+
+# Pachetul de urcare (zip-uri) — artefact de build, se regenereaza cand trebuie.
+/PACHET-URCARE/
+
+# Orice arhiva zip — artefacte de urcare/backup, nu fac parte din cod.
+*.zip

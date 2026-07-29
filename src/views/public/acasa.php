@@ -1,17 +1,22 @@
 <?php
-/** Pagina de acasa. Variabile: $articole, $faq */
+/** Pagina de acasa. Variabile: $articole, $faq, $psihologi */
 $pretIndividual = setare('pret_individual', '250');
 $pretOnline     = setare('pret_online', '220');
 $durataCunoastere = setare('durata_cunoastere', '20');
+$psihologi = $psihologi ?? [];
 ?>
 
-<section class="sectiune">
-  <p class="eticheta">Psihoterapie sistemică</p>
+<!-- Hero, cu ramura botanica in margine -->
+<section class="sectiune hero">
+  <div class="hero-botanic"><?= view('public/_botanic') ?></div>
+
+  <p class="eticheta">Cabinet de psihologie · Timișoara</p>
   <h1><?= e(setare('titlu_acasa', 'Nu caut vinovatul, caut tiparul.')) ?></h1>
   <p class="introducere" style="margin-top: var(--s3)">
-    Sunt psiholog clinician. Lucrez cu oameni care trec prin anxietate, depresie
-    sau epuizare — nu tratând un simptom rupt de tot restul, ci uitându-mă la
-    tiparele dintre tine și oamenii și locurile din care faci parte.
+    Nu te-ai stricat tu. De multe ori s-a rupt echilibrul din jurul tău — în
+    familie, în cuplu, la muncă. Suntem două psiholoage și lucrăm cu oameni care
+    trec prin anxietate, depresie sau epuizare, uitându-ne la tiparele dintre
+    tine și sistemele din care faci parte, nu la un simptom rupt de tot restul.
   </p>
   <div style="margin-top: var(--s4)">
     <a class="buton buton--principal" href="<?= e(url('contact')) ?>">
@@ -23,8 +28,8 @@ $durataCunoastere = setare('durata_cunoastere', '20');
   </div>
 </section>
 
-<!-- Ai ajuns aici pentru ca... — recunoasteri la persoana a doua, fara etichete clinice -->
-<section class="sectiune">
+<!-- Ai ajuns aici pentru ca... -->
+<section class="sectiune reveal">
   <p class="eticheta">Ai ajuns aici pentru că</p>
   <ul class="recunoasteri">
     <li>Te trezești dimineața deja obosit, și nu mai știi de când.</li>
@@ -38,10 +43,10 @@ $durataCunoastere = setare('durata_cunoastere', '20');
   </p>
 </section>
 
-<!-- Cum lucrez -->
-<section class="sectiune">
-  <p class="eticheta">Cum lucrez</p>
-  <h2>Simptomul e vârful. Mă interesează ce ține de el</h2>
+<!-- Cum lucram -->
+<section class="sectiune reveal">
+  <p class="eticheta">Cum lucrăm</p>
+  <h2>Simptomul e vârful. Ne interesează ce ține de el</h2>
   <p style="margin-top: var(--s3)">
     Terapia sistemică pornește de la o idee simplă: nimeni nu se simte rău
     într-un vid. Anxietatea, oboseala, felul în care reacționezi — toate există
@@ -49,7 +54,7 @@ $durataCunoastere = setare('durata_cunoastere', '20');
     rolurile pe care le-ai preluat fără să le alegi.
   </p>
   <p>
-    Nu caut ce e „în neregulă cu tine”. Caut tiparul care se repetă și care,
+    Nu căutăm ce e „în neregulă cu tine”. Căutăm tiparul care se repetă și care,
     cândva, a fost cea mai bună soluție pe care ai găsit-o. Când tiparul devine
     vizibil, încetează să te mai conducă din umbră.
   </p>
@@ -58,12 +63,37 @@ $durataCunoastere = setare('durata_cunoastere', '20');
   </p>
 </section>
 
-<!-- Servicii cu preturi vizibile (§5: preturile se afiseaza) -->
-<section class="sectiune">
+<!-- Echipa, pe scurt -->
+<?php if (!empty($psihologi)): ?>
+<section class="sectiune reveal">
+  <p class="eticheta">Cine suntem</p>
+  <h2>Două psiholoage, un cabinet</h2>
+  <p style="margin-top: var(--s3)">
+    <?= e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie')) ?>.
+    Lucrăm fiecare cu specializarea ei, dar împărtășim aceeași abordare sistemică
+    și caldă.
+  </p>
+  <div class="servicii" style="margin-top: var(--s4)">
+    <?php foreach ($psihologi as $p): ?>
+      <div class="serviciu">
+        <h3><?= e($p['nume']) ?></h3>
+        <p class="serviciu__durata"><?= e($p['titlu_scurt']) ?></p>
+        <p class="fara-margine-jos meta">Cod CPR <?= e($p['cod_cpr']) ?> · Filiala <?= e($p['filiala']) ?></p>
+      </div>
+    <?php endforeach ?>
+  </div>
+  <p style="margin-top: var(--s4)">
+    <a href="<?= e(url('echipa')) ?>">Despre fiecare dintre noi →</a>
+  </p>
+</section>
+<?php endif ?>
+
+<!-- Servicii cu preturi vizibile -->
+<section class="sectiune reveal">
   <p class="eticheta">Ședințe</p>
   <h2>Prețurile, de la început</h2>
   <p style="margin-top: var(--s3)">
-    Le pun aici pentru că a fi nevoit să întrebi cât costă e, pentru mulți
+    Le punem aici pentru că a fi nevoit să întrebi cât costă e, pentru mulți
     oameni, încă un motiv de amânat.
   </p>
 
@@ -83,12 +113,12 @@ $durataCunoastere = setare('durata_cunoastere', '20');
   </div>
 
   <p style="margin-top: var(--s4)">
-    <a href="<?= e(url('servicii')) ?>">Toate detaliile despre ședințe →</a>
+    <a href="<?= e(url('servicii')) ?>">Toate serviciile și prețurile →</a>
   </p>
 </section>
 
 <!-- Cei 4 pasi -->
-<section class="sectiune">
+<section class="sectiune reveal">
   <p class="eticheta">De la gând la prima ședință</p>
   <h2>Patru pași, niciunul complicat</h2>
 
@@ -99,7 +129,7 @@ $durataCunoastere = setare('durata_cunoastere', '20');
     </li>
     <li class="pas">
       <h3>Ședința de cunoaștere</h3>
-      <p class="fara-margine-jos">Douăzeci de minute, gratuit. Îmi spui ce cauți, îți spun cum lucrez. Fără angajament.</p>
+      <p class="fara-margine-jos">Douăzeci de minute, gratuit. Ne spui ce cauți, îți spunem cum lucrăm. Fără angajament.</p>
     </li>
     <li class="pas">
       <h3>Decizi tu</h3>
@@ -112,39 +142,18 @@ $durataCunoastere = setare('durata_cunoastere', '20');
   </ol>
 </section>
 
-<!-- Despre, pe scurt -->
-<section class="sectiune">
-  <p class="eticheta">Despre mine</p>
-  <h2>Cine sunt</h2>
-  <p style="margin-top: var(--s3)">
-    Psiholog clinician acreditat de Colegiul Psihologilor din România (COPSI),
-    în formare ca psihoterapeut sistemic. Lucrez cu adulți, individual, pe
-    anxietate, depresie, burnout și pe tiparele care se repetă în relații.
-  </p>
-  <p>
-    <span class="nota-margine">
-      [COMPLETEZ EU: un rând–două despre de ce faci munca asta — e locul unde
-      site-ul devine al tău, nu al oricui.]
-    </span>
-    Cred că oamenii nu vin la terapie ca să fie reparați, ci ca să fie însoțiți
-    în timp ce înțeleg ceva ce până atunci nu au avut cu cine gândi.
-  </p>
-  <p style="margin-top: var(--s3)">
-    <a href="<?= e(url('despre-mine')) ?>">Mai multe despre formare și felul în care lucrez →</a>
-  </p>
-</section>
-
 <!-- Articole recente -->
 <?php if (!empty($articole)): ?>
-<section class="sectiune">
+<section class="sectiune reveal">
   <p class="eticheta">De citit</p>
   <h2>Articole recente</h2>
   <div class="articole" style="margin-top: var(--s4)">
     <?php foreach ($articole as $a): ?>
       <article class="articol-card">
-        <?php if (!empty($a['categorie_nume'])): ?>
-          <p class="meta"><?= e($a['categorie_nume']) ?> · <?= reading_time($a['continut']) ?> min de citit</p>
-        <?php endif ?>
+        <p class="meta">
+          <?php if (!empty($a['categorie_nume'])): ?><?= e($a['categorie_nume']) ?> · <?php endif ?>
+          <?= reading_time($a['continut']) ?> min de citit
+        </p>
         <h3><a href="<?= e(url('articol/' . $a['slug'])) ?>"><?= e($a['titlu']) ?></a></h3>
         <p><?= e($a['rezumat']) ?></p>
       </article>
@@ -158,9 +167,9 @@ $durataCunoastere = setare('durata_cunoastere', '20');
 
 <!-- FAQ scurt -->
 <?php if (!empty($faq)): ?>
-<section class="sectiune">
+<section class="sectiune reveal">
   <p class="eticheta">Întrebări</p>
-  <h2>Ce mă întreabă oamenii înainte să înceapă</h2>
+  <h2>Ce ne întreabă oamenii înainte să înceapă</h2>
   <div class="faq" style="margin-top: var(--s4)">
     <?php foreach ($faq as $f): ?>
       <details class="intrebare">
@@ -176,4 +185,6 @@ $durataCunoastere = setare('durata_cunoastere', '20');
 </section>
 <?php endif ?>
 
+<div class="reveal">
 <?= view('public/_cta') ?>
+</div>

@@ -15,7 +15,7 @@ $whatsapp = (string) config('site', 'whatsapp');
   <p class="eticheta">Contact</p>
   <h1>Hai să vorbim o dată</h1>
   <p class="introducere" style="margin-top: var(--s3)">
-    Nu trebuie să știi ce să spui. Un rând ajunge. Îți răspund în maximum 48 de
+    Nu trebuie să știi ce să spui. Un rând ajunge. Îți răspundem în maximum 48 de
     ore lucrătoare și stabilim o ședință de cunoaștere, gratuită.
   </p>
 </section>
@@ -62,14 +62,14 @@ $whatsapp = (string) config('site', 'whatsapp');
       </div>
 
       <div class="camp">
-        <label for="situatie">Unde ești acum?</label>
-        <select id="situatie" name="situatie" required>
-          <option value="">Alege...</option>
-          <?php foreach (Mesaj::SITUATII as $val => $text): ?>
-            <option value="<?= e($val) ?>" <?= ($vechi['situatie'] ?? '') === $val ? 'selected' : '' ?>><?= e($text) ?></option>
+        <label for="preferat">Preferi să discuți cu cineva anume? <span class="ajutor" style="font-weight:400">(opțional)</span></label>
+        <select id="preferat" name="preferat">
+          <option value="0">Nu am o preferință</option>
+          <?php foreach (($psihologi ?? []) as $ps): ?>
+            <option value="<?= (int) $ps['id'] ?>" <?= (int) ($vechi['preferat'] ?? 0) === (int) $ps['id'] ? 'selected' : '' ?>><?= e($ps['nume']) ?></option>
           <?php endforeach ?>
         </select>
-        <span class="eroare-camp" id="eroare-situatie" data-vizibil="<?= isset($erori['situatie']) ? 'true' : 'false' ?>"><?= e($erori['situatie'] ?? '') ?></span>
+        <span class="ajutor">Dacă nu ești sigur, lasă „Nu am o preferință” — te îndrumăm noi.</span>
       </div>
 
       <div class="camp">

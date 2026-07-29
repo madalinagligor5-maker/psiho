@@ -93,6 +93,9 @@
   --salvie-mediu:   #4E6357;  /* hover pe CTA */
   --teracota:       #C9A48C;  /* accent cald — DECORATIV, punctual, nu dominant */
   --teracota-text:  #8A5638;  /* teracota cand trebuie sa fie text lizibil */
+  --bleu:      #3A6699;  /* ancora RECE, luminoasa si moderna: butoane, eyebrow, accente */
+  --bleu-clar: #315982;  /* hover pe bleu (usor mai profund la apasare) */
+  --bleu-pal:  #E4EDF6;  /* bleu deschis, aerisit: panoul CTA, subsolul */
   --piatra:         #635B50;  /* text secundar, cald */
   --crem:           #F7EEE4;  /* fundalul dominant, crem/blush cald */
   --greige:         #DBDCCF;  /* suprafata secundara: casete, inserturi */
@@ -172,6 +175,10 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  /* Taie orice depasire orizontala (ex. fundalul full-bleed al hero-ului, care
+     foloseste 100vw). `clip` in loc de `hidden`: nu creeaza un container de
+     scroll si nu strica position: sticky din antet. */
+  overflow-x: clip;
 }
 
 body {
@@ -268,13 +275,14 @@ strong { font-weight: 700; }
   color: var(--piatra);
 }
 
-/* Eticheta mica de deasupra unui titlu de sectiune. */
+/* Eticheta mica de deasupra unui titlu de sectiune. Bleumarin — firul rece care
+   strabate tot site-ul si ii da aerul modern. */
 .eticheta {
   font-size: var(--t-nota);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--piatra);
+  color: var(--bleu);
   margin: 0 0 var(--s2);
 }
 
@@ -537,29 +545,45 @@ strong { font-weight: 700; }
     color            var(--d-rapid) var(--usor);
 }
 
-/* CTA-ul principal. Exista unul singur per viewport, peste tot in site. */
+/* CTA-ul principal — bleumarin: ancora rece, modernă, confiden­tă. Exista unul
+   singur per viewport, peste tot in site. */
 .buton--principal {
-  background: var(--salvie-inchis);
+  background: var(--bleu);
   color: var(--alb);
 }
-.buton--principal:hover { background: var(--salvie-mediu); color: var(--alb); }
+.buton--principal:hover { background: var(--bleu-clar); color: var(--alb); }
 
 .buton--secundar {
   background: transparent;
-  border-color: var(--salvie-inchis);
-  color: var(--salvie-inchis);
+  border-color: var(--bleu);
+  color: var(--bleu);
 }
-.buton--secundar:hover { background: var(--greige); }
+.buton--secundar:hover { background: var(--bleu-pal); }
 
-/* --- Blocul de CTA -------------------------------------------------------- */
+/* --- Blocul de CTA — panou bleu PAL, aerisit: momentul de acțiune al fiecărei
+   pagini. Fundal deschis, text închis, buton bleu plin. Luminos, modern, calm. */
 
 .chemare {
-  background: var(--greige);
-  padding: var(--s5) var(--s4);
+  background: var(--bleu-pal);
+  color: var(--cerneala);
+  padding: var(--s6) var(--s5);
   border-radius: var(--raza-mediu);
+  position: relative;
+  overflow: hidden;
 }
 .chemare h2 { margin-bottom: var(--s2); }
-.chemare p  { margin-bottom: var(--s4); }
+.chemare p  { margin-bottom: var(--s4); max-width: 52ch; }
+/* O ramură botanică discretă, în colț — semnătură caldă pe fundalul rece-pal. */
+.chemare__botanic {
+  position: absolute;
+  right: -1.5rem;
+  bottom: -2rem;
+  width: 8rem;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.chemare__botanic .botanic__frunza--cald { fill: var(--teracota); opacity: 0.6; }
+.chemare__botanic .botanic__bob { fill: var(--teracota); }
 
 /* --- Lista de recunoasteri ("ai ajuns aici pentru ca...") ----------------- */
 
@@ -720,10 +744,11 @@ strong { font-weight: 700; }
 
 /* --- Subsol --------------------------------------------------------------- */
 
+/* Subsol bleu pal — luminos, aerisit, dar clar delimitat de restul paginii. */
 .subsol {
   margin-top: var(--s7);
-  padding-block: var(--s5);
-  border-top: 1px solid var(--greige);
+  padding-block: var(--s6);
+  background: var(--bleu-pal);
   font-size: var(--t-mic);
   color: var(--piatra);
 }
@@ -744,8 +769,9 @@ strong { font-weight: 700; }
   color: var(--cerneala);
 }
 .subsol ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s1); }
-.subsol a { color: var(--piatra); text-decoration: none; }
-.subsol a:hover { color: var(--salvie-inchis); text-decoration: underline; }
+.subsol a { color: var(--bleu); text-decoration: none; }
+.subsol a:hover { color: var(--bleu-clar); text-decoration: underline; }
+.subsol strong { color: var(--cerneala); font-weight: 400; }
 
 /* --- Corpul unui articol -------------------------------------------------- */
 
@@ -962,8 +988,194 @@ strong { font-weight: 700; }
 .centrat-vertical { align-items: center; }
 .fara-margine-jos { margin-bottom: 0; }
 
+/* --- Echipa: acreditare + specializari cu regim ---------------------------- */
+
+.acreditare {
+  padding: var(--s3);
+  background: var(--greige);
+  border-radius: var(--raza-mediu);
+  max-width: var(--masura);
+}
+
+.specializari {
+  list-style: none;
+  margin: var(--s2) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s2);
+}
+.specializari li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s1) var(--s2);
+}
+.specializare__nume  { font-weight: 700; }
+.specializare__nivel { font-size: var(--t-mic); color: var(--piatra); }
+
+/* Eticheta de regim: verde pentru autonom, neutru cald pentru supervizare.
+   Fara accent negativ — supervizarea e statut normal, nu deficienta. */
+.regim {
+  font-size: var(--t-nota);
+  font-weight: 700;
+  padding: 0.1em 0.6em;
+  border-radius: var(--raza-pastila);
+  white-space: nowrap;
+}
+.regim--autonom     { color: var(--salvie-inchis); background: var(--bine-tint); }
+.regim--supervizare { color: var(--teracota-text); background: var(--atentie-tint); }
+
+/* Nota informativa neutra (nu de criza): panou cald, contur fin. */
+.nota-info {
+  padding: var(--s3);
+  background: var(--greige);
+  border: 1px solid var(--n-300);
+  border-radius: var(--raza-mediu);
+}
+
+/* Grupe de servicii pe pagina Servicii. */
+.grup-servicii + .grup-servicii { margin-top: var(--s6); }
+.grup-servicii__cap { margin-bottom: var(--s3); }
+.autor-eticheta {
+  display: inline-block;
+  font-size: var(--t-nota);
+  color: var(--piatra);
+  margin-top: var(--s1);
+}
+
 /* --------------------------------------------------------------------------
-   9. prefers-reduced-motion
+   9. Viață — mișcare calmă, provocată de scroll și de hover
+
+   Schimbare de politică față de prima versiune (documentată în DESIGN.md §5):
+   permitem mișcare, dar de tip „respirație", nu de tip „spectacol". Regula nouă:
+   nimic nu SARE, nimic nu ZBOARĂ. Aparițiile sunt un fade blând, cu o urcare de
+   câțiva pixeli. Elementul botanic se leagănă lent, ca o plantă la geam.
+
+   Tot ce e aici e dezactivat curat la `prefers-reduced-motion` (secțiunea 10):
+   mișcarea devine doar opacitate, sau dispare, niciodată bruscă.
+   -------------------------------------------------------------------------- */
+
+/* Apariție la scroll. Elementul stă la 92% opacitate și 12px mai jos, apoi
+   urcă blând când intră în ecran. JS adaugă clasa .vizibil (IntersectionObserver). */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 620ms var(--usor),
+    transform 620ms var(--usor);
+  will-change: opacity, transform;
+}
+.reveal.vizibil {
+  opacity: 1;
+  transform: none;
+}
+/* Ușoară cascadă: al doilea, al treilea copil întârzie puțin, ca secțiunea să
+   se așeze pe rând, nu tot deodată. */
+.reveal--intarziat.vizibil  { transition-delay: 90ms; }
+.reveal--intarziat2.vizibil { transition-delay: 180ms; }
+
+/* Ridicare la hover pentru carduri — confirmă că sunt interactive. */
+.serviciu,
+.articol-card {
+  transition:
+    transform var(--d-mediu) var(--usor),
+    border-color var(--d-mediu) var(--usor),
+    box-shadow var(--d-mediu) var(--usor);
+}
+@media (hover: hover) {
+  .serviciu:hover,
+  .articol-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--salvie);
+    box-shadow: 0 8px 24px rgb(46 43 38 / 0.06);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Elementul-semnătură: ramura botanică
+
+   Înlocuiește „Firul". Aceeași idee sistemică — o tulpină care se ramifică,
+   nu doar coboară — dar în limbajul botanic al identității clientei
+   (@terapie.cu.cristina). Linia structurală (tulpina) e în salvie închis,
+   lizibilă; frunzele umplute sunt decorative, în salvie și teracota deschise.
+
+   Se leagănă foarte lent (respiră). Static la prefers-reduced-motion.
+   -------------------------------------------------------------------------- */
+
+.botanic {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.botanic__tulpina,
+.botanic__ram {
+  fill: none;
+  stroke: var(--salvie-inchis);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.botanic__frunza      { fill: var(--salvie); opacity: 0.55; }
+.botanic__frunza--cald{ fill: var(--teracota); opacity: 0.6; }
+.botanic__vena        { fill: none; stroke: var(--salvie-inchis); stroke-width: 0.8; opacity: 0.5; }
+.botanic__bob         { fill: var(--teracota); }
+
+/* Fiecare frunză se leagănă din punctul ei de prindere, ușor defazat, ca să nu
+   se miște toate la unison — asta ar părea mecanic, nu viu. */
+.botanic__grup {
+  transform-box: fill-box;
+  transform-origin: 0% 50%;
+  animation: leganare 7s ease-in-out infinite;
+}
+.botanic__grup:nth-child(even) { animation-duration: 8.5s; animation-direction: reverse; }
+.botanic__grup:nth-child(3n)   { animation-duration: 9.5s; }
+
+@keyframes leganare {
+  0%, 100% { transform: rotate(-1.2deg); }
+  50%      { transform: rotate(1.2deg); }
+}
+
+/* Ramura botanică din marginea hero-ului, pe ecran larg. */
+.hero-botanic {
+  display: none;
+}
+@media (min-width: 60rem) {
+  .hero-botanic {
+    display: block;
+    position: absolute;
+    left: calc(50% - var(--masura) / 2 - var(--gol-margine) - 5.5rem);
+    top: 0;
+    width: 6rem;
+    pointer-events: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Hero mai bogat
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 1.5rem + 3.4vw, 3.75rem);
+  line-height: 1.05;
+  margin-top: var(--s2);
+}
+/* Fundal cald, foarte discret, doar sub hero — dă adâncime fără gradient lat. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -4rem -50vw 0;
+  z-index: -1;
+  background:
+    radial-gradient(60% 80% at 30% 0%, rgb(143 160 147 / 0.10), transparent 70%),
+    radial-gradient(50% 70% at 90% 20%, rgb(201 164 140 / 0.10), transparent 70%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   10. prefers-reduced-motion
 
    Nu dezactiveaza tot: inlocuieste miscarea cu opacitate. O interfata din care
    dispare orice feedback e mai greu de folosit, nu mai usoara.
@@ -977,6 +1189,17 @@ strong { font-weight: 700; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  /* Aparițiile la scroll: conținutul trebuie să fie VIZIBIL din start, fără să
+     depindă de JS sau de mișcare. Fără asta, cine a cerut mai puțină mișcare ar
+     rămâne cu secțiuni invizibile. */
+  .reveal { opacity: 1 !important; transform: none !important; }
+
+  /* Ramura botanică stă nemișcată — nicio legănare. */
+  .botanic__grup { animation: none !important; }
+
+  /* Cardurile nu se mai ridică; hover rămâne doar pe culoare. */
+  .serviciu:hover, .articol-card:hover { transform: none !important; }
 
   /* Meniul mobil isi pastreaza tranzitia, dar doar pe opacitate: fara ea,
      continutul apare brusc si dezorienteaza mai tare decat miscarea. */

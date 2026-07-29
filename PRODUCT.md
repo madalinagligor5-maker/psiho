@@ -6,9 +6,23 @@ Brief-ul de produs. Fiecare comandă Impeccable citește acest fișier.
 
 ## Ce este
 
-Site de prezentare pentru un cabinet de psihologie clinică din România.
-Psiholog clinician acreditat COPSI, psihoterapeut sistemic în formare.
-Nișa: **anxietate, depresie, burnout**. Ședințe individuale, la cabinet și online.
+Site de prezentare pentru un **cabinet asociat de psihologie** din Timișoara,
+format din **două psiholoage** sub aceeași formă de exercitare:
+**ADAM ȘI BABOTAN, Societate civilă profesională de psihologie** (certificat 109,
+Filiala Timiș, 16.02.2023).
+
+- **Adam Nicoleta-Cristina** — CPR 26689. Psihologie clinică (regim autonom),
+  psihoterapie de familie (sub supervizare). Plus evaluări, fișe CES/grad,
+  orientare în carieră.
+- **Babotan Amalia-Alexandra** — CPR 27188. Psihologie clinică (sub supervizare).
+  Restul detaliilor: neconfirmate încă, marcate `[COMPLETEZ EU]`.
+
+Nișa de comunicare: **anxietate, depresie, burnout, tipare relaționale**. Ședințe
+individuale la cabinet și online, plus servicii de evaluare și documentație.
+
+**Regulă de acuratețe, obligatorie:** niciun text nu sugerează practică autonomă
+pe o specializare aflată în regim de supervizare. „Sub supervizare" se afișează
+corect, fără accent negativ — e statutul normal la nivel de practicant.
 
 Produse digitale (jurnale, ghiduri) — planificate, **nu în acest build**.
 Fără checkout, fără cod de plată.
@@ -23,14 +37,21 @@ persoană și sistemele din care face parte: familie, cuplu, muncă.
 Site-ul trebuie să transmită asta **fără jargon clinic**. Fără „suferi de",
 fără „tulburare" în titluri, fără promisiuni de vindecare.
 
-## Constrângere de brand, absolută
+## Constrângere de brand
 
-**Nu își arată chipul.** Nicăieri, niciodată. Zero fotografie de portret.
+**Fără fotografii de portret**, ca regulă de pornire. Prezența umană se
+construiește din detalii — mâini, un jurnal, o cană, spațiul cabinetului,
+texturi — plus vocea scrisului.
 
-Prezența umană se construiește din: mâini, un jurnal, o cană, spațiul
-cabinetului, texturi, detalii — plus vocea scrisului.
+*De confirmat cu clienta:* fiind două persoane, poate fi utilă o poză de echipă
+discretă (mâini, birou comun, fără fețe). Layoutul o suportă, dar nu o presupune.
 
-**Nu proiecta niciun layout care presupune o poză de profil.**
+## Identitatea vizuală
+
+Extrasă din contul real al Cristinei, **@terapie.cu.cristina**: paletă caldă
+(crem/blush, salvie, teracotă), linework botanic delicat, ton grafic calm.
+Plus, la cererea clientei, un **bleu deschis** ca ancoră rece, modernă. Vezi
+DESIGN.md pentru paletă și pentru elementul-semnătură (ramura botanică).
 
 ---
 
@@ -65,16 +86,20 @@ că publicarea a reușit, că ștergerea se poate anula.
 
 Cele două jumătăți sunt **opuse**. Aplică diviziunea deliberat.
 
-### Public — mișcarea servește calmul, sau nu există
+### Public — mișcarea servește calmul (revizuit)
 
-Nimic nu se mișcă dacă vizitatorul nu a provocat mișcarea.
+Versiunea inițială a fost complet statică. La cererea clientei, s-a adăugat
+**mișcare calmă, de tip „respirație", nu „spectacol"**. Regula: nimic nu sare,
+nimic nu zboară, nimic nu se repetă insistent.
 
-- **Interzis:** reveal la scroll, parallax, animație de intrare la încărcarea
-  paginii, bounce, overshoot.
-- **Permis:** tranziții pe hover și focus, meniul mobil, feedback de validare
-  la formular, extinderea acordeonului din FAQ.
-- Durate scurte. Fără bounce. Fără overshoot.
-- O pagină care stă nemișcată e o pagină care pare sigură.
+- **Permis:** apariții blânde la scroll (fade + urcare de câțiva pixeli, o
+  singură dată), ramura botanică ce se leagănă foarte lent, ridicare ușoară a
+  cardurilor la hover, plus tranzițiile de dinainte (hover/focus, meniu mobil,
+  validare formular, acordeon FAQ).
+- **Interzis:** parallax, bounce, overshoot, animații care se repetă agresiv,
+  orice mișcare care agită.
+- `prefers-reduced-motion` înlocuiește mișcarea cu opacitate; conținutul e
+  vizibil din start, ramura stă nemișcată.
 
 ### Admin — mișcarea e feedback, și trebuie să fie bună
 

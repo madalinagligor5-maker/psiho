@@ -20,7 +20,7 @@ $fara_fir  = $fara_fir  ?? false;
 $navigatie = [
     '/cum-functioneaza' => 'Cum funcționează',
     '/servicii'         => 'Servicii',
-    '/despre-mine'      => 'Despre mine',
+    '/echipa'           => 'Echipa',
     '/articole'         => 'Articole',
     '/resurse'          => 'Resurse',
     '/contact'          => 'Contact',
@@ -97,8 +97,8 @@ $analiza  = config('analiza');
     <div class="antet__interior pe-tot-ecranul">
 
       <a class="marca" href="<?= e(url()) ?>">
-        <?= e(config('site', 'nume')) ?>
-        <span>Psiholog clinician · Psihoterapie sistemică</span>
+        <?= e(setare('cabinet_nume', 'Adam și Babotan')) ?>
+        <span>Cabinet de psihologie · Psihoterapie sistemică</span>
       </a>
 
       <nav class="navigatie" aria-label="Navigare principală">
@@ -136,8 +136,8 @@ $analiza  = config('analiza');
       <div>
         <h4>Cabinet</h4>
         <p class="fara-margine-jos">
-          <?= e(config('site', 'nume')) ?><br>
-          Psiholog clinician, acreditat COPSI<br>
+          <?= e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie')) ?><br>
+          <?= e(setare('cabinet_certificat', '')) ?><br>
           <?= e(setare('adresa')) ?>
         </p>
       </div>
@@ -163,7 +163,7 @@ $analiza  = config('analiza');
     </div>
 
     <p class="meta pe-tot-ecranul" style="margin-top: var(--s4)">
-      © <?= date('Y') ?> <?= e(config('site', 'nume')) ?>.
+      © <?= date('Y') ?> <?= e(setare('cabinet_entitate', config('site', 'nume'))) ?>.
       Acest site nu este un canal de intervenție în criză.
     </p>
   </div>

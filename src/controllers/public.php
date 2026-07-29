@@ -16,12 +16,13 @@ declare(strict_types=1);
 function pagina_acasa(): void
 {
     render('public/acasa', [
-        'titlu'     => config('site', 'nume') . ' — psiholog clinician, psihoterapie sistemică',
-        'descriere' => 'Psiholog clinician acreditat COPSI. Anxietate, depresie, burnout. '
-            . 'Ședințe individuale, la cabinet și online. „Nu caut vinovatul, caut tiparul.”',
+        'titlu'     => setare('cabinet_nume', 'Adam și Babotan') . ' — cabinet de psihologie, psihoterapie sistemică',
+        'descriere' => 'Cabinet de psihologie din Timișoara. Anxietate, depresie, burnout, terapie de familie, '
+            . 'evaluări și documentație psihologică. „Nu caut vinovatul, caut tiparul.”',
         'ruta'      => '/',
         'articole'  => Articol::recente(3),
         'faq'       => Faq::toate(true),
+        'psihologi' => Psiholog::toti(),
     ]);
 }
 
@@ -32,7 +33,7 @@ function pagina_acasa(): void
 function pagina_cum_functioneaza(): void
 {
     render('public/cum-functioneaza', [
-        'titlu'     => 'Cum funcționează — ' . config('site', 'nume'),
+        'titlu'     => 'Cum funcționează — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'descriere' => 'Ce se întâmplă în prima ședință, minut cu minut. Cât durează, cât costă, '
             . 'ce e terapia sistemică, ce se întâmplă cu ce spui acolo.',
         'ruta'      => '/cum-functioneaza',
@@ -46,7 +47,7 @@ function pagina_cum_functioneaza(): void
 function pagina_servicii(): void
 {
     render('public/servicii', [
-        'titlu'     => 'Servicii și prețuri — ' . config('site', 'nume'),
+        'titlu'     => 'Servicii și prețuri — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'descriere' => 'Ședințe individuale la cabinet și online. Prețuri, durată, cui se potrivește fiecare.',
         'ruta'      => '/servicii',
     ]);
@@ -56,13 +57,28 @@ function pagina_servicii(): void
 // Despre mine
 // ---------------------------------------------------------------------------
 
-function pagina_despre(): void
+function pagina_echipa(): void
 {
-    render('public/despre', [
-        'titlu'     => 'Despre mine — ' . config('site', 'nume'),
-        'descriere' => 'Formare, acreditare, felul în care lucrez și de ce fac asta.',
-        'ruta'      => '/despre-mine',
+    // Atașează specializările fiecărui psiholog.
+    $psihologi = Psiholog::toti();
+    foreach ($psihologi as &$p) {
+        $p['specializari'] = Psiholog::specializari((int) $p['id']);
+    }
+    unset($p);
+
+    render('public/echipa', [
+        'titlu'     => 'Echipa — ' . setare('cabinet_nume', 'Adam și Babotan'),
+        'descriere' => 'Cele două psiholoage ale cabinetului: formare, acreditare (cod CPR verificabil), '
+            . 'specializări și regimul de practică al fiecăreia.',
+        'ruta'      => '/echipa',
+        'psihologi' => $psihologi,
     ]);
+}
+
+/** Redirect de la vechea rută /despre-mine la /echipa. */
+function pagina_despre_redirect(): void
+{
+    redirect('/echipa', 301);
 }
 
 // ---------------------------------------------------------------------------
@@ -75,7 +91,7 @@ function pagina_articole(string $numar = '1'): void
     $total  = Articol::numarPagini();
 
     render('public/articole', [
-        'titlu'      => 'Articole — ' . config('site', 'nume'),
+        'titlu'      => 'Articole — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'descriere'  => 'Texte despre anxietate, depresie, burnout și tiparele care se repetă.',
         'ruta'       => '/articole',
         'articole'   => Articol::pagina($pagina),
@@ -96,7 +112,7 @@ function pagina_categorie(string $slug): void
     }
 
     render('public/articole', [
-        'titlu'      => $categorie['nume'] . ' — articole — ' . config('site', 'nume'),
+        'titlu'      => $categorie['nume'] . ' — articole — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'descriere'  => $categorie['descriere'] ?? '',
         'ruta'       => '/articole',
         'articole'   => Articol::pagina(1, $slug),
@@ -123,12 +139,13 @@ function pagina_articol(string $slug): void
         'headline' => $articol['titlu'],
         'datePublished' => $articol['publicat_la'],
         'dateModified'  => $articol['actualizat_la'],
-        'author'   => ['@type' => 'Person', 'name' => config('site', 'nume')],
+        // Autorul articolului e psihologa care l-a scris, dacă e atribuit.
+        'author'   => ['@type' => 'Person', 'name' => $articol['autor_nume'] ?? setare('cabinet_nume', 'Adam și Babotan')],
         'description' => $articol['meta_descriere'] ?: $articol['rezumat'],
     ];
 
     render('public/articol', [
-        'titlu'     => $articol['titlu'] . ' — ' . config('site', 'nume'),
+        'titlu'     => $articol['titlu'] . ' — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'descriere' => $articol['meta_descriere'] ?: $articol['rezumat'],
         'ruta'      => '/articole',
         'articol'   => $articol,
@@ -144,7 +161,7 @@ function pagina_articol(string $slug): void
 function pagina_resurse(): void
 {
     render('public/resurse', [
-        'titlu'     => 'Resurse — ' . config('site', 'nume'),
+        'titlu'     => 'Resurse — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'descriere' => 'Jurnale și ghiduri de lucru. Se cer prin email.',
         'ruta'      => '/resurse',
         'resurse'   => Resursa::toate(),
@@ -158,13 +175,14 @@ function pagina_resurse(): void
 function pagina_contact(array $date = []): void
 {
     render('public/contact', array_merge([
-        'titlu'      => 'Contact — ' . config('site', 'nume'),
+        'titlu'      => 'Contact — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'descriere'  => 'Programează o ședință de cunoaștere. Formular scurt, WhatsApp, email.',
         'ruta'       => '/contact',
         'fara_fir'   => true,
         'vechi'      => [],
         'erori'      => [],
         'trimis'     => false,
+        'psihologi'  => Psiholog::pentruSelect(),
     ], $date));
 }
 
@@ -194,32 +212,35 @@ function trimite_contact(): void
         return;
     }
 
-    $nume     = trim((string) ($_POST['nume'] ?? ''));
-    $contact  = trim((string) ($_POST['contact'] ?? ''));
-    $situatie = (string) ($_POST['situatie'] ?? '');
-    $mesaj    = trim((string) ($_POST['mesaj'] ?? ''));
+    $nume      = trim((string) ($_POST['nume'] ?? ''));
+    $contact   = trim((string) ($_POST['contact'] ?? ''));
+    $preferat  = (int) ($_POST['preferat'] ?? 0);
+    $mesaj     = trim((string) ($_POST['mesaj'] ?? ''));
 
     $erori = [];
     if (mb_strlen($nume) < 2) {
-        $erori['nume'] = 'Spune-mi cum să-ți spun.';
+        $erori['nume'] = 'Spune-ne cum să-ți spunem.';
     }
     if (mb_strlen($contact) < 5) {
-        $erori['contact'] = 'Am nevoie de un email sau un telefon ca să-ți pot răspunde.';
+        $erori['contact'] = 'Avem nevoie de un email sau un telefon ca să-ți putem răspunde.';
     }
-    if (!isset(Mesaj::SITUATII[$situatie])) {
-        $erori['situatie'] = 'Alege una dintre variante.';
+
+    // Preferința e opțională; dacă e dată, trebuie să fie un psiholog real.
+    $preferatId = null;
+    if ($preferat > 0) {
+        $preferatId = Psiholog::dupaId($preferat) !== null ? $preferat : null;
     }
 
     if ($erori !== []) {
         pagina_contact([
             'erori' => $erori,
-            'vechi' => ['nume' => $nume, 'contact' => $contact, 'situatie' => $situatie, 'mesaj' => $mesaj],
+            'vechi' => ['nume' => $nume, 'contact' => $contact, 'preferat' => $preferat, 'mesaj' => $mesaj],
         ]);
         return;
     }
 
-    Mesaj::salveaza($nume, $contact, $situatie, $mesaj);
-    trimite_email_notificare($nume, $contact, $situatie, $mesaj);
+    Mesaj::salveaza($nume, $contact, $mesaj, $preferatId);
+    trimite_email_notificare($nume, $contact, $preferatId, $mesaj);
 
     pagina_contact(['trimis' => true]);
 }
@@ -231,18 +252,18 @@ function trimite_contact(): void
  * mesaj, text simplu, fara atasamente. mail() ajunge in spam de pe gazduire
  * partajata, deci nu e o optiune.
  */
-function trimite_email_notificare(string $nume, string $contact, string $situatie, string $mesaj): void
+function trimite_email_notificare(string $nume, string $contact, ?int $preferatId, string $mesaj): void
 {
     $mail = config('mail');
     if (empty($mail['host']) || empty($mail['destinatar']) || str_contains((string) $mail['destinatar'], 'COMPLETEZ')) {
         return; // email neconfigurat inca — mesajul e deja salvat in baza
     }
 
-    $situatieText = Mesaj::SITUATII[$situatie] ?? $situatie;
+    $preferat = $preferatId ? (Psiholog::dupaId($preferatId)['nume'] ?? '') : '';
     $corp = "Mesaj nou de pe site.\n\n"
         . "Nume: {$nume}\n"
         . "Contact: {$contact}\n"
-        . "Situație: {$situatieText}\n\n"
+        . 'Preferă să discute cu: ' . ($preferat !== '' ? $preferat : 'nu a specificat') . "\n\n"
         . ($mesaj !== '' ? "Mesaj:\n{$mesaj}\n" : "(fără mesaj)\n")
         . "\n---\nVezi în panou: " . url('admin/mesaje');
 
@@ -250,7 +271,7 @@ function trimite_email_notificare(string $nume, string $contact, string $situati
         smtp_trimite(
             $mail,
             $mail['destinatar'],
-            'Mesaj nou de pe site — ' . $situatieText,
+            'Mesaj nou de pe site',
             $corp
         );
     } catch (Throwable $e) {
@@ -266,7 +287,7 @@ function trimite_email_notificare(string $nume, string $contact, string $situati
 function pagina_confidentialitate(): void
 {
     render('public/legal-confidentialitate', [
-        'titlu'     => 'Politica de confidențialitate — ' . config('site', 'nume'),
+        'titlu'     => 'Politica de confidențialitate — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'descriere' => 'Cum sunt tratate datele tale, inclusiv datele de sănătate (categorie specială, Art. 9 GDPR).',
         'ruta'      => '/politica-de-confidentialitate',
         'fara_fir'  => true,
@@ -276,7 +297,7 @@ function pagina_confidentialitate(): void
 function pagina_cookies(): void
 {
     render('public/legal-cookies', [
-        'titlu'     => 'Politica de cookies — ' . config('site', 'nume'),
+        'titlu'     => 'Politica de cookies — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'descriere' => 'Ce se stochează în browserul tău și de ce.',
         'ruta'      => '/politica-de-cookies',
         'fara_fir'  => true,
@@ -286,7 +307,7 @@ function pagina_cookies(): void
 function pagina_termeni(): void
 {
     render('public/legal-termeni', [
-        'titlu'     => 'Termeni și condiții — ' . config('site', 'nume'),
+        'titlu'     => 'Termeni și condiții — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'descriere' => 'Condițiile de folosire a acestui site.',
         'ruta'      => '/termeni-si-conditii',
         'fara_fir'  => true,
@@ -301,7 +322,7 @@ function pagina_negasita(): void
 {
     http_response_code(404);
     render('public/negasit', [
-        'titlu'    => 'Pagină negăsită — ' . config('site', 'nume'),
+        'titlu'    => 'Pagină negăsită — ' . setare('cabinet_nume', 'Adam și Babotan'),
         'ruta'     => '',
         'fara_fir' => true,
     ]);

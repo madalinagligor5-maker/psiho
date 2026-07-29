@@ -13,6 +13,36 @@
   'use strict';
 
   /* ------------------------------------------------------------------------
+     Apariție blândă la scroll
+
+     Singura mișcare provocată de scroll pe tot site-ul, și e deliberat una
+     calmă: secțiunile intră cu un fade și o urcare de câțiva pixeli, o singură
+     dată. Nimic nu sare, nimic nu se repetă.
+
+     Dacă vizitatorul a cerut mai puțină mișcare, sau browserul nu are
+     IntersectionObserver, totul se afișează normal, fără animație.
+     ------------------------------------------------------------------------ */
+
+  var vreaMiscare = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var deRevelat = document.querySelectorAll('.reveal');
+
+  if (vreaMiscare && 'IntersectionObserver' in window && deRevelat.length) {
+    var observator = new IntersectionObserver(function (intrari) {
+      intrari.forEach(function (intrare) {
+        if (intrare.isIntersecting) {
+          intrare.target.classList.add('vizibil');
+          observator.unobserve(intrare.target); // o singură dată
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    deRevelat.forEach(function (el) { observator.observe(el); });
+  } else {
+    // Fără observator: arată tot imediat.
+    deRevelat.forEach(function (el) { el.classList.add('vizibil'); });
+  }
+
+  /* ------------------------------------------------------------------------
      Meniul mobil
      ------------------------------------------------------------------------ */
 

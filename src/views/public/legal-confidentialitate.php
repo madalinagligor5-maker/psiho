@@ -25,9 +25,9 @@ $retentie = (int) config('retentie_mesaje_zile');
 
     <h2>Cine e responsabil</h2>
     <p>
-      Operatorul datelor este [COMPLETEZ EU: nume complet / formă de exercitare a
-      profesiei], cu sediul în [COMPLETEZ EU: adresă] și cod de înregistrare
-      [COMPLETEZ EU: CUI / cod COPSI]. Mă poți contacta la
+      Operatorul datelor este <strong><?= e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie')) ?></strong>
+      (<?= e(setare('cabinet_certificat', '')) ?>), cu sediul în
+      <?= e(setare('adresa', '[COMPLETEZ EU: adresă]')) ?>. Ne poți contacta la
       <a href="mailto:<?= e((string) config('site', 'email')) ?>"><?= e((string) config('site', 'email')) ?></a>.
     </p>
 

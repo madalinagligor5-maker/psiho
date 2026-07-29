@@ -9,6 +9,7 @@ $durata = setare('durata_cunoastere', '20');
 ?>
 <section class="sectiune">
   <div class="chemare pe-tot-ecranul">
+    <div class="chemare__botanic"><?= view('public/_botanic') ?></div>
     <h2>Nu trebuie să te hotărăști azi</h2>
     <p>
       O ședință de cunoaștere durează <?= e($durata) ?> de minute, e gratuită și nu te

@@ -10,9 +10,11 @@ final class Articol
     public const PE_PAGINA = 8;
 
     private const SELECT_PUBLIC = "
-        SELECT a.*, c.nume AS categorie_nume, c.slug AS categorie_slug
+        SELECT a.*, c.nume AS categorie_nume, c.slug AS categorie_slug,
+               p.nume AS autor_nume, p.slug AS autor_slug
         FROM articole a
         LEFT JOIN categorii c ON c.id = a.categorie_id
+        LEFT JOIN psihologi p ON p.id = a.autor_id
     ";
 
     /** Ultimele articole publicate. Pentru prima pagina. */

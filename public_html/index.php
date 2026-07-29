@@ -21,6 +21,7 @@ require $radacina . '/src/models/Articol.php';
 require $radacina . '/src/models/Faq.php';
 require $radacina . '/src/models/Resursa.php';
 require $radacina . '/src/models/Mesaj.php';
+require $radacina . '/src/models/Psiholog.php';
 require $radacina . '/src/controllers/public.php';
 require $radacina . '/src/controllers/admin.php';
 
@@ -61,7 +62,9 @@ $router = new Router();
 $router->get('/',                            'pagina_acasa');
 $router->get('/cum-functioneaza',            'pagina_cum_functioneaza');
 $router->get('/servicii',                    'pagina_servicii');
-$router->get('/despre-mine',                 'pagina_despre');
+$router->get('/echipa',                      'pagina_echipa');
+// Vechea rută rămâne, redirecționează la Echipa (linkuri vechi, SEO).
+$router->get('/despre-mine',                 'pagina_despre_redirect');
 $router->get('/resurse',                     'pagina_resurse');
 $router->get('/contact',                     'pagina_contact');
 $router->post('/contact',                    'trimite_contact');
