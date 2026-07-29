@@ -47,4 +47,46 @@ final class Psiholog
     {
         return Database::all('SELECT id, nume FROM psihologi WHERE activ = 1 ORDER BY ordine, id');
     }
+
+    /** Toți psihologii, inclusiv inactivi, cu specializările atașate. Pentru admin. */
+    public static function adminToti(): array
+    {
+        $psihologi = Database::all('SELECT * FROM psihologi ORDER BY ordine, id');
+        foreach ($psihologi as &$p) {
+            $p['specializari'] = self::specializari((int) $p['id']);
+        }
+        return $psihologi;
+    }
+
+    /** Actualizează câmpurile de bază ale unui psiholog. */
+    public static function actualizeaza(int $id, array $c): void
+    {
+        Database::run(
+            'UPDATE psihologi SET nume=?, titlu_scurt=?, cod_cpr=?, judet=?, filiala=?, bio=?, ordine=?, activ=?
+             WHERE id=?',
+            [$c['nume'], $c['titlu_scurt'], $c['cod_cpr'], $c['judet'], $c['filiala'], $c['bio'],
+             (int) $c['ordine'], (int) $c['activ'], $id]
+        );
+    }
+
+    /**
+     * Rescrie specializările unui psiholog: șterge-le pe cele vechi și le pune
+     * pe cele noi. Simplu și corect — nu urmărim id-uri individuale.
+     */
+    public static function scrieSpecializari(int $psihologId, array $randuri): void
+    {
+        Database::run('DELETE FROM psihologi_specializari WHERE psiholog_id = ?', [$psihologId]);
+        $ordine = 1;
+        foreach ($randuri as $r) {
+            $nume = trim((string) ($r['nume'] ?? ''));
+            if ($nume === '') {
+                continue;
+            }
+            $regim = ($r['regim'] ?? 'supervizare') === 'autonom' ? 'autonom' : 'supervizare';
+            Database::run(
+                'INSERT INTO psihologi_specializari (psiholog_id, nume, nivel, regim, ordine) VALUES (?, ?, ?, ?, ?)',
+                [$psihologId, $nume, trim((string) ($r['nivel'] ?? '')), $regim, $ordine++]
+            );
+        }
+    }
 }

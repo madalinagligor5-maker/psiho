@@ -359,6 +359,43 @@ function admin_salveaza_resurse(): void
 }
 
 // ===========================================================================
+// Psihologi — biografii și specializări editabile
+// ===========================================================================
+
+function admin_psihologi(): void
+{
+    Auth::cere();
+    admin_render('psihologi', [
+        'titlu' => 'Psihologi',
+        'psihologi' => Psiholog::adminToti(),
+    ]);
+}
+
+function admin_salveaza_psihologi(): void
+{
+    Auth::cere();
+    Auth::cereCsrf();
+
+    // Formularul trimite toți psihologii deodată, cu specializările lor.
+    $psihologi = $_POST['psiholog'] ?? [];
+    foreach ($psihologi as $id => $p) {
+        Psiholog::actualizeaza((int) $id, [
+            'nume'        => trim((string) ($p['nume'] ?? '')),
+            'titlu_scurt' => trim((string) ($p['titlu_scurt'] ?? '')),
+            'cod_cpr'     => trim((string) ($p['cod_cpr'] ?? '')),
+            'judet'       => trim((string) ($p['judet'] ?? '')),
+            'filiala'     => trim((string) ($p['filiala'] ?? '')),
+            'bio'         => (string) ($p['bio'] ?? ''),
+            'ordine'      => (int) ($p['ordine'] ?? 0),
+            'activ'       => isset($p['activ']) ? 1 : 0,
+        ]);
+        Psiholog::scrieSpecializari((int) $id, $p['spec'] ?? []);
+    }
+    admin_flash('Datele psihologilor au fost salvate.');
+    redirect('/admin/psihologi');
+}
+
+// ===========================================================================
 // Mesaje
 // ===========================================================================
 

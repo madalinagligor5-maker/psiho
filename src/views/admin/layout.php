@@ -10,6 +10,7 @@ $nrMesaje = $nr_mesaje ?? 0;
 $meniu = [
     '/admin'          => ['Tablou de bord', false],
     '/admin/articole' => ['Articole', false],
+    '/admin/psihologi'=> ['Psihologi', false],
     '/admin/mesaje'   => ['Mesaje', true],
     '/admin/faq'      => ['Întrebări frecvente', false],
     '/admin/resurse'  => ['Resurse', false],

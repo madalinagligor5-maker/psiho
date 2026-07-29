@@ -104,6 +104,8 @@ $router->get('/admin/faq',                   'admin_faq');
 $router->post('/admin/faq',                  'admin_salveaza_faq');
 $router->get('/admin/resurse',               'admin_resurse');
 $router->post('/admin/resurse',              'admin_salveaza_resurse');
+$router->get('/admin/psihologi',             'admin_psihologi');
+$router->post('/admin/psihologi',            'admin_salveaza_psihologi');
 $router->get('/admin/mesaje',                'admin_mesaje');
 $router->post('/admin/mesaje/sterge',        'admin_sterge_mesaj');
 $router->post('/admin/exporta',              'admin_exporta_markdown');
