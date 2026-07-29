@@ -24,7 +24,7 @@ final class Auth
 
         static $cache = null;
         if ($cache === null) {
-            $cache = Database::one('SELECT id, email, nume FROM utilizatori WHERE id = ?', [$id]);
+            $cache = Database::one('SELECT id, email, nume, rol, psiholog_id FROM utilizatori WHERE id = ?', [$id]);
             // Utilizator sters in timp ce sesiunea era activa.
             if ($cache === null) {
                 self::iesire();

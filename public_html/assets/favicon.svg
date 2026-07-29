@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- „Firul": o linie verticala cu un nod si o ramificatie laterala.
-     Acelasi motiv ca elementul-semnatura al site-ului. -->
+<!-- Favicon: o rămurică botanică, semnătura site-ului, în paleta nouă.
+     Fundal bleu, frunze salvie + un bob teracotă. Formă plină, ca să rămână
+     lizibilă și la 16px. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#16211C"/>
-  <line x1="13" y1="6" x2="13" y2="26" stroke="#B07D2B" stroke-width="1.5"/>
-  <line x1="13" y1="15" x2="22" y2="15" stroke="#B07D2B" stroke-width="1.5"/>
-  <circle cx="13" cy="11" r="2.4" fill="#B07D2B"/>
+  <rect width="32" height="32" rx="7" fill="#3A6699"/>
+  <!-- tulpina -->
+  <path d="M16 26 C 15 21 17 18 16 13 C 15.5 10 16 8 16 6"
+        fill="none" stroke="#E4EDF6" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- frunze -->
+  <path d="M16 20 C 19 19 22 20 24 22 C 21 23 18 22 16 20 Z" fill="#8FA093"/>
+  <path d="M16 15 C 13 14 10 15 8 17 C 11 18 14 17 16 15 Z" fill="#8FA093"/>
+  <path d="M16 11 C 19 10 22 11 23 13 C 20 14 17 13 16 11 Z" fill="#C9A48C"/>
+  <!-- bob -->
+  <circle cx="16" cy="6.5" r="2" fill="#C9A48C"/>
 </svg>

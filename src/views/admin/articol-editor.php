@@ -45,6 +45,24 @@ $esteNou = $a === null;
   </div>
 
   <div class="admin-camp">
+    <label for="autor_id">Autor</label>
+    <?php
+      // La articol nou, autorul e psihologul legat de contul logat; la editare,
+      // e cel deja setat.
+      $autorSelectat = (int) ($a['autor_id'] ?? ($autor_implicit ?? 0));
+    ?>
+    <select id="autor_id" name="autor_id">
+      <option value="">Fără autor</option>
+      <?php foreach (($psihologi ?? []) as $ps): ?>
+        <option value="<?= (int) $ps['id'] ?>" <?= $autorSelectat === (int) $ps['id'] ? 'selected' : '' ?>>
+          <?= e($ps['nume']) ?>
+        </option>
+      <?php endforeach ?>
+    </select>
+    <span class="ajutor">Cine semnează articolul. Apare public sub titlu.</span>
+  </div>
+
+  <div class="admin-camp">
     <label for="rezumat">Rezumat</label>
     <textarea id="rezumat" name="rezumat" rows="2" style="min-height:auto"><?= e($a['rezumat'] ?? '') ?></textarea>
     <span class="ajutor">Apare în listă și în previzualizarea de pe rețele. Dacă îl lași gol, îl generez din text.</span>

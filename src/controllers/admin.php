@@ -117,6 +117,9 @@ function admin_formular_articol(string $id = ''): void
         'titlu' => $articol ? 'Editează articol' : 'Articol nou',
         'articol' => $articol,
         'categorii' => Articol::categorii(),
+        'psihologi' => Psiholog::pentruSelect(),
+        // Articol nou → autor implicit = psihologul legat de contul logat.
+        'autor_implicit' => Auth::utilizator()['psiholog_id'] ?? null,
     ]);
 }
 
@@ -142,6 +145,11 @@ function admin_salveaza_articol(): void
     $stare = $actiune === 'publica' ? 'publicat' : 'ciorna';
 
     $categorieId = (int) ($_POST['categorie_id'] ?? 0) ?: null;
+    $autorId = (int) ($_POST['autor_id'] ?? 0) ?: null;
+    // Verifica ca autorul e un psiholog real (nu o valoare trimisa la intamplare).
+    if ($autorId !== null && Psiholog::dupaId($autorId) === null) {
+        $autorId = null;
+    }
     $rezumat = trim((string) ($_POST['rezumat'] ?? ''));
     // Daca rezumatul e gol, il generam din primele randuri ale continutului.
     if ($rezumat === '' && $continut !== '') {
@@ -157,17 +165,17 @@ function admin_salveaza_articol(): void
         $setPublicat = ($stare === 'publicat' && !$eraPublicat) ? ', publicat_la = NOW()' : '';
 
         Database::run(
-            "UPDATE articole SET titlu=?, slug=?, categorie_id=?, rezumat=?, continut=?,
+            "UPDATE articole SET titlu=?, slug=?, categorie_id=?, autor_id=?, rezumat=?, continut=?,
                     imagine=?, imagine_alt=?, meta_descriere=?, stare=? {$setPublicat}
              WHERE id=?",
-            [$titlu, $slug, $categorieId, $rezumat, $continut, $imagine, $imagineAlt, $meta, $stare, $id]
+            [$titlu, $slug, $categorieId, $autorId, $rezumat, $continut, $imagine, $imagineAlt, $meta, $stare, $id]
         );
     } else {
         $publicatLa = $stare === 'publicat' ? date('Y-m-d H:i:s') : null;
         $id = Database::insert(
-            'INSERT INTO articole (titlu, slug, categorie_id, rezumat, continut, imagine, imagine_alt, meta_descriere, stare, publicat_la)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [$titlu, $slug, $categorieId, $rezumat, $continut, $imagine, $imagineAlt, $meta, $stare, $publicatLa]
+            'INSERT INTO articole (titlu, slug, categorie_id, autor_id, rezumat, continut, imagine, imagine_alt, meta_descriere, stare, publicat_la)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [$titlu, $slug, $categorieId, $autorId, $rezumat, $continut, $imagine, $imagineAlt, $meta, $stare, $publicatLa]
         );
     }
 
