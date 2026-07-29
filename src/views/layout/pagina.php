@@ -102,6 +102,9 @@ $analiza  = config('analiza');
 
 <a class="sari-la-continut" href="#continut">Sari la conținut</a>
 
+<!-- Bară de progres la scroll -->
+<div class="progres-scroll" aria-hidden="true"><div class="progres-scroll__bara"></div></div>
+
 <header class="antet">
   <div class="invelis">
     <div class="antet__interior pe-tot-ecranul">
@@ -189,6 +192,18 @@ $analiza  = config('analiza');
   </svg>
 </a>
 <?php endif ?>
+
+<!-- Buton „înapoi sus" — apare la scroll -->
+<button class="sus" type="button" aria-label="Înapoi sus">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<!-- CTA fix pe mobil, apare după hero -->
+<div class="cta-mobil">
+  <a class="buton buton--principal" href="<?= e(url('contact')) ?>">Programează o ședință de cunoaștere</a>
+</div>
 
 <?= view('layout/banner-cookies') ?>
 

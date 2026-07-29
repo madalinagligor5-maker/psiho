@@ -43,6 +43,57 @@
   }
 
   /* ------------------------------------------------------------------------
+     Feedback la scroll: bară de progres, CTA fix pe mobil, buton „sus"
+
+     Un singur handler de scroll, temperat cu requestAnimationFrame, pentru toate
+     trei — ca să nu punem trei ascultători care se calcă pe scroll.
+     ------------------------------------------------------------------------ */
+
+  var bara = document.querySelector('.progres-scroll__bara');
+  var ctaMobil = document.querySelector('.cta-mobil');
+  var butonSus = document.querySelector('.sus');
+  var body = document.body;
+  var ctaPrag = 0;
+
+  // Pragul de la care apare CTA-ul mobil: după ce trece de hero (sau ~500px).
+  var hero = document.querySelector('.hero');
+  ctaPrag = hero ? Math.max(320, hero.offsetTop + hero.offsetHeight - 120) : 500;
+
+  var tichetScroll = false;
+  function laScroll() {
+    var y = window.scrollY || document.documentElement.scrollTop;
+    var inaltime = document.documentElement.scrollHeight - window.innerHeight;
+
+    if (bara) {
+      var progres = inaltime > 0 ? y / inaltime : 0;
+      bara.style.transform = 'scaleX(' + Math.min(1, Math.max(0, progres)) + ')';
+    }
+    if (butonSus) {
+      butonSus.classList.toggle('vizibil', y > 500);
+    }
+    if (ctaMobil) {
+      var arata = y > ctaPrag;
+      ctaMobil.classList.toggle('vizibil', arata);
+      body.classList.toggle('cta-mobil-activ', arata);
+    }
+    tichetScroll = false;
+  }
+
+  if (bara || ctaMobil || butonSus) {
+    window.addEventListener('scroll', function () {
+      if (!tichetScroll) { tichetScroll = true; window.requestAnimationFrame(laScroll); }
+    }, { passive: true });
+    laScroll(); // stare initiala
+  }
+
+  if (butonSus) {
+    butonSus.addEventListener('click', function () {
+      var lin = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: lin ? 'smooth' : 'auto' });
+    });
+  }
+
+  /* ------------------------------------------------------------------------
      Meniul mobil
      ------------------------------------------------------------------------ */
 

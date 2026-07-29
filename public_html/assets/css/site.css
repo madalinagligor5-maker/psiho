@@ -1122,12 +1122,41 @@ strong { font-weight: 700; }
 .botanic__vena        { fill: none; stroke: var(--salvie-inchis); stroke-width: 0.8; opacity: 0.5; }
 .botanic__bob         { fill: var(--teracota); }
 
+/* La încărcare, ramura se desenează singură: întreg SVG-ul apare lin, iar
+   tulpina și rămurelele se trasează (stroke-dashoffset). Un moment plăcut, o
+   singură dată. Frunzele apar odată cu SVG-ul (își păstrează opacitatea de bază). */
+.botanic {
+  opacity: 0;
+  animation: apare-lin 0.9s var(--usor) 0.1s forwards;
+}
+.botanic__tulpina {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: deseneaza 1.7s var(--usor) 0.2s forwards;
+}
+.botanic__ram {
+  stroke-dasharray: 12;
+  stroke-dashoffset: 12;
+  animation: deseneaza 0.5s var(--usor) forwards;
+}
+/* Rămurelele se trasează pe rând, de jos în sus, urmând tulpina. */
+.botanic__grup:nth-child(3) .botanic__ram { animation-delay: 0.5s; }
+.botanic__grup:nth-child(4) .botanic__ram { animation-delay: 0.7s; }
+.botanic__grup:nth-child(5) .botanic__ram { animation-delay: 0.9s; }
+.botanic__grup:nth-child(6) .botanic__ram { animation-delay: 1.1s; }
+.botanic__grup:nth-child(7) .botanic__ram { animation-delay: 1.3s; }
+.botanic__grup:nth-child(8) .botanic__ram { animation-delay: 1.5s; }
+
+@keyframes deseneaza { to { stroke-dashoffset: 0; } }
+@keyframes apare-lin { to { opacity: 1; } }
+
 /* Fiecare frunză se leagănă din punctul ei de prindere, ușor defazat, ca să nu
-   se miște toate la unison — asta ar părea mecanic, nu viu. */
+   se miște toate la unison — asta ar părea mecanic, nu viu. Legănarea pornește
+   după ce ramura s-a desenat (întârziere 2s). */
 .botanic__grup {
   transform-box: fill-box;
   transform-origin: 0% 50%;
-  animation: leganare 7s ease-in-out infinite;
+  animation: leganare 7s ease-in-out 2s infinite;
 }
 .botanic__grup:nth-child(even) { animation-duration: 8.5s; animation-direction: reverse; }
 .botanic__grup:nth-child(3n)   { animation-duration: 9.5s; }
@@ -1177,6 +1206,105 @@ strong { font-weight: 700; }
 }
 
 /* --------------------------------------------------------------------------
+   Interactivitate plăcută — feedback la scroll și micro-interacțiuni
+
+   Tot ce e aici e util sau satisfăcător, nu decorativ: o bară de progres, un
+   CTA la îndemână pe mobil, un buton „sus", sublinieri care răspund la hover.
+   Nimic nu agită. Dezactivate curat la prefers-reduced-motion.
+   -------------------------------------------------------------------------- */
+
+/* Bară de progres la scroll — fir subțire, sus, în bleumarin. */
+.progres-scroll {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  z-index: 60;
+  background: transparent;
+  pointer-events: none;
+}
+.progres-scroll__bara {
+  height: 100%;
+  background: linear-gradient(90deg, var(--bleumarin), var(--salvie-inchis));
+  transform: scaleX(0);
+  transform-origin: left center;
+  /* Actualizat din JS la fiecare scroll; tranziția netezește micile salturi. */
+  transition: transform 80ms linear;
+}
+
+/* Subliniere animată la linkurile din text (nu nav, nu butoane). Crește de la
+   stânga la hover/focus — o micro-interacțiune plăcută, clară. */
+.sectiune p a,
+.proza a,
+.articol-card h3 a {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 250ms var(--usor), color var(--d-rapid) var(--usor);
+}
+.sectiune p a:hover, .sectiune p a:focus-visible,
+.proza a:hover, .proza a:focus-visible,
+.articol-card h3 a:hover, .articol-card h3 a:focus-visible {
+  background-size: 100% 1.5px;
+}
+
+/* FAQ: conținutul apare lin la deschidere (native <details> nu animează). */
+.intrebare[open] .intrebare__raspuns {
+  animation: faq-apare 260ms var(--usor);
+}
+@keyframes faq-apare {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* CTA fix pe mobil — apare după ce derulezi dincolo de hero. Din brief:
+   „header mobil sticky" cu CTA-ul principal mereu la îndemână. */
+.cta-mobil {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 45;
+  display: none;
+  padding: 0.7rem 1rem;
+  background: var(--bleumarin);
+  box-shadow: 0 -2px 12px rgb(46 43 38 / 0.12);
+  transform: translateY(110%);
+  transition: transform var(--d-mediu) var(--usor);
+}
+.cta-mobil .buton { width: 100%; }
+.cta-mobil.vizibil { transform: translateY(0); }
+@media (max-width: 60rem) {
+  .cta-mobil { display: block; }
+  /* Cât timp bara e vizibilă, ridicăm butonul WhatsApp ca să nu se suprapună. */
+  body.cta-mobil-activ .whatsapp { bottom: 4.75rem; }
+}
+
+/* Buton „înapoi sus" — colț stânga-jos (WhatsApp e dreapta), discret, în paletă. */
+.sus {
+  position: fixed;
+  left: 1.25rem; bottom: 1.25rem;
+  z-index: 30;
+  width: 2.75rem; height: 2.75rem;
+  display: grid; place-items: center;
+  border: 1px solid var(--greige);
+  border-radius: var(--raza-pastila);
+  background: var(--alb);
+  color: var(--bleumarin);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity var(--d-mediu) var(--usor), transform var(--d-mediu) var(--usor), background-color var(--d-rapid) var(--usor);
+}
+.sus.vizibil { opacity: 1; transform: none; pointer-events: auto; }
+.sus:hover { background: var(--greige); }
+.sus svg { width: 1.1rem; height: 1.1rem; }
+/* Pe mobil, cand apare bara de CTA, ridicam si butonul „sus". */
+@media (max-width: 60rem) {
+  body.cta-mobil-activ .sus { bottom: 4.75rem; }
+}
+
+/* --------------------------------------------------------------------------
    10. prefers-reduced-motion
 
    Nu dezactiveaza tot: inlocuieste miscarea cu opacitate. O interfata din care
@@ -1197,8 +1325,16 @@ strong { font-weight: 700; }
      rămâne cu secțiuni invizibile. */
   .reveal { opacity: 1 !important; transform: none !important; }
 
-  /* Ramura botanică stă nemișcată — nicio legănare. */
+  /* Ramura botanică: fără legănare și fără desenare — apare direct, întreagă. */
+  .botanic { opacity: 1 !important; animation: none !important; }
   .botanic__grup { animation: none !important; }
+  .botanic__tulpina, .botanic__ram { stroke-dashoffset: 0 !important; animation: none !important; }
+
+  /* FAQ apare fără alunecare; bara de progres și butoanele fixe fără tranziții
+     de mișcare (rămân funcționale, doar instantanee). */
+  .intrebare[open] .intrebare__raspuns { animation: none !important; }
+  .cta-mobil, .sus { transition: opacity var(--d-mediu) linear !important; }
+  .cta-mobil.vizibil { transform: none !important; }
 
   /* Cardurile nu se mai ridică; hover rămâne doar pe culoare. */
   .serviciu:hover, .articol-card:hover { transform: none !important; }
