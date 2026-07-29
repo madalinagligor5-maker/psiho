@@ -1063,7 +1063,9 @@ strong { font-weight: 700; }
   transition:
     opacity 620ms var(--usor),
     transform 620ms var(--usor);
-  will-change: opacity, transform;
+  /* Fara will-change permanent: apariția e o singura data, iar tranzitia
+     opacity+transform e ieftina — a lasa will-change pe zeci de elemente ar
+     tine memorie GPU degeaba. */
 }
 .reveal.vizibil {
   opacity: 1;
