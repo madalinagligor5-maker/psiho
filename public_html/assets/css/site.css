@@ -1045,6 +1045,61 @@ strong { font-weight: 700; }
 }
 
 /* --------------------------------------------------------------------------
+   Elemente grafice decorative (kitul de ilustrație): valuri, puncte, frunze,
+   blob-uri, ghilimele. Recreate ca SVG, colorate din tokenuri. Pur decorative.
+   -------------------------------------------------------------------------- */
+
+.g-val    { display: block; width: 7rem; height: auto; }
+.g-puncte { display: block; width: 5rem; height: auto; }
+.g-frunza { display: block; width: 3.5rem; height: auto; }
+.g-blob   { display: block; width: 100%; height: auto; }
+.g-ghilimea { display: block; width: 2.5rem; height: auto; }
+
+/* Separator de secțiune: o linie ondulată, centrată, discretă. */
+.divizor {
+  display: flex;
+  justify-content: center;
+  padding-block: var(--s2);
+  opacity: 0.7;
+}
+
+/* Accente ambientale — plutesc în colțul unei secțiuni, în spatele textului.
+   Secțiunea care le găzduiește trebuie să fie position: relative (o are deja). */
+.g-flotant {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.g-flotant--dreapta-sus { top: var(--s3); right: 4%; }
+.g-flotant--stanga-jos  { bottom: var(--s3); left: 3%; }
+.g-flotant--dreapta-jos { bottom: var(--s4); right: 5%; }
+
+/* Pull-quote — un citat scos în evidență, cu ghilimele grafice. */
+.citat {
+  position: relative;
+  max-width: 40ch;
+  margin: var(--s4) 0;
+  padding-left: var(--s2);
+}
+.citat .g-ghilimea { margin-bottom: var(--s1); }
+.citat p {
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--cerneala);
+}
+.citat cite {
+  display: block;
+  margin-top: var(--s2);
+  font-family: var(--font-corp);
+  font-style: normal;
+  font-size: var(--t-mic);
+  color: var(--piatra);
+}
+
+/* --------------------------------------------------------------------------
    Hero SOFT — luminos, cald, organic (model: ilustrația trimisă de clientă)
 
    Fundal crem cu forme organice sage/bleu în jur (washuri radiale moi), plante

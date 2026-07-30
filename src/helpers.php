@@ -97,6 +97,53 @@ function data_ro(?string $data): string
     return date('j', $ts) . ' ' . $luni[(int) date('n', $ts)] . ' ' . date('Y', $ts);
 }
 
+/**
+ * Elemente grafice decorative, ca SVG inline (recreate după kitul de ilustrație
+ * al clientei: valuri, puncte, frunze, blob-uri, cadre). Toate colorate din
+ * tokenuri, scalabile, self-hostate. `$clasa` adaugă clase pentru poziționare.
+ *
+ * Sunt pur decorative — mereu aria-hidden.
+ */
+function grafic(string $nume, string $clasa = ''): string
+{
+    $c = $clasa !== '' ? ' ' . $clasa : '';
+    $svg = match ($nume) {
+
+        // Linie ondulată — separator blând între secțiuni.
+        'val' => '<svg class="g-val'.$c.'" viewBox="0 0 240 16" fill="none" aria-hidden="true">'
+            .'<path d="M2 8 Q 20 1 40 8 T 80 8 T 120 8 T 160 8 T 200 8 T 238 8" '
+            .'stroke="var(--salvie)" stroke-width="2" stroke-linecap="round"/></svg>',
+
+        // Grup de puncte răsfirate — textură organică.
+        'puncte' => '<svg class="g-puncte'.$c.'" viewBox="0 0 90 64" aria-hidden="true" fill="var(--salvie)">'
+            .'<circle cx="8" cy="14" r="3"/><circle cx="26" cy="8" r="2.4"/><circle cx="20" cy="30" r="2"/>'
+            .'<circle cx="42" cy="20" r="2.8"/><circle cx="58" cy="10" r="2"/><circle cx="52" cy="34" r="2.4"/>'
+            .'<circle cx="74" cy="24" r="2.8"/><circle cx="82" cy="44" r="2"/><circle cx="36" cy="48" r="2.4"/>'
+            .'<circle cx="64" cy="50" r="2"/></svg>',
+
+        // Rămurică simplă cu frunze — element de natură.
+        'frunza' => '<svg class="g-frunza'.$c.'" viewBox="0 0 70 130" fill="none" aria-hidden="true">'
+            .'<path d="M35 128 C 31 96 39 72 35 40 C 33 22 35 12 35 4" stroke="var(--salvie-inchis)" stroke-width="1.4" stroke-linecap="round"/>'
+            .'<path d="M35 96 C 46 92 58 96 64 106 C 52 108 41 104 35 96 Z" fill="var(--salvie)"/>'
+            .'<path d="M35 68 C 24 64 12 68 6 78 C 18 80 29 76 35 68 Z" fill="var(--salvie)" opacity="0.85"/>'
+            .'<path d="M35 42 C 46 38 57 42 62 51 C 51 53 41 49 35 42 Z" fill="var(--teracota)" opacity="0.7"/>'
+            .'<circle cx="35" cy="10" r="3" fill="var(--teracota)"/></svg>',
+
+        // Blob organic moale — pată de fundal.
+        'blob' => '<svg class="g-blob'.$c.'" viewBox="0 0 220 200" aria-hidden="true">'
+            .'<path fill="var(--salvie)" opacity="0.22" d="M120 14 C 168 8 210 44 210 96 '
+            .'C 210 148 176 190 122 186 C 74 182 24 168 14 116 C 5 68 40 28 74 18 C 92 12 104 16 120 14 Z"/></svg>',
+
+        // Cadru de citat — bulă rotunjită pentru un pull-quote.
+        'ghilimea' => '<svg class="g-ghilimea'.$c.'" viewBox="0 0 40 32" aria-hidden="true" fill="var(--salvie)">'
+            .'<path d="M4 30 C 2 20 4 8 16 4 L 18 10 C 12 12 10 16 10 20 L 18 20 L 18 30 Z"/>'
+            .'<path d="M24 30 C 22 20 24 8 36 4 L 38 10 C 32 12 30 16 30 20 L 38 20 L 38 30 Z"/></svg>',
+
+        default => '',
+    };
+    return $svg;
+}
+
 /** Randeaza un sablon din src/views cu variabilele date. */
 function view(string $sablon, array $date = []): string
 {

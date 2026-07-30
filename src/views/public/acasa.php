@@ -45,8 +45,12 @@ $psihologi = $psihologi ?? [];
   </p>
 </section>
 
+<div class="divizor"><?= grafic('val') ?></div>
+
 <!-- Ai ajuns aici pentru ca... -->
 <section class="sectiune reveal">
+  <?= grafic('frunza', 'g-flotant g-flotant--dreapta-sus') ?>
+  <?= grafic('puncte', 'g-flotant g-flotant--stanga-jos') ?>
   <p class="eticheta">Ai ajuns aici pentru că</p>
   <ul class="recunoasteri">
     <li>Te trezești dimineața deja obosit, și nu mai știi de când.</li>
@@ -75,6 +79,13 @@ $psihologi = $psihologi ?? [];
     cândva, a fost cea mai bună soluție pe care ai găsit-o. Când tiparul devine
     vizibil, încetează să te mai conducă din umbră.
   </p>
+
+  <blockquote class="citat">
+    <?= grafic('ghilimea') ?>
+    <p>Nu te-ai stricat tu. S-a rupt echilibrul din jurul tău.</p>
+    <cite>— abordarea noastră, pe scurt</cite>
+  </blockquote>
+
   <p style="margin-top: var(--s3)">
     <a href="<?= e(url('cum-functioneaza')) ?>">Vezi cum decurge, mai în detaliu →</a>
   </p>
@@ -201,6 +212,8 @@ $psihologi = $psihologi ?? [];
   </div>
 </section>
 <?php endif ?>
+
+<div class="divizor"><?= grafic('val') ?></div>
 
 <div class="reveal">
 <?= view('public/_cta') ?>
