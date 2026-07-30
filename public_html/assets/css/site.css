@@ -138,6 +138,7 @@
   --t-h3:       1.375rem;
   --t-h2:       1.75rem;
   --t-h1:       clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  --t-hero:     clamp(2.75rem, 1.2rem + 6.4vw, 6rem);  /* titlul cinematografic */
 
   /* Ritm vertical. Un singur pas de baza, restul sunt multipli. */
   --pas: 0.5rem;
@@ -545,7 +546,7 @@ strong { font-weight: 700; }
     color            var(--d-rapid) var(--usor);
 }
 
-/* CTA-ul principal — bleumarin: ancora rece, modernă, confiden­tă. Exista unul
+/* CTA-ul principal — bleu: ancora rece, modernă, confiden­tă. Exista unul
    singur per viewport, peste tot in site. */
 .buton--principal {
   background: var(--bleu);
@@ -1044,6 +1045,217 @@ strong { font-weight: 700; }
 }
 
 /* --------------------------------------------------------------------------
+   Hero SOFT — luminos, cald, organic (model: ilustrația trimisă de clientă)
+
+   Fundal crem cu forme organice sage/bleu în jur (washuri radiale moi), plante
+   botanice în colțuri, multă respirație. Titlu întunecat pe lumină. Cald și
+   liniștit — potrivit pentru audiența anxioasă. Fără personaj (regula „fără
+   chipuri"); lasă loc pentru o ilustrație reală dacă se dorește.
+   -------------------------------------------------------------------------- */
+
+.hero-soft {
+  grid-column: ecran-start / ecran-end;   /* full-bleed */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(46% 42% at 10% 6%, rgb(143 160 147 / 0.32), transparent 70%),
+    radial-gradient(44% 52% at 97% 4%, rgb(228 237 246 / 0.95), transparent 72%),
+    radial-gradient(40% 40% at 93% 98%, rgb(143 160 147 / 0.22), transparent 70%),
+    radial-gradient(38% 42% at 4% 96%, rgb(228 237 246 / 0.7), transparent 72%),
+    var(--crem);
+}
+
+.hero-soft__interior {
+  max-width: 68rem;
+  margin-inline: auto;
+  padding: var(--s7) 1.5rem var(--s6);
+  display: grid;
+  gap: var(--s4);
+}
+@media (min-width: 48rem) {
+  .hero-soft__interior { padding: calc(var(--s7) + 1rem) 3rem var(--s7); }
+}
+
+.hero-soft h1 {
+  font-size: var(--t-hero);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  max-width: 15ch;
+  text-wrap: balance;
+  margin: var(--s2) 0 0;
+}
+.hero-soft__sub {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--t-corp-mare);
+  line-height: 1.5;
+  color: var(--cerneala);
+  max-width: 46ch;
+}
+.hero-soft__actiuni { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s3); align-items: center; }
+.hero-soft__meta { color: var(--piatra); font-size: var(--t-mic); }
+
+/* Plante botanice în colțuri — cald, prietenos, semnătura casei. */
+.hero-soft__planta {
+  position: absolute;
+  z-index: -1;
+  width: 7rem;
+  opacity: 0.9;
+}
+.hero-soft__planta--sus  { top: -1rem; left: 2%; transform: rotate(8deg); }
+.hero-soft__planta--jos  { bottom: -1.5rem; right: 3%; transform: rotate(-170deg); width: 6rem; opacity: 0.8; }
+@media (max-width: 48rem) {
+  .hero-soft__planta--sus { width: 4.5rem; left: -0.5rem; }
+  .hero-soft__planta--jos { display: none; }
+}
+
+/* Punctulețe și o steluță caldă, ca în ilustrație — foarte discret. */
+.hero-soft__stele {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Hero cinematografic — imagine full-bleed, titlu masiv, scrim pentru lizibilitate
+
+   Direcție „elevat cinematografic" (model: lewahouse.com), adaptată audienței:
+   impresionant și confident, dar calm și rapid. Media e o imagine reală (o pune
+   clienta) sau, până atunci, un plasator elegant în paletă. Textul e deschis,
+   pe un scrim închis în colțul de jos, ca la site-urile editoriale de lux.
+   -------------------------------------------------------------------------- */
+
+.hero-cine {
+  grid-column: ecran-start / ecran-end;   /* full-bleed, edge to edge */
+  position: relative;
+  min-height: min(90vh, 820px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Stratul de imagine. Se înlocuiește ușor: pune un fișier real în
+   background-image (inline sau printr-o clasă), scrim-ul rămâne. */
+.hero-cine__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  /* Plasator: gradient adânc în paletă, ca textul deschis să fie lizibil acum. */
+  background-image:
+    radial-gradient(120% 90% at 15% 20%, rgb(63 82 71 / 0.55), transparent 60%),
+    radial-gradient(90% 80% at 90% 10%, rgb(201 164 140 / 0.35), transparent 55%),
+    linear-gradient(160deg, var(--bleu) 0%, var(--salvie-inchis) 55%, var(--cerneala) 100%);
+  /* O ușoară mărire lentă, ca imaginea să „respire" (Ken Burns discret). */
+  animation: hero-respira 24s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+@keyframes hero-respira {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+/* Scrim: întunecă jos-stânga pentru lizibilitatea textului, indiferent de poză. */
+.hero-cine__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(to top, rgb(46 43 38 / 0.72) 0%, rgb(46 43 38 / 0.30) 40%, transparent 75%),
+    linear-gradient(to right, rgb(46 43 38 / 0.45) 0%, transparent 55%);
+}
+
+.hero-cine__continut {
+  position: relative;
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding: var(--s6) 1.5rem var(--s6);
+  color: var(--crem);
+}
+@media (min-width: 48rem) {
+  .hero-cine__continut { padding-inline: 3rem; padding-bottom: var(--s7); }
+}
+
+.hero-cine .eticheta { color: rgb(247 238 228 / 0.85); }
+
+.hero-cine h1 {
+  font-size: var(--t-hero);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--crem);
+  max-width: 16ch;
+  margin: var(--s2) 0 0;
+  text-wrap: balance;
+}
+
+.hero-cine__sub {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--t-corp-mare);
+  line-height: 1.5;
+  color: rgb(247 238 228 / 0.92);
+  max-width: 48ch;
+  margin-top: var(--s3);
+}
+
+.hero-cine__actiuni { margin-top: var(--s4); display: flex; flex-wrap: wrap; gap: var(--s2) var(--s3); align-items: center; }
+.hero-cine__meta { color: rgb(247 238 228 / 0.75); font-size: var(--t-mic); }
+
+/* Butonul principal pe hero devine cald (crem), ca să iasă pe fundalul închis. */
+.hero-cine .buton--principal { background: var(--crem); color: var(--bleu); }
+.hero-cine .buton--principal:hover { background: var(--alb); color: var(--bleu); }
+
+/* Indiciu de scroll, jos, centrat — invită la explorare fără să strige. */
+.hero-cine__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgb(247 238 228 / 0.7);
+  font-size: var(--t-nota);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.hero-cine__scroll span {
+  width: 1px; height: 2.5rem;
+  background: linear-gradient(var(--crem), transparent);
+  animation: scroll-fir 2.2s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes scroll-fir {
+  0%, 100% { transform: scaleY(0.3); opacity: 0.4; }
+  50%      { transform: scaleY(1);   opacity: 1; }
+}
+@media (max-width: 48rem) { .hero-cine__scroll { display: none; } }
+
+/* Ramura botanică peste hero-ul cinematografic, în tonuri deschise. */
+.hero-cine__botanic {
+  position: absolute;
+  right: 4%;
+  top: 8%;
+  width: 6rem;
+  z-index: 0;
+  opacity: 0.5;
+}
+.hero-cine__botanic .botanic__tulpina,
+.hero-cine__botanic .botanic__ram,
+.hero-cine__botanic .botanic__vena { stroke: rgb(247 238 228 / 0.8); }
+.hero-cine__botanic .botanic__frunza { fill: rgb(247 238 228 / 0.35); }
+.hero-cine__botanic .botanic__frunza--cald { fill: var(--teracota); }
+.hero-cine__botanic .botanic__bob { fill: var(--teracota); }
+@media (max-width: 48rem) { .hero-cine__botanic { width: 4rem; right: 6%; } }
+
+/* --------------------------------------------------------------------------
    9. Viață — mișcare calmă, provocată de scroll și de hover
 
    Schimbare de politică față de prima versiune (documentată în DESIGN.md §5):
@@ -1213,7 +1425,7 @@ strong { font-weight: 700; }
    Nimic nu agită. Dezactivate curat la prefers-reduced-motion.
    -------------------------------------------------------------------------- */
 
-/* Bară de progres la scroll — fir subțire, sus, în bleumarin. */
+/* Bară de progres la scroll — fir subțire, sus, în bleu. */
 .progres-scroll {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -1224,7 +1436,7 @@ strong { font-weight: 700; }
 }
 .progres-scroll__bara {
   height: 100%;
-  background: linear-gradient(90deg, var(--bleumarin), var(--salvie-inchis));
+  background: linear-gradient(90deg, var(--bleu), var(--salvie-inchis));
   transform: scaleX(0);
   transform-origin: left center;
   /* Actualizat din JS la fiecare scroll; tranziția netezește micile salturi. */
@@ -1266,12 +1478,15 @@ strong { font-weight: 700; }
   z-index: 45;
   display: none;
   padding: 0.7rem 1rem;
-  background: var(--bleumarin);
+  background: var(--bleu);
   box-shadow: 0 -2px 12px rgb(46 43 38 / 0.12);
   transform: translateY(110%);
   transition: transform var(--d-mediu) var(--usor);
 }
 .cta-mobil .buton { width: 100%; }
+/* Butonul din bara mobilă devine cald, ca să iasă pe fundalul bleu al barei. */
+.cta-mobil .buton--principal { background: var(--crem); color: var(--bleu); }
+.cta-mobil .buton--principal:hover { background: var(--alb); color: var(--bleu); }
 .cta-mobil.vizibil { transform: translateY(0); }
 @media (max-width: 60rem) {
   .cta-mobil { display: block; }
@@ -1289,7 +1504,7 @@ strong { font-weight: 700; }
   border: 1px solid var(--greige);
   border-radius: var(--raza-pastila);
   background: var(--alb);
-  color: var(--bleumarin);
+  color: var(--bleu);
   cursor: pointer;
   opacity: 0;
   transform: translateY(8px);
@@ -1335,6 +1550,10 @@ strong { font-weight: 700; }
   .intrebare[open] .intrebare__raspuns { animation: none !important; }
   .cta-mobil, .sus { transition: opacity var(--d-mediu) linear !important; }
   .cta-mobil.vizibil { transform: none !important; }
+
+  /* Hero cinematografic: fără mărire lentă, fără firul de scroll pulsând. */
+  .hero-cine__media { animation: none !important; transform: none !important; }
+  .hero-cine__scroll span { animation: none !important; }
 
   /* Cardurile nu se mai ridică; hover rămâne doar pe culoare. */
   .serviciu:hover, .articol-card:hover { transform: none !important; }

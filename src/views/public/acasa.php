@@ -6,26 +6,43 @@ $durataCunoastere = setare('durata_cunoastere', '20');
 $psihologi = $psihologi ?? [];
 ?>
 
-<!-- Hero, cu ramura botanica in margine -->
-<section class="sectiune hero">
-  <div class="hero-botanic"><?= view('public/_botanic') ?></div>
+<!-- Hero soft, luminos, cu forme organice și plante -->
+<section class="hero-soft">
+  <div class="hero-soft__planta hero-soft__planta--sus"><?= view('public/_botanic') ?></div>
+  <div class="hero-soft__planta hero-soft__planta--jos"><?= view('public/_botanic') ?></div>
 
-  <p class="eticheta">Cabinet de psihologie · Timișoara</p>
-  <h1><?= e(setare('titlu_acasa', 'Nu caut vinovatul, caut tiparul.')) ?></h1>
-  <p class="introducere" style="margin-top: var(--s3)">
-    Nu te-ai stricat tu. De multe ori s-a rupt echilibrul din jurul tău — în
-    familie, în cuplu, la muncă. Suntem două psiholoage și lucrăm cu oameni care
-    trec prin anxietate, depresie sau epuizare, uitându-ne la tiparele dintre
-    tine și sistemele din care faci parte, nu la un simptom rupt de tot restul.
-  </p>
-  <div style="margin-top: var(--s4)">
-    <a class="buton buton--principal" href="<?= e(url('contact')) ?>">
-      Programează o ședință de cunoaștere
-    </a>
-    <p class="meta" style="margin-top: var(--s2)">
-      Gratuită, <?= e($durataCunoastere) ?> de minute, fără nicio obligație.
+  <svg class="hero-soft__stele" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="var(--salvie)" opacity="0.5">
+      <circle cx="250" cy="120" r="4"/><circle cx="300" cy="92" r="2.5"/>
+      <circle cx="1180" cy="520" r="4"/><circle cx="1130" cy="560" r="2.5"/>
+    </g>
+    <path fill="var(--teracota)" opacity="0.75" d="M1240 130 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6 Z"/>
+    <path fill="var(--bleu)" opacity="0.5" d="M170 640 l5 11 11 5 -11 5 -5 11 -5 -11 -11 -5 11 -5 Z"/>
+  </svg>
+
+  <div class="hero-soft__interior reveal vizibil">
+    <p class="eticheta">Cabinet de psihologie · Timișoara</p>
+    <h1><?= e(setare('titlu_acasa', 'Nu caut vinovatul, caut tiparul.')) ?></h1>
+    <p class="hero-soft__sub">
+      Nu te-ai stricat tu. De multe ori s-a rupt echilibrul din jurul tău — în
+      familie, în cuplu, la muncă. Suntem aici să-l privim împreună.
     </p>
+    <div class="hero-soft__actiuni">
+      <a class="buton buton--principal" href="<?= e(url('contact')) ?>">
+        Programează o ședință de cunoaștere
+      </a>
+      <span class="hero-soft__meta">Gratuită, <?= e($durataCunoastere) ?> de minute, fără nicio obligație.</span>
+    </div>
   </div>
+</section>
+
+<!-- Manifest scurt, sub hero -->
+<section class="sectiune reveal">
+  <p class="introducere">
+    Suntem două psiholoage și lucrăm cu oameni care trec prin anxietate, depresie
+    sau epuizare — uitându-ne la tiparele dintre tine și sistemele din care faci
+    parte, nu la un simptom rupt de tot restul.
+  </p>
 </section>
 
 <!-- Ai ajuns aici pentru ca... -->
