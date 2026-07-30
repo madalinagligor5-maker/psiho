@@ -79,26 +79,27 @@
    -------------------------------------------------------------------------- */
 
 :root {
-  /* Paleta e identitatea vizuala REALA a clientei, de pe @terapie.cu.cristina
-     (avatar + postari), extrasa prin sampling de culoare si verificata pentru
-     WCAG 2.1 AA. Nu e o directie inventata — vezi DESIGN.md.
-
-     Nuantele deschise (--salvie, --teracota) sunt DECORATIVE: umpluturi,
-     linework botanic ambiental. Ce poarta informatie — text, linkuri, borduri,
-     inelul de focus, liniile structurale — foloseste variantele inchise. */
-  --cerneala:       #2E2B26;  /* text principal, brun-cald, nu negru pur */
-  --cerneala-moale: #403A32;
-  --salvie:         #8FA093;  /* verde salvie — DECORATIV (umplutura, frunze) */
-  --salvie-inchis:  #3F5247;  /* linkuri, fundal CTA, linework structural, focus */
-  --salvie-mediu:   #4E6357;  /* hover pe CTA */
-  --teracota:       #C9A48C;  /* accent cald — DECORATIV, punctual, nu dominant */
-  --teracota-text:  #8A5638;  /* teracota cand trebuie sa fie text lizibil */
-  --bleu:      #3A6699;  /* ancora RECE, luminoasa si moderna: butoane, eyebrow, accente */
-  --bleu-clar: #315982;  /* hover pe bleu (usor mai profund la apasare) */
-  --bleu-pal:  #E4EDF6;  /* bleu deschis, aerisit: panoul CTA, subsolul */
-  --piatra:         #635B50;  /* text secundar, cald */
-  --crem:           #F7EEE4;  /* fundalul dominant, crem/blush cald */
-  --greige:         #DBDCCF;  /* suprafata secundara: casete, inserturi */
+  /* PALETA OFICIALA a clientei (coduri hex furnizate). Rece, soft, aerisita.
+     Nuantele pale (salvie, lavanda, azur, verde-pal) sunt DECORATIVE / suprafete;
+     ce poarta informatie foloseste variantele inchise (cerneala, piatra, -inchis). */
+  --cerneala:       #20323A;  /* text principal — „Cerneala", ink rece */
+  --cerneala-moale: #33474F;
+  --piatra:         #5B6E77;  /* text secundar — „Cerneala blanda" */
+  --salvie:         #BFD7C1;  /* verde salvie — accent/umplutura DECORATIVA */
+  --salvie-inchis:  #3E6152;  /* verde inchis — linkuri, linework, focus */
+  --salvie-mediu:   #345244;  /* hover pe verde */
+  --lavanda:        #C9BEE3;  /* lavanda — accent DECORATIV (nou in paleta) */
+  --lavanda-pal:    #EDE9F5;  /* lavanda pal — suprafata */
+  --lavanda-text:   #5E4E86;  /* lavanda cand trebuie sa fie text lizibil */
+  --azur:           #E3F0F5;  /* azur pal — suprafata */
+  --verde-pal:      #E6F0E5;  /* verde pal — suprafata */
+  --bleu:      #2E5A6B;  /* azur inchis — butoane, eyebrow, accente (alb pe el 7.5) */
+  --bleu-clar: #24485A;  /* hover pe bleu */
+  --bleu-pal:  #E3F0F5;  /* azur pal — panoul CTA, subsolul */
+  --teracota:       #C9BEE3;  /* pastrat ca alias catre lavanda (compat cu cod vechi) */
+  --teracota-text:  #5E4E86;  /* idem: accent-text = lavanda inchis */
+  --crem:           #F6FAFB;  /* fundalul paginii — „Ceata" (RECE, nu crem — nume istoric) */
+  --greige:         #E6F0E5;  /* suprafata secundara — „Verde pal" */
   --caramida:       #8C3A2B;  /* eroare si nota de criza — nicaieri altundeva */
   --alb:            #FFFFFF;
 
@@ -737,7 +738,7 @@ strong { font-weight: 700; }
   border-radius: var(--raza-pastila);
   background: var(--salvie-inchis);
   color: var(--alb);
-  box-shadow: 0 1px 3px rgb(46 43 38 / 0.2);
+  box-shadow: 0 1px 3px rgb(32 50 58 / 0.2);
   transition: background-color var(--d-rapid) var(--usor);
 }
 .whatsapp:hover { background: var(--salvie-mediu); color: var(--alb); }
@@ -1114,10 +1115,10 @@ strong { font-weight: 700; }
   overflow: hidden;
   isolation: isolate;
   background:
-    radial-gradient(46% 42% at 10% 6%, rgb(143 160 147 / 0.32), transparent 70%),
-    radial-gradient(44% 52% at 97% 4%, rgb(228 237 246 / 0.95), transparent 72%),
-    radial-gradient(40% 40% at 93% 98%, rgb(143 160 147 / 0.22), transparent 70%),
-    radial-gradient(38% 42% at 4% 96%, rgb(228 237 246 / 0.7), transparent 72%),
+    radial-gradient(46% 42% at 10% 6%, rgb(191 215 193 / 0.32), transparent 70%),
+    radial-gradient(44% 52% at 97% 4%, rgb(227 240 245 / 0.95), transparent 72%),
+    radial-gradient(40% 40% at 93% 98%, rgb(191 215 193 / 0.22), transparent 70%),
+    radial-gradient(38% 42% at 4% 96%, rgb(227 240 245 / 0.7), transparent 72%),
     var(--crem);
 }
 
@@ -1202,8 +1203,8 @@ strong { font-weight: 700; }
   background-position: center;
   /* Plasator: gradient adânc în paletă, ca textul deschis să fie lizibil acum. */
   background-image:
-    radial-gradient(120% 90% at 15% 20%, rgb(63 82 71 / 0.55), transparent 60%),
-    radial-gradient(90% 80% at 90% 10%, rgb(201 164 140 / 0.35), transparent 55%),
+    radial-gradient(120% 90% at 15% 20%, rgb(62 97 82 / 0.55), transparent 60%),
+    radial-gradient(90% 80% at 90% 10%, rgb(201 190 227 / 0.35), transparent 55%),
     linear-gradient(160deg, var(--bleu) 0%, var(--salvie-inchis) 55%, var(--cerneala) 100%);
   /* O ușoară mărire lentă, ca imaginea să „respire" (Ken Burns discret). */
   animation: hero-respira 24s ease-in-out infinite alternate;
@@ -1220,8 +1221,8 @@ strong { font-weight: 700; }
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(to top, rgb(46 43 38 / 0.72) 0%, rgb(46 43 38 / 0.30) 40%, transparent 75%),
-    linear-gradient(to right, rgb(46 43 38 / 0.45) 0%, transparent 55%);
+    linear-gradient(to top, rgb(32 50 58 / 0.72) 0%, rgb(32 50 58 / 0.30) 40%, transparent 75%),
+    linear-gradient(to right, rgb(32 50 58 / 0.45) 0%, transparent 55%);
 }
 
 .hero-cine__continut {
@@ -1236,7 +1237,7 @@ strong { font-weight: 700; }
   .hero-cine__continut { padding-inline: 3rem; padding-bottom: var(--s7); }
 }
 
-.hero-cine .eticheta { color: rgb(247 238 228 / 0.85); }
+.hero-cine .eticheta { color: rgb(246 250 251 / 0.85); }
 
 .hero-cine h1 {
   font-size: var(--t-hero);
@@ -1253,13 +1254,13 @@ strong { font-weight: 700; }
   font-weight: 400;
   font-size: var(--t-corp-mare);
   line-height: 1.5;
-  color: rgb(247 238 228 / 0.92);
+  color: rgb(246 250 251 / 0.92);
   max-width: 48ch;
   margin-top: var(--s3);
 }
 
 .hero-cine__actiuni { margin-top: var(--s4); display: flex; flex-wrap: wrap; gap: var(--s2) var(--s3); align-items: center; }
-.hero-cine__meta { color: rgb(247 238 228 / 0.75); font-size: var(--t-mic); }
+.hero-cine__meta { color: rgb(246 250 251 / 0.75); font-size: var(--t-mic); }
 
 /* Butonul principal pe hero devine cald (crem), ca să iasă pe fundalul închis. */
 .hero-cine .buton--principal { background: var(--crem); color: var(--bleu); }
@@ -1276,7 +1277,7 @@ strong { font-weight: 700; }
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  color: rgb(247 238 228 / 0.7);
+  color: rgb(246 250 251 / 0.7);
   font-size: var(--t-nota);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1304,8 +1305,8 @@ strong { font-weight: 700; }
 }
 .hero-cine__botanic .botanic__tulpina,
 .hero-cine__botanic .botanic__ram,
-.hero-cine__botanic .botanic__vena { stroke: rgb(247 238 228 / 0.8); }
-.hero-cine__botanic .botanic__frunza { fill: rgb(247 238 228 / 0.35); }
+.hero-cine__botanic .botanic__vena { stroke: rgb(246 250 251 / 0.8); }
+.hero-cine__botanic .botanic__frunza { fill: rgb(246 250 251 / 0.35); }
 .hero-cine__botanic .botanic__frunza--cald { fill: var(--teracota); }
 .hero-cine__botanic .botanic__bob { fill: var(--teracota); }
 @media (max-width: 48rem) { .hero-cine__botanic { width: 4rem; right: 6%; } }
@@ -1356,7 +1357,7 @@ strong { font-weight: 700; }
   .articol-card:hover {
     transform: translateY(-3px);
     border-color: var(--salvie);
-    box-shadow: 0 8px 24px rgb(46 43 38 / 0.06);
+    box-shadow: 0 8px 24px rgb(32 50 58 / 0.06);
   }
 }
 
@@ -1467,8 +1468,8 @@ strong { font-weight: 700; }
   inset: -4rem -50vw 0;
   z-index: -1;
   background:
-    radial-gradient(60% 80% at 30% 0%, rgb(143 160 147 / 0.10), transparent 70%),
-    radial-gradient(50% 70% at 90% 20%, rgb(201 164 140 / 0.10), transparent 70%);
+    radial-gradient(60% 80% at 30% 0%, rgb(191 215 193 / 0.10), transparent 70%),
+    radial-gradient(50% 70% at 90% 20%, rgb(201 190 227 / 0.10), transparent 70%);
   pointer-events: none;
 }
 
@@ -1534,7 +1535,7 @@ strong { font-weight: 700; }
   display: none;
   padding: 0.7rem 1rem;
   background: var(--bleu);
-  box-shadow: 0 -2px 12px rgb(46 43 38 / 0.12);
+  box-shadow: 0 -2px 12px rgb(32 50 58 / 0.12);
   transform: translateY(110%);
   transition: transform var(--d-mediu) var(--usor);
 }

@@ -25,24 +25,27 @@ typography:
     fontFamily: "Source Serif 4"
     fontSize: clamp(2.4rem, 1.5rem + 3.4vw, 3.75rem)
 colors:
-  # Identitatea vizuala reala a clientei, de pe @terapie.cu.cristina, extrasa
-  # prin sampling de culoare si verificata pentru WCAG 2.1 AA.
-  cerneala: "#2E2B26"
-  cernealaMoale: "#403A32"
-  salvie: "#8FA093"
-  salvieInchis: "#3F5247"
-  salvieMediu: "#4E6357"
-  teracota: "#C9A48C"
-  teracotaText: "#8A5638"
-  # Bleu — ancora RECE, luminoasă, adăugată la cererea clientei pentru un aer
-  # modern și aerisit. Rol: butoane și accente (bleu mediu), panoul CTA și
-  # subsolul (bleu pal). Contrast: buton alb/crem 5.9/5.2, pal cu text închis 12.
-  bleu: "#3A6699"
-  bleuClar: "#315982"
-  bleuPal: "#E4EDF6"
-  piatra: "#635B50"
-  crem: "#F7EEE4"
-  greige: "#DBDCCF"
+  # PALETA OFICIALA a clientei (coduri hex furnizate în kitul de ilustrație).
+  # Rece, soft, aerisită. Pale = suprafețe/decor; închise = text/interactiv.
+  # Toate perechile folosite verificate WCAG 2.1 AA.
+  cerneala: "#20323A"       # text principal — „Cerneală"
+  cernealaMoale: "#33474F"
+  piatra: "#5B6E77"         # text secundar — „Cerneală blândă"
+  salvie: "#BFD7C1"         # verde salvie — accent/umplutură decorativă
+  salvieInchis: "#3E6152"   # verde închis — linkuri, linework, focus
+  salvieMediu: "#345244"
+  lavanda: "#C9BEE3"        # lavandă — accent decorativ (nou)
+  lavandaPal: "#EDE9F5"     # lavandă pal — suprafață
+  lavandaText: "#5E4E86"    # lavandă lizibilă ca text
+  azur: "#E3F0F5"           # azur pal — suprafață
+  verdePal: "#E6F0E5"       # verde pal — suprafață
+  bleu: "#2E5A6B"           # azur închis — butoane, eyebrow, accente (alb 7.5)
+  bleuClar: "#24485A"
+  bleuPal: "#E3F0F5"        # azur pal — panoul CTA, subsolul
+  teracota: "#C9BEE3"       # alias -> lavandă (compat cu cod vechi)
+  teracotaText: "#5E4E86"   # alias -> lavandă text
+  crem: "#F6FAFB"           # fundalul paginii — „Ceață" (rece; nume istoric)
+  greige: "#E6F0E5"         # suprafață secundară — „Verde pal"
   caramida: "#8C3A2B"
   alb: "#FFFFFF"
   # Rampa de neutre CALDE pentru suprafata de admin ("Operate"). Partea publica
