@@ -2,18 +2,13 @@
 /** Index articole. Variabile: $articole, $categorii, $pagina, $total, $categorie, $baza_url */
 ?>
 
-<section class="sectiune">
-  <p class="eticheta">Articole</p>
-  <h1><?= $categorie ? e($categorie['nume']) : 'Articole' ?></h1>
-  <p class="introducere" style="margin-top: var(--s3)">
-    <?php if ($categorie && !empty($categorie['descriere'])): ?>
-      <?= e($categorie['descriere']) ?>
-    <?php else: ?>
-      Texte despre anxietate, depresie, burnout și tiparele care se repetă. Scrise
-      ca să fie de folos, nu ca să umple pagina.
-    <?php endif ?>
-  </p>
-</section>
+<?= view('public/_hero', [
+  'h_eticheta' => 'Articole',
+  'h_titlu'    => $categorie ? $categorie['nume'] : 'Articole',
+  'h_sub'      => $categorie && !empty($categorie['descriere'])
+    ? e($categorie['descriere'])
+    : 'Texte despre anxietate, depresie, burnout și tiparele care se repetă. Scrise ca să fie de folos, nu ca să umple pagina.',
+]) ?>
 
 <section class="sectiune">
   <!-- Filtre de categorie -->

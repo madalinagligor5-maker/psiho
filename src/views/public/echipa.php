@@ -9,17 +9,13 @@
 $psihologi = $psihologi ?? [];
 ?>
 
-<section class="sectiune hero">
-  <div class="hero-botanic"><?= view('public/_botanic') ?></div>
-  <p class="eticheta">Echipa</p>
-  <h1>Cine suntem</h1>
-  <p class="introducere" style="margin-top: var(--s3)">
-    Suntem două psiholoage care lucrează sub aceeași formă de exercitare —
-    <?= e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie')) ?>.
-    Fiecare are formarea și specializările ei; le găsești mai jos, cu codul CPR
-    verificabil în registrul Colegiului Psihologilor.
-  </p>
-</section>
+<?= view('public/_hero', [
+  'h_eticheta' => 'Echipa',
+  'h_titlu'    => 'Cine suntem',
+  'h_sub'      => 'Suntem două psiholoage care lucrează sub aceeași formă de exercitare — '
+    . e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie'))
+    . '. Fiecare are formarea și specializările ei; le găsești mai jos, cu codul CPR verificabil în registrul Colegiului Psihologilor.',
+]) ?>
 
 <?php foreach ($psihologi as $i => $p): ?>
 <section class="sectiune reveal">

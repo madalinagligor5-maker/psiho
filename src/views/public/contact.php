@@ -11,14 +11,12 @@ $telefon = (string) config('site', 'telefon');
 $whatsapp = (string) config('site', 'whatsapp');
 ?>
 
-<section class="sectiune">
-  <p class="eticheta">Contact</p>
-  <h1>Hai să vorbim o dată</h1>
-  <p class="introducere" style="margin-top: var(--s3)">
-    Nu trebuie să știi ce să spui. Un rând ajunge. Îți răspundem în maximum 48 de
-    ore lucrătoare și stabilim o ședință de cunoaștere, gratuită.
-  </p>
-</section>
+<?= view('public/_hero', [
+  'h_eticheta' => 'Contact',
+  'h_titlu'    => 'Hai să vorbim o dată',
+  'h_sub'      => 'Nu trebuie să știi ce să spui. Un rând ajunge. Îți răspundem în maximum 48 '
+    . 'de ore lucrătoare și stabilim o ședință de cunoaștere, gratuită.',
+]) ?>
 
 <section class="sectiune" style="padding-block-start: 0">
   <?php if ($trimis): ?>

@@ -10,9 +10,8 @@
 $retentie = (int) config('retentie_mesaje_zile');
 ?>
 
-<section class="sectiune">
-  <p class="eticheta">Legal</p>
-  <h1>Politica de confidențialitate</h1>
+<?= view('public/_hero', ['h_eticheta' => 'Legal', 'h_titlu' => 'Politica de confidențialitate']) ?>
+<section class="sectiune" style="padding-block-start:0">
   <p class="meta">Ultima actualizare: [COMPLETEZ EU: data]</p>
 </section>
 

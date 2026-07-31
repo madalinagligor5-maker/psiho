@@ -10,16 +10,13 @@
  */
 ?>
 
-<section class="sectiune hero">
-  <div class="hero-botanic"><?= view('public/_botanic') ?></div>
-  <p class="eticheta">Servicii</p>
-  <h1>Ce putem face împreună</h1>
-  <p class="introducere" style="margin-top: var(--s3)">
-    Lucrăm cu adulți, familii și, pentru evaluări și documentație, cu copii și
-    adolescenți. Serviciile sunt împărțite în două: terapie și sprijin emoțional,
-    respectiv evaluare și documentație psihologică.
-  </p>
-</section>
+<?= view('public/_hero', [
+  'h_eticheta' => 'Servicii',
+  'h_titlu'    => 'Ce putem face împreună',
+  'h_sub'      => 'Lucrăm cu adulți, familii și, pentru evaluări și documentație, cu copii și '
+    . 'adolescenți. Serviciile sunt împărțite în două: terapie și sprijin emoțional, '
+    . 'respectiv evaluare și documentație psihologică.',
+]) ?>
 
 <!-- GRUPA A: terapie si sprijin emotional -->
 <section class="sectiune grup-servicii reveal">

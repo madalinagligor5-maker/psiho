@@ -1,8 +1,7 @@
 <?php /** Termeni si conditii. */ ?>
 
-<section class="sectiune">
-  <p class="eticheta">Legal</p>
-  <h1>Termeni și condiții</h1>
+<?= view('public/_hero', ['h_eticheta' => 'Legal', 'h_titlu' => 'Termeni și condiții']) ?>
+<section class="sectiune" style="padding-block-start:0">
   <p class="meta">Ultima actualizare: [COMPLETEZ EU: data]</p>
 </section>
 

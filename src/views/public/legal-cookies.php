@@ -1,8 +1,7 @@
 <?php /** Politica de cookies. */ ?>
 
-<section class="sectiune">
-  <p class="eticheta">Legal</p>
-  <h1>Politica de cookies</h1>
+<?= view('public/_hero', ['h_eticheta' => 'Legal', 'h_titlu' => 'Politica de cookies']) ?>
+<section class="sectiune" style="padding-block-start:0">
   <p class="meta">Ultima actualizare: [COMPLETEZ EU: data]</p>
 </section>
 

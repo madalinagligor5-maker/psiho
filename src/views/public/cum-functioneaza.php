@@ -7,15 +7,13 @@
 $durata = setare('durata_cunoastere', '20');
 ?>
 
-<section class="sectiune">
-  <p class="eticheta">Cum funcționează</p>
-  <h1>Ce se întâmplă, mai exact, dacă vii</h1>
-  <p class="introducere" style="margin-top: var(--s3)">
-    Cred că e mai ușor să faci primul pas când știi ce urmează. Așa că aici e
-    tot: cum decurge o ședință, cât costă, ce e terapia sistemică, și ce se
-    întâmplă cu ceea ce spui în cabinet.
-  </p>
-</section>
+<?= view('public/_hero', [
+  'h_eticheta' => 'Cum funcționează',
+  'h_titlu'    => 'Ce se întâmplă, mai exact, dacă vii',
+  'h_sub'      => 'E mai ușor să faci primul pas când știi ce urmează. Așa că aici e tot: '
+    . 'cum decurge o ședință, cât costă, ce e terapia sistemică, și ce se întâmplă '
+    . 'cu ceea ce spui în cabinet.',
+]) ?>
 
 <!-- Prima sedinta, minut cu minut -->
 <section class="sectiune">

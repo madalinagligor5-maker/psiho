@@ -1153,6 +1153,10 @@ strong { font-weight: 700; }
   .hero-soft__interior { padding: calc(var(--s7) + 1rem) 3rem var(--s7); }
 }
 
+/* Varianta pentru pagini interioare: mai joasă, nu ocupă tot ecranul. */
+.hero-soft--pagina .hero-soft__interior { padding-block: var(--s6) var(--s5); }
+.hero-soft--pagina .hero-soft__planta--sus { width: 5rem; }
+
 .hero-soft h1 {
   font-size: var(--t-hero);
   line-height: 1.02;

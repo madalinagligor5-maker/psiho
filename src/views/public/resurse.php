@@ -3,14 +3,12 @@
 $email = (string) config('site', 'email');
 ?>
 
-<section class="sectiune">
-  <p class="eticheta">Resurse</p>
-  <h1>Jurnale și ghiduri de lucru</h1>
-  <p class="introducere" style="margin-top: var(--s3)">
-    Materiale pe care le poți folosi singur sau în paralel cu terapia. Deocamdată
-    se cer prin email — îmi scrii, îți răspund cu tot ce e nevoie.
-  </p>
-</section>
+<?= view('public/_hero', [
+  'h_eticheta' => 'Resurse',
+  'h_titlu'    => 'Jurnale și ghiduri de lucru',
+  'h_sub'      => 'Materiale pe care le poți folosi singur sau în paralel cu terapia. '
+    . 'Deocamdată se cer prin email — ne scrii, îți răspundem cu tot ce e nevoie.',
+]) ?>
 
 <section class="sectiune">
   <?php if (empty($resurse)): ?>
