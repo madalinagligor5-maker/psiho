@@ -1096,6 +1096,26 @@ strong { font-weight: 700; }
 .iconita-badge--azur    { background: var(--azur); }
 .iconita-badge--lavanda { background: var(--lavanda-pal); color: var(--lavanda-text); }
 
+/* Infografice — recreate după kit (hartă→drum, cerc sistemic, piramidă). */
+.infografic {
+  margin: var(--s5) 0;
+  padding: var(--s4);
+  background: var(--azur);
+  border-radius: var(--raza-mediu);
+}
+.infografic svg { display: block; width: 100%; height: auto; max-width: 32rem; margin-inline: auto; }
+.infografic text {
+  font-family: var(--font-corp);
+  fill: var(--cerneala);
+}
+.infografic .info-mic { font-size: 11px; fill: var(--piatra); }
+.infografic__titlu {
+  text-align: center;
+  font-size: var(--t-mic);
+  color: var(--piatra);
+  margin-bottom: var(--s3);
+}
+
 /* Pull-quote — un citat scos în evidență, cu ghilimele grafice. */
 .citat {
   position: relative;

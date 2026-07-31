@@ -81,12 +81,18 @@ $durata = setare('durata_cunoastere', '20');
     comportamentele de acum. Psihanaliza caută rădăcina în trecutul îndepărtat,
     de obicei pe termen lung.
   </p>
+
+  <?= view('public/_info-harta-drum') ?>
+
   <p>
     Terapia sistemică se uită la <strong>relații și tipare</strong>: nu doar ce
     simți, ci ce se întâmplă între tine și oamenii din jur, ce rol ai preluat în
     familie, ce se repetă. Un simptom nu e privit ca o defecțiune individuală, ci
     ca ceva ce are sens în contextul din care faci parte.
   </p>
+
+  <?= view('public/_info-cerc') ?>
+
   <p>
     De aceea nu căutăm vinovatul. Într-un tipar care se repetă, întrebarea „cine a
     început” nu a rezolvat niciodată nimic. Întrebarea utilă e „ce urmează după
@@ -138,6 +144,18 @@ $durata = setare('durata_cunoastere', '20');
     reiei totul de la capăt. Continuitatea îngrijirii e responsabilitatea noastră,
     nu o povară pe care o duci tu.
   </p>
+</section>
+
+<!-- Cum se schimba lucrurile -->
+<section class="sectiune reveal">
+  <p class="eticheta">Cum se schimbă lucrurile</p>
+  <h2>Nu sări la schimbare — ea vine ultima</h2>
+  <p style="margin-top: var(--s3)">
+    Multă lume vrea, de la prima ședință, „să se schimbe". Dar schimbarea vine în
+    ordine: întâi înțelegi tiparul, apoi îl accepți fără să te judeci, și abia
+    atunci se poate mișca ceva. Sărind peste primele două, a treia nu ține.
+  </p>
+  <?= view('public/_info-piramida') ?>
 </section>
 
 <!-- Daca nu ne potrivim -->
