@@ -31,18 +31,21 @@
 
   <div class="servicii">
     <div class="serviciu">
+      <span class="iconita-badge iconita-badge--azur serviciu__icon"><?= iconita('respiro') ?></span>
       <h3>Ședință individuală, la cabinet</h3>
       <p class="serviciu__pret"><?= e(setare('pret_individual', '250')) ?> lei</p>
       <p class="serviciu__durata"><?= e(setare('durata_individual', '50')) ?> de minute</p>
       <p class="fara-margine-jos">Într-un spațiu liniștit, care nu e nici casa, nici biroul tău. Pentru cine are nevoie să iasă din context ca să se poată gândi.</p>
     </div>
     <div class="serviciu">
+      <span class="iconita-badge iconita-badge--azur serviciu__icon"><?= iconita('comunicare') ?></span>
       <h3>Ședință online</h3>
       <p class="serviciu__pret"><?= e(setare('pret_online', '220')) ?> lei</p>
       <p class="serviciu__durata"><?= e(setare('durata_online', '50')) ?> de minute · video securizat</p>
       <p class="fara-margine-jos">Aceeași ședință, de oriunde ai un colț liniștit. Pentru program imprevizibil sau drum lung.</p>
     </div>
     <div class="serviciu">
+      <span class="iconita-badge iconita-badge--azur serviciu__icon"><?= iconita('conexiune') ?></span>
       <h3>Psihoterapie de familie</h3>
       <p class="serviciu__pret">[COMPLETEZ EU: preț]</p>
       <p class="serviciu__durata">[COMPLETEZ EU: durată]</p>
@@ -67,16 +70,19 @@
 
   <div class="servicii">
     <div class="serviciu">
+      <span class="iconita-badge iconita-badge--lavanda serviciu__icon"><?= iconita('constientizare') ?></span>
       <h3>Evaluare psihologică</h3>
       <p class="serviciu__pret">[COMPLETEZ EU: preț]</p>
       <p class="fara-margine-jos"><strong>Ce presupune:</strong> una sau mai multe întâlniri, instrumente standardizate, discuția rezultatelor. <strong>Ce rezultă:</strong> un raport de evaluare psihologică.</p>
     </div>
     <div class="serviciu">
+      <span class="iconita-badge iconita-badge--lavanda serviciu__icon"><?= iconita('sprijin') ?></span>
       <h3>Fișe CES și fișe de încadrare în grad</h3>
       <p class="serviciu__pret">[COMPLETEZ EU: preț]</p>
       <p class="fara-margine-jos"><strong>Pentru cine:</strong> copii și adolescenți care au nevoie de documentație psihologică pentru comisiile de evaluare (cerințe educaționale speciale, încadrare în grad).</p>
     </div>
     <div class="serviciu">
+      <span class="iconita-badge iconita-badge--lavanda serviciu__icon"><?= iconita('directie') ?></span>
       <h3>Orientare în carieră</h3>
       <p class="serviciu__pret">[COMPLETEZ EU: preț]</p>
       <p class="serviciu__durata">Pentru adulți și adolescenți</p>

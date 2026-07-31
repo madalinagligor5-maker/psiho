@@ -618,6 +618,7 @@ strong { font-weight: 700; }
   padding: var(--s4);
   background: var(--crem);
 }
+.serviciu__icon { margin-bottom: var(--s3); }
 .serviciu h3 { margin-bottom: var(--s1); }
 .serviciu__pret {
   font-family: var(--font-display);
@@ -700,7 +701,26 @@ strong { font-weight: 700; }
 }
 .intrebare[open] summary::after { content: "–"; }
 
-.intrebare__raspuns { padding-bottom: var(--s3); }
+/* Raspunsul e un „cadru" cald — o bula de vorbire, din kitul de ilustratii.
+   Micul varf din stanga-sus o leaga de intrebarea de deasupra. */
+.intrebare__raspuns {
+  position: relative;
+  margin: 0 0 var(--s3);
+  padding: var(--s3) var(--s4);
+  background: var(--lavanda-pal);
+  border-radius: var(--raza-mediu);
+}
+.intrebare__raspuns::before {
+  content: "";
+  position: absolute;
+  top: -0.4rem;
+  left: var(--s4);
+  width: 0.8rem;
+  height: 0.8rem;
+  background: var(--lavanda-pal);
+  transform: rotate(45deg);
+}
+.intrebare__raspuns > :last-child { margin-bottom: 0; }
 
 /* --- Lista de articole ---------------------------------------------------- */
 

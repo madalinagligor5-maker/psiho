@@ -17,6 +17,7 @@ $email = (string) config('site', 'email');
     <div class="servicii">
       <?php foreach ($resurse as $r): ?>
         <div class="serviciu">
+          <span class="iconita-badge iconita-badge--lavanda serviciu__icon"><?= iconita('directie') ?></span>
           <h3><?= e($r['titlu']) ?></h3>
           <?php if ((float) $r['pret'] > 0): ?>
             <p class="serviciu__pret"><?= e(number_format((float) $r['pret'], 0, ',', '.')) ?> lei</p>

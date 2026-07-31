@@ -68,26 +68,33 @@ $analiza  = config('analiza');
 
 <?php /* Schema.org: Person + MedicalBusiness. Ajuta Google sa arate corect
         cabinetul in rezultate locale. */ ?>
-<script type="application/ld+json">
-<?= json_encode($schema ?? [
-    '@context' => 'https://schema.org',
-    '@type'    => ['MedicalBusiness', 'LocalBusiness'],
-    'name'     => config('site', 'nume'),
-    'url'      => url(),
-    'email'    => config('site', 'email'),
-    'telephone'=> config('site', 'telefon'),
-    'medicalSpecialty' => 'Psychiatric',
-    'address'  => [
-        '@type' => 'PostalAddress',
-        'streetAddress'   => setare('adresa'),
-        'addressCountry'  => 'RO',
-    ],
-    'founder' => [
-        '@type'    => 'Person',
+<?php
+    // Nu punem in structured data campurile inca necompletate ([COMPLETEZ]).
+    $sd_valid = fn($v) => is_string($v) && $v !== '' && !str_contains($v, 'COMPLETEZ');
+    $sd_tel = config('site', 'telefon');
+    $sd_adr = setare('adresa');
+    $ld = $schema ?? array_filter([
+        '@context' => 'https://schema.org',
+        '@type'    => ['MedicalBusiness', 'LocalBusiness'],
         'name'     => config('site', 'nume'),
-        'jobTitle' => 'Psiholog clinician',
-    ],
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
+        'url'      => url(),
+        'email'    => config('site', 'email'),
+        'telephone'=> $sd_valid($sd_tel) ? $sd_tel : null,
+        'medicalSpecialty' => 'Psychiatric',
+        'address'  => $sd_valid($sd_adr) ? [
+            '@type' => 'PostalAddress',
+            'streetAddress'   => $sd_adr,
+            'addressCountry'  => 'RO',
+        ] : ['@type' => 'PostalAddress', 'addressCountry' => 'RO'],
+        'founder' => [
+            '@type'    => 'Person',
+            'name'     => config('site', 'nume'),
+            'jobTitle' => 'Psiholog clinician',
+        ],
+    ], fn($v) => $v !== null);
+?>
+<script type="application/ld+json">
+<?= json_encode($ld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
 </script>
 
 <?php /* Analiza se incarca DUPA consimtamant, din site.js. Scriptul nu e pus
