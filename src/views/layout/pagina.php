@@ -142,16 +142,59 @@ $analiza  = config('analiza');
 <?= $continut ?>
 </main>
 
+<?php
+  $f_email    = (string) config('site', 'email');
+  $f_telefon  = (string) config('site', 'telefon');
+  $f_whatsapp = (string) config('site', 'whatsapp');
+  $are = fn($v) => $v !== '' && !str_contains($v, 'COMPLETEZ');
+?>
 <footer class="subsol">
   <div class="invelis">
+
+    <!-- Rând de sus: îndemn cald + ramură botanică -->
+    <div class="subsol__cap pe-tot-ecranul">
+      <div>
+        <p class="eticheta">Când ești gata</p>
+        <p class="subsol__indemn">Hai să vorbim o dată. Prima ședință e o cunoaștere — gratuită, fără nicio obligație.</p>
+        <a class="buton buton--principal" href="<?= e(url('contact')) ?>">Programează o ședință</a>
+      </div>
+      <div class="subsol__botanic" aria-hidden="true"><?= view('public/_botanic') ?></div>
+    </div>
+
     <div class="subsol__coloane pe-tot-ecranul">
 
       <div>
+        <h4>Contact</h4>
+        <ul class="subsol__contact">
+          <?php if ($are($f_email)): ?>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+              <a href="mailto:<?= e($f_email) ?>"><?= e($f_email) ?></a>
+            </li>
+          <?php endif ?>
+          <?php if ($are($f_whatsapp)): ?>
+            <li>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.1-1.7 1.2-.4 0-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2 .2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.4.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.6-.1 1.1Z"/></svg>
+              <a href="https://wa.me/<?= e($f_whatsapp) ?>" target="_blank" rel="noopener">Scrie pe WhatsApp</a>
+            </li>
+          <?php endif ?>
+          <?php if ($are($f_telefon)): ?>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h3l2 5-2 1a12 12 0 0 0 5 5l1-2 5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+              <a href="tel:<?= e(preg_replace('/\s+/', '', $f_telefon)) ?>"><?= e($f_telefon) ?></a>
+            </li>
+          <?php endif ?>
+          <li class="subsol__program" style="white-space:pre-line"><?= e(setare('program')) ?></li>
+        </ul>
+      </div>
+
+      <div>
         <h4>Cabinet</h4>
+        <?php $f_adresa = setare('adresa'); ?>
         <p class="fara-margine-jos">
           <?= e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie')) ?><br>
-          <?= e(setare('cabinet_certificat', '')) ?><br>
-          <?= e(setare('adresa')) ?>
+          <?= e(setare('cabinet_certificat', '')) ?>
+          <?php if ($are($f_adresa)): ?><br><?= e($f_adresa) ?><?php endif ?>
         </p>
       </div>
 
@@ -175,9 +218,9 @@ $analiza  = config('analiza');
 
     </div>
 
-    <p class="meta pe-tot-ecranul" style="margin-top: var(--s4)">
+    <p class="meta pe-tot-ecranul subsol__jos">
       © <?= date('Y') ?> <?= e(setare('cabinet_entitate', config('site', 'nume'))) ?>.
-      Acest site nu este un canal de intervenție în criză.
+      Acest site nu este un canal de intervenție în criză — pentru urgențe, sună la <strong>112</strong>.
     </p>
   </div>
 </footer>
