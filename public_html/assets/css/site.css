@@ -1128,6 +1128,35 @@ strong { font-weight: 700; }
 .g-flotant--stanga-jos  { bottom: var(--s3); left: 3%; }
 .g-flotant--dreapta-jos { bottom: var(--s4); right: 5%; }
 
+/* Cai de contact cu iconite (pagina contact) — acelasi limbaj ca in subsol. */
+.cai-contact { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.cai-contact li { display: flex; gap: var(--s2); align-items: flex-start; }
+.cai-contact__icon svg { width: 1.25rem; height: 1.25rem; color: var(--bleu); margin-top: 0.15em; }
+
+/* Pagina 404: o mica scena ilustrata deasupra textului. */
+.negasit { text-align: center; }
+.negasit__grafic {
+  position: relative;
+  width: min(18rem, 70vw);
+  margin: 0 auto var(--s4);
+}
+.negasit__grafic .g-blob { width: 100%; }
+.negasit__planta {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.negasit__planta svg { width: 55%; height: auto; opacity: 0.9; }
+.negasit__frunza {
+  position: absolute;
+  right: 8%;
+  bottom: 4%;
+  width: 2.75rem;
+  transform: rotate(12deg);
+}
+.negasit__text { max-width: 40rem; margin-inline: auto; }
+
 /* Iconițe line-art — colorate prin `color` pe container. */
 .iconita { display: inline-block; width: 1.5rem; height: 1.5rem; color: var(--salvie-inchis); }
 

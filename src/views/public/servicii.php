@@ -55,6 +55,8 @@
   </div>
 </section>
 
+<div class="divizor"><?= grafic('val') ?></div>
+
 <!-- GRUPA B: evaluare si documentatie -->
 <section class="sectiune grup-servicii reveal">
   <div class="grup-servicii__cap">

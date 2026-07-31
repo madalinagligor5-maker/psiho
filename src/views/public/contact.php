@@ -89,17 +89,27 @@ $whatsapp = (string) config('site', 'whatsapp');
 <section class="sectiune">
   <p class="eticheta">Sau direct</p>
   <h2>Alte feluri de a ne găsi</h2>
-  <div class="stiva" style="margin-top: var(--s3)">
-    <?php if ($whatsapp !== '' && !str_contains($whatsapp, 'COMPLETEZ')): ?>
-      <p class="fara-margine-jos"><strong>WhatsApp:</strong> <a href="https://wa.me/<?= e($whatsapp) ?>" target="_blank" rel="noopener">scrie-ne un mesaj</a></p>
+  <?php $are = fn($v) => $v !== '' && !str_contains($v, 'COMPLETEZ'); ?>
+  <ul class="cai-contact" style="margin-top: var(--s3)">
+    <?php if ($are($whatsapp)): ?>
+      <li>
+        <span class="cai-contact__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.5-4A8 8 0 1 1 9 19.5Z"/><path d="M9 10c.5 3 2.5 5 5 5.5l1.3-1.4 2 .8-.4 2c-3.8.6-8-3.6-7.4-7.4l2-.4.8 2Z"/></svg></span>
+        <span><strong>WhatsApp:</strong> <a href="https://wa.me/<?= e($whatsapp) ?>" target="_blank" rel="noopener">scrie-ne un mesaj</a></span>
+      </li>
     <?php endif ?>
-    <?php if ($email !== '' && !str_contains($email, 'COMPLETEZ')): ?>
-      <p class="fara-margine-jos"><strong>Email:</strong> <a href="mailto:<?= e($email) ?>"><?= e($email) ?></a></p>
+    <?php if ($are($email)): ?>
+      <li>
+        <span class="cai-contact__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+        <span><strong>Email:</strong> <a href="mailto:<?= e($email) ?>"><?= e($email) ?></a></span>
+      </li>
     <?php endif ?>
-    <?php if ($telefon !== '' && !str_contains($telefon, 'COMPLETEZ')): ?>
-      <p class="fara-margine-jos"><strong>Telefon:</strong> <a href="tel:<?= e(preg_replace('/\s+/', '', $telefon)) ?>"><?= e($telefon) ?></a></p>
+    <?php if ($are($telefon)): ?>
+      <li>
+        <span class="cai-contact__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3l2 5-2 1.5a11 11 0 0 0 5 5L20 13l1 3v3a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"/></svg></span>
+        <span><strong>Telefon:</strong> <a href="tel:<?= e(preg_replace('/\s+/', '', $telefon)) ?>"><?= e($telefon) ?></a></span>
+      </li>
     <?php endif ?>
-  </div>
+  </ul>
 </section>
 
 <!-- Cabinet: adresa + program. Harta e imagine statica, nu Google Maps embed. -->

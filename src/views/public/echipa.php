@@ -19,7 +19,8 @@ $psihologi = $psihologi ?? [];
 
 <?php foreach ($psihologi as $i => $p): ?>
 <section class="sectiune reveal">
-  <p class="eticheta"><?= $i === 0 ? 'Psihologă' : 'Psihologă' ?></p>
+  <?= grafic('puncte', 'g-flotant ' . ($i % 2 ? 'g-flotant--stanga-jos' : 'g-flotant--dreapta-sus')) ?>
+  <p class="eticheta">Psihologă</p>
   <h2><?= e($p['nume']) ?></h2>
   <p class="serviciu__durata" style="margin-top: var(--s1)"><?= e($p['titlu_scurt']) ?></p>
 
