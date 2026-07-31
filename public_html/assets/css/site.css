@@ -597,14 +597,16 @@ strong { font-weight: 700; }
   gap: var(--s4);
 }
 .recunoasteri li {
+  display: flex;
+  gap: var(--s3);
+  align-items: center;
   font-family: var(--font-display);
   font-size: var(--t-corp-mare);
   font-weight: 400;
-  line-height: 1.5;
-  padding-left: var(--s3);
-  border-left: 2px solid var(--greige);
-  max-width: 54ch;
+  line-height: 1.4;
+  max-width: 58ch;
 }
+.recunoasteri li > span:last-child { flex: 1; }
 
 /* --- Card de serviciu ----------------------------------------------------- */
 
@@ -1075,6 +1077,24 @@ strong { font-weight: 700; }
 .g-flotant--dreapta-sus { top: var(--s3); right: 4%; }
 .g-flotant--stanga-jos  { bottom: var(--s3); left: 3%; }
 .g-flotant--dreapta-jos { bottom: var(--s4); right: 5%; }
+
+/* Iconițe line-art — colorate prin `color` pe container. */
+.iconita { display: inline-block; width: 1.5rem; height: 1.5rem; color: var(--salvie-inchis); }
+
+/* Iconiță într-un cerc soft, ca în kit — pentru liste și pași. */
+.iconita-badge {
+  flex: none;
+  width: 3.25rem; height: 3.25rem;
+  display: grid; place-items: center;
+  border-radius: var(--raza-pastila);
+  background: var(--verde-pal);
+  color: var(--salvie-inchis);
+  transition: background-color var(--d-mediu) var(--usor);
+}
+.iconita-badge .iconita { width: 1.7rem; height: 1.7rem; }
+/* Alternăm fundalul badge-urilor prin paletă, pentru varietate blândă. */
+.iconita-badge--azur    { background: var(--azur); }
+.iconita-badge--lavanda { background: var(--lavanda-pal); color: var(--lavanda-text); }
 
 /* Pull-quote — un citat scos în evidență, cu ghilimele grafice. */
 .citat {

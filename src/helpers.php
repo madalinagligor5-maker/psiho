@@ -144,6 +144,40 @@ function grafic(string $nume, string $clasa = ''): string
     return $svg;
 }
 
+/**
+ * Iconițe line-art (recreate după kitul de ilustrație). viewBox 24×24, contur
+ * din `currentColor` (colorezi prin `color` pe container), rotunjite. Decorative
+ * — mereu aria-hidden; sensul stă în textul de lângă.
+ */
+function iconita(string $nume, string $clasa = ''): string
+{
+    $cai = match ($nume) {
+        // Emoții & stări
+        'anxietate'  => '<path d="M15 7c-4-2-8 1-7 5 1 3 6 4 7 1 1-2-2-4-4-2s-1 5 2 5"/>',
+        'stres'      => '<path d="M7 13a3 3 0 0 1 .3-6 4 4 0 0 1 7.5-1A3 3 0 0 1 16 13Z"/><path d="M11 15l-2 3h3l-2 3"/>',
+        'ganduri'    => '<path d="M8 13a3.5 3.5 0 0 1 .5-7 4 4 0 0 1 7.3.5A3 3 0 0 1 15 13Z"/><circle cx="7" cy="17" r="1"/><circle cx="9.5" cy="19.5" r=".7"/>',
+        'coplesire'  => '<path d="M4 12h6M4 8h9M4 16h7"/><path d="M17 6c-2 1-2 4 0 5s3-3 1-4-3 3-1 5"/>',
+        'respiro'    => '<path d="M12 4v8"/><path d="M12 12c0-3-1-5-4-5-2 0-3 2-3 5s2 6 4 6c2 0 3-3 3-6Z"/><path d="M12 12c0-3 1-5 4-5 2 0 3 2 3 5s-2 6-4 6c-2 0-3-3-3-6Z"/>',
+        'liniste'    => '<circle cx="12" cy="12" r="8"/><path d="M9 14c1 1.5 5 1.5 6 0"/><path d="M8.5 10h.01M15.5 10h.01"/>',
+        // Concepte & valori
+        'echilibru'  => '<path d="M12 4v16M6 20h12"/><path d="M12 6 5 9m7-3 7 3"/><path d="M3 9a2 2 0 0 0 4 0Zm14 0a2 2 0 0 0 4 0Z"/>',
+        'sprijin'    => '<path d="M12 20c-1-3-6-4-6-8a2.5 2.5 0 0 1 5-.5A2.5 2.5 0 0 1 16 12"/><path d="M4 15c1 2 3 3 5 3M20 15c-1 2-3 3-5 3"/>',
+        'progres'    => '<path d="M4 18h4v-4h4V9h4V5h4"/><path d="M16 5h4v4"/>',
+        'conexiune'  => '<circle cx="7" cy="8" r="2.4"/><circle cx="17" cy="8" r="2.4"/><circle cx="12" cy="17" r="2.4"/><path d="M9 9.5 10.5 15m4.5-5.5L13.5 15M9 8h6"/>',
+        'comunicare' => '<path d="M4 6h9a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H8l-4 3Z"/><path d="M17 9h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2v3l-3-3"/>',
+        'directie'   => '<path d="M12 3v18"/><path d="M12 5h6l2 2-2 2h-6"/><path d="M12 11H6l-2 2 2 2h6"/>',
+        'constientizare' => '<path d="M12 3a6 6 0 0 0-3 11v2h6v-2a6 6 0 0 0-3-11Z"/><path d="M10 20h4M11 22h2"/>',
+        default => '',
+    };
+    if ($cai === '') {
+        return '';
+    }
+    $c = $clasa !== '' ? ' ' . $clasa : '';
+    return '<svg class="iconita'.$c.'" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        .'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        .$cai.'</svg>';
+}
+
 /** Randeaza un sablon din src/views cu variabilele date. */
 function view(string $sablon, array $date = []): string
 {

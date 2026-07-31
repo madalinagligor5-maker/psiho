@@ -53,10 +53,22 @@ $psihologi = $psihologi ?? [];
   <?= grafic('puncte', 'g-flotant g-flotant--stanga-jos') ?>
   <p class="eticheta">Ai ajuns aici pentru că</p>
   <ul class="recunoasteri">
-    <li>Te trezești dimineața deja obosit, și nu mai știi de când.</li>
-    <li>Faci totul „bine”, dar simți că nu mai e nimeni care să te întrebe pe tine ce faci.</li>
-    <li>Aceeași ceartă se repetă, cu oameni diferiți, și începi să te întrebi dacă nu cumva e ceva la tine.</li>
-    <li>Gândurile nu se opresc seara, iar dimineața o iau de la capăt.</li>
+    <li>
+      <span class="iconita-badge"><?= iconita('respiro') ?></span>
+      <span>Te trezești dimineața deja obosit, și nu mai știi de când.</span>
+    </li>
+    <li>
+      <span class="iconita-badge iconita-badge--lavanda"><?= iconita('coplesire') ?></span>
+      <span>Faci totul „bine”, dar simți că nu mai e nimeni care să te întrebe pe tine ce faci.</span>
+    </li>
+    <li>
+      <span class="iconita-badge iconita-badge--azur"><?= iconita('conexiune') ?></span>
+      <span>Aceeași ceartă se repetă, cu oameni diferiți, și începi să te întrebi dacă nu cumva e ceva la tine.</span>
+    </li>
+    <li>
+      <span class="iconita-badge"><?= iconita('ganduri') ?></span>
+      <span>Gândurile nu se opresc seara, iar dimineața o iau de la capăt.</span>
+    </li>
   </ul>
   <p style="margin-top: var(--s4)">
     Niciuna dintre acestea nu e un diagnostic. Sunt feluri în care viața strânge,
