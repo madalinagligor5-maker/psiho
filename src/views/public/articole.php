@@ -11,6 +11,7 @@
 ]) ?>
 
 <section class="sectiune">
+  <?= grafic('frunza', 'g-flotant g-flotant--dreapta-sus') ?>
   <!-- Filtre de categorie -->
   <nav class="categorii" aria-label="Filtrează după categorie">
     <a href="<?= e(url('articole')) ?>" <?= $categorie === null ? 'aria-current="page"' : '' ?>>Toate</a>

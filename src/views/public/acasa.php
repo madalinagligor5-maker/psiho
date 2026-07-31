@@ -114,8 +114,9 @@ $psihologi = $psihologi ?? [];
     și caldă.
   </p>
   <div class="servicii" style="margin-top: var(--s4)">
-    <?php foreach ($psihologi as $p): ?>
+    <?php foreach ($psihologi as $idx => $p): ?>
       <div class="serviciu">
+        <span class="iconita-badge <?= $idx % 2 ? 'iconita-badge--lavanda' : 'iconita-badge--azur' ?> serviciu__icon"><?= iconita($idx % 2 ? 'echilibru' : 'sprijin') ?></span>
         <h3><?= e($p['nume']) ?></h3>
         <p class="serviciu__durata"><?= e($p['titlu_scurt']) ?></p>
         <p class="fara-margine-jos meta">Cod CPR <?= e($p['cod_cpr']) ?> · Filiala <?= e($p['filiala']) ?></p>

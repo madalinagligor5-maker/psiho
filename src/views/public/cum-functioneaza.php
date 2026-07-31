@@ -46,6 +46,7 @@ $durata = setare('durata_cunoastere', '20');
 
 <!-- Durata, cost, plata -->
 <section class="sectiune">
+  <?= grafic('puncte', 'g-flotant g-flotant--dreapta-sus') ?>
   <p class="eticheta">Practic</p>
   <h2>Cât durează, cât costă, cum plătești</h2>
   <p style="margin-top: var(--s3)">
