@@ -586,6 +586,15 @@ strong { font-weight: 700; }
 }
 .chemare__botanic .botanic__frunza--cald { fill: var(--teracota); opacity: 0.6; }
 .chemare__botanic .botanic__bob { fill: var(--teracota); }
+/* Sclipiri discrete in coltul opus botanicii — element din kit. */
+.chemare__stele {
+  position: absolute;
+  top: var(--s3);
+  left: var(--s3);
+  width: 5rem;
+  height: auto;
+  pointer-events: none;
+}
 
 /* --- Lista de recunoasteri ("ai ajuns aici pentru ca...") ----------------- */
 
