@@ -1108,7 +1108,9 @@ strong { font-weight: 700; }
   font-family: var(--font-corp);
   fill: var(--cerneala);
 }
-.infografic .info-mic { font-size: 11px; fill: var(--piatra); }
+/* Etichetele mici din infografice sunt dimensionate ca atribut SVG (unități de
+   coordonate, ca restul textelor din diagramă), nu prin font-size CSS. */
+.infografic .info-mic { fill: var(--piatra); }
 .infografic__titlu {
   text-align: center;
   font-size: var(--t-mic);
