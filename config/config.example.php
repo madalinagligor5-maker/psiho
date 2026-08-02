@@ -27,7 +27,7 @@ return [
         'url'      => 'https://exemplu.ro',
         'nume'     => '[COMPLETEZ EU: nume complet]',
         'titlu'    => '[COMPLETEZ EU: nume] — psiholog clinician',
-        'email'    => '[COMPLETEZ EU: adresa de email]',
+        'email'    => 'terapiecunico@gmail.com',
         'telefon'  => '[COMPLETEZ EU: telefon in format +40...]',
         'whatsapp' => '[COMPLETEZ EU: numar WhatsApp, doar cifre, ex 40712345678]',
 
