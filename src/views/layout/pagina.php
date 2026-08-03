@@ -34,6 +34,10 @@ $analiza  = config('analiza');
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php /* Marcam ca JS e activ. Doar atunci ascundem elementele .reveal pana le
+         face vizibile scriptul. Fara JS (sau daca scriptul nu se incarca),
+         textul ramane vizibil — niciodata o pagina goala. */ ?>
+<script>document.documentElement.classList.add('js')</script>
 
 <title><?= e($titlu) ?></title>
 <?php if ($descriere !== ''): ?>

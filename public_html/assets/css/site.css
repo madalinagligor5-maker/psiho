@@ -1459,7 +1459,8 @@ strong { font-weight: 700; }
 
 /* Apariție la scroll. Elementul stă la 92% opacitate și 12px mai jos, apoi
    urcă blând când intră în ecran. JS adaugă clasa .vizibil (IntersectionObserver). */
-.reveal {
+/* Ascunse doar cand JS e prezent (clasa .js pe <html>). Fara JS raman vizibile. */
+.js .reveal {
   opacity: 0;
   transform: translateY(14px);
   transition:

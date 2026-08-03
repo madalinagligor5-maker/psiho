@@ -206,8 +206,15 @@ function redirect(string $cale, int $cod = 302): never
     exit;
 }
 
-/** Setarile din tabela `setari`, citite o singura data pe request. */
-function setare(string $cheie, string $implicit = ''): string
+/**
+ * Setarile din tabela `setari`, citite o singura data pe request.
+ *
+ * `$implicit` e nullable intentionat: unele apeluri dau ca implicit o valoare
+ * din config (ex. config('site','nume')) care poate lipsi pe server si intoarce
+ * null. Fara toleranta asta, un null ajuns aici oprea tot randarea (TypeError
+ * PHP 8) — inclusiv scriptul care face textul vizibil. Intoarcem mereu string.
+ */
+function setare(string $cheie, ?string $implicit = ''): string
 {
     static $setari = null;
     if ($setari === null) {
@@ -216,7 +223,7 @@ function setare(string $cheie, string $implicit = ''): string
             $setari[$rand['cheie']] = $rand['valoare'];
         }
     }
-    return $setari[$cheie] ?? $implicit;
+    return $setari[$cheie] ?? $implicit ?? '';
 }
 
 /**
