@@ -13,9 +13,9 @@
 <?= view('public/_hero', [
   'h_eticheta' => 'Servicii',
   'h_titlu'    => 'Ce putem face împreună',
-  'h_sub'      => 'Lucrăm cu adulți, familii și, pentru evaluări și documentație, cu copii și '
-    . 'adolescenți. Serviciile sunt împărțite în două: terapie și sprijin emoțional, '
-    . 'respectiv evaluare și documentație psihologică.',
+  'h_sub'      => 'Lucrăm cu adulți și adolescenți în terapie și, pentru evaluări și '
+    . 'documentație, și cu copii. Serviciile sunt împărțite în două: terapie și sprijin '
+    . 'emoțional, respectiv evaluare și documentație psihologică.',
 ]) ?>
 
 <!-- GRUPA A: terapie si sprijin emotional -->
@@ -44,14 +44,6 @@
       <p class="serviciu__durata"><?= e(setare('durata_online', '50')) ?> de minute · video securizat</p>
       <p class="fara-margine-jos">Aceeași ședință, de oriunde ai un colț liniștit. Pentru program imprevizibil sau drum lung.</p>
     </div>
-    <div class="serviciu">
-      <span class="iconita-badge iconita-badge--azur serviciu__icon"><?= iconita('conexiune') ?></span>
-      <h3>Psihoterapie de familie</h3>
-      <p class="serviciu__pret">[COMPLETEZ EU: preț]</p>
-      <p class="serviciu__durata">[COMPLETEZ EU: durată]</p>
-      <p class="autor-eticheta">Cu Adam Nicoleta-Cristina · psihoterapie de familie, sub supervizare</p>
-      <p class="fara-margine-jos">Când ceea ce doare la o persoană se înțelege abia privind relațiile din jur — cuplu, părinți și copii, familia extinsă.</p>
-    </div>
   </div>
 </section>
 
@@ -74,21 +66,15 @@
     <div class="serviciu">
       <span class="iconita-badge iconita-badge--lavanda serviciu__icon"><?= iconita('constientizare') ?></span>
       <h3>Evaluare psihologică</h3>
-      <p class="serviciu__pret">[COMPLETEZ EU: preț]</p>
+      <p class="serviciu__pret"><?= e(setare('pret_evaluare', '180')) ?> lei</p>
+      <p class="serviciu__durata"><?= e(setare('durata_evaluare', '50')) ?> de minute</p>
       <p class="fara-margine-jos"><strong>Ce presupune:</strong> una sau mai multe întâlniri, instrumente standardizate, discuția rezultatelor. <strong>Ce rezultă:</strong> un raport de evaluare psihologică.</p>
     </div>
     <div class="serviciu">
       <span class="iconita-badge iconita-badge--lavanda serviciu__icon"><?= iconita('sprijin') ?></span>
       <h3>Fișe CES și fișe de încadrare în grad</h3>
-      <p class="serviciu__pret">[COMPLETEZ EU: preț]</p>
+      <p class="serviciu__pret"><?= e(setare('pret_fise', '180')) ?> lei</p>
       <p class="fara-margine-jos"><strong>Pentru cine:</strong> copii și adolescenți care au nevoie de documentație psihologică pentru comisiile de evaluare (cerințe educaționale speciale, încadrare în grad).</p>
-    </div>
-    <div class="serviciu">
-      <span class="iconita-badge iconita-badge--lavanda serviciu__icon"><?= iconita('directie') ?></span>
-      <h3>Orientare în carieră</h3>
-      <p class="serviciu__pret">[COMPLETEZ EU: preț]</p>
-      <p class="serviciu__durata">Pentru adulți și adolescenți</p>
-      <p class="fara-margine-jos"><strong>Ce presupune:</strong> evaluarea intereselor și aptitudinilor, discuția opțiunilor realiste. Pentru cine e la o răscruce și vrea o hartă, nu un răspuns de-a gata.</p>
     </div>
   </div>
 </section>

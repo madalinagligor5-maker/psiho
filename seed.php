@@ -147,6 +147,9 @@ $setari = [
     ['pret_online',          '220',  'Preț ședință online (lei)',                 'numar',   'preturi', 3],
     ['durata_online',        '50',   'Durată ședință online (minute)',            'numar',   'preturi', 4],
     ['durata_cunoastere',    '20',   'Durată ședință de cunoaștere (minute)',     'numar',   'preturi', 5],
+    ['pret_evaluare',        '180',  'Preț evaluare psihologică (lei)',           'numar',   'preturi', 6],
+    ['durata_evaluare',      '50',   'Durată evaluare psihologică (minute)',      'numar',   'preturi', 7],
+    ['pret_fise',            '180',  'Preț fișe CES / încadrare în grad (lei)',   'numar',   'preturi', 8],
 
     // grup: contact
     ['adresa',               '[COMPLETEZ EU: strada, număr, oraș]', 'Adresa cabinetului', 'text', 'contact', 1],

@@ -7,14 +7,29 @@
  * „autonom" sau „sub supervizare" — fără să ascundem, dar fără accent negativ.
  */
 $psihologi = $psihologi ?? [];
+
+// Curata notele editoriale [COMPLETEZ EU: ...] impreuna cu conectorul din fata
+// ("la", "in", "cu"), ca sa nu ramana public un fragment ciuntit. Daca psihologa
+// nu si-a transmis inca datele, aratam doar ce e confirmat + o nota neutra.
+$curat = function (?string $t): string {
+    $t = (string) $t;
+    // 1) Un titlu Markdown urmat doar de un placeholder -> scoatem tot blocul,
+    //    ca sa nu ramana un „## Formare" gol atarnand.
+    $t = preg_replace('/\n[ \t]*#{1,6}[^\n]*\n\s*\[COMPLETEZ EU:[^\]]*\]/u', '', $t);
+    // 2) Placeholder inline (ex. „…la [COMPLETEZ EU: …]") + conectorul din fata.
+    $t = preg_replace('/[\s,–\-]*(?:la|în|cu)?\s*\[COMPLETEZ EU:[^\]]*\]/u', '', $t);
+    return trim((string) $t);
+};
+$areText = fn(?string $t): bool => $curat($t) !== '';
 ?>
 
 <?= view('public/_hero', [
   'h_eticheta' => 'Echipa',
-  'h_titlu'    => 'Cine suntem',
-  'h_sub'      => 'Suntem două psiholoage care lucrează sub aceeași formă de exercitare — '
-    . e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie'))
-    . '. Fiecare are formarea și specializările ei; le găsești mai jos, cu codul CPR verificabil în registrul Colegiului Psihologilor.',
+  'h_titlu'    => 'Cabinetul și cine îl formează',
+  'h_sub'      => e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie'))
+    . ' este forma sub care profesăm, în Timișoara. Sub ea lucrează două psiholoage; '
+    . 'fiecare are formarea și specializările ei — le găsești mai jos, cu codul CPR '
+    . 'verificabil în registrul Colegiului Psihologilor.',
 ]) ?>
 
 <?php foreach ($psihologi as $i => $p): ?>
@@ -33,9 +48,10 @@ $psihologi = $psihologi ?? [];
     <?php if (!empty($p['specializari'])): ?>
       <ul class="specializari">
         <?php foreach ($p['specializari'] as $s): ?>
+          <?php $sn = $curat($s['nume']); if ($sn === '') continue; ?>
           <li>
-            <span class="specializare__nume"><?= e($s['nume']) ?></span>
-            <span class="specializare__nivel"><?= e($s['nivel']) ?></span>
+            <span class="specializare__nume"><?= e($sn) ?></span>
+            <?php if ($areText($s['nivel'])): ?><span class="specializare__nivel"><?= e($curat($s['nivel'])) ?></span><?php endif ?>
             <span class="regim regim--<?= e($s['regim']) ?>"><?= e(Psiholog::regimText($s['regim'])) ?></span>
           </li>
         <?php endforeach ?>
@@ -43,9 +59,16 @@ $psihologi = $psihologi ?? [];
     <?php endif ?>
   </div>
 
-  <!-- Biografia, din Markdown -->
+  <!-- Biografia. Curatam notele editoriale; daca dupa curatare nu ramane
+       nimic real (psihologa nu si-a transmis inca datele), aratam o nota neutra. -->
+  <?php $bioCurat = $curat($p['bio']); ?>
   <div class="proza" style="margin-top: var(--s4)">
-    <?= Markdown::toHtml($p['bio']) ?>
+    <?php if ($bioCurat === ''): ?>
+      <p class="meta">Detaliile de formare și un cuvânt din partea
+        <?= e(explode(' ', (string) $p['nume'])[1] ?? $p['nume']) ?> se adaugă în curând.</p>
+    <?php else: ?>
+      <?= Markdown::toHtml($bioCurat) ?>
+    <?php endif ?>
   </div>
 </section>
 <?php endforeach ?>
