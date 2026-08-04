@@ -92,18 +92,16 @@ MD,
         'judet'       => 'Satu Mare',
         'filiala'     => 'Satu Mare',
         'ordine'      => 2,
-        // Formarea si serviciile pentru Babotan NU au fost confirmate inca.
-        // Nu presupune simetrie cu Adam; totul ramane [COMPLETEZ EU].
+        // Formare confirmata de client (04.08.2026): aceleasi studii ca Adam,
+        // clinica sub supervizare, fara alte formari. Paragraful de „voce"
+        // ramane optional — se adauga daca il transmite ea.
         'bio' => <<<'MD'
 Sunt psiholog clinician, acreditată de Colegiul Psihologilor din România, și practic în regim de supervizare — sub îndrumarea unui psiholog specialist. Este statutul normal la nivel de practicant și înseamnă că munca mea e sprijinită de un cadru de verificare, nu că lucrez singură cu cazurile.
 
 ## Formare
 
-[COMPLETEZ EU: formarea universitară, masteratul și eventualele cursuri de formare continuă ale Amaliei — nu au fost încă transmise. Nu completez cu presupuneri.]
-
-## Cum lucrez
-
-[COMPLETEZ EU: câteva rânduri în vocea Amaliei despre abordarea ei — la fel ca la Cristina, e paragraful care nu poate fi scris în locul ei.]
+- Licență în Psihologie — Universitatea de Vest din Timișoara
+- Masterat în Psihologie Clinică și Psihoterapie — Universitatea de Vest din Timișoara
 MD,
         'specializari' => [
             ['Psihologie clinică', 'Practicant', 'supervizare', 1],
