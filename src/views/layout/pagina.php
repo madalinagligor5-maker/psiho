@@ -162,16 +162,6 @@ $analiza  = config('analiza');
 <footer class="subsol">
   <div class="invelis">
 
-    <!-- Rând de sus: îndemn cald + ramură botanică -->
-    <div class="subsol__cap pe-tot-ecranul">
-      <div>
-        <p class="eticheta">Când ești gata</p>
-        <p class="subsol__indemn">Hai să vorbim o dată. Prima ședință e o cunoaștere — gratuită, fără nicio obligație.</p>
-        <a class="buton buton--principal" href="<?= e(url('contact')) ?>">Programează o ședință</a>
-      </div>
-      <div class="subsol__botanic" aria-hidden="true"><?= view('public/_botanic') ?></div>
-    </div>
-
     <div class="subsol__coloane pe-tot-ecranul">
 
       <div>
