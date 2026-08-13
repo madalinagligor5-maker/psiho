@@ -1,0 +1,37 @@
+media:
+  input: public/assets/uploads
+  output: /assets/uploads
+
+content:
+  - name: texte
+    label: Texte site
+    type: file
+    path: public/content.json
+    format: json
+    fields:
+      - name: hero_lede
+        label: "Prima pagină — textul de sub titlu"
+        type: text
+        description: "Paragraful mare de sub „Nu caut vinovatul, caut tiparul.”"
+      - name: cine_tail
+        label: "Cine suntem — completarea titlului"
+        type: string
+        description: "Vine după „Suntem Cristina și Amalia,”"
+      - name: cine_p1
+        label: "Cine suntem — primul paragraf"
+        type: text
+      - name: cine_p2
+        label: "Cine suntem — al doilea paragraf"
+        type: text
+      - name: pret_individual
+        label: "Preț ședință individuală (lei)"
+        type: string
+      - name: pret_online
+        label: "Preț ședință online (lei)"
+        type: string
+      - name: pret_evaluare
+        label: "Preț evaluare psihologică (lei)"
+        type: string
+      - name: pret_fise
+        label: "Preț fișe CES / încadrare grad (lei)"
+        type: string
