@@ -49,6 +49,7 @@ $analiza  = config('analiza');
         fontului de corp: e primul lucru de care are nevoie randarea textului,
         iar latin-ext se cere oricum imediat dupa, pentru diacritice. */ ?>
 <link rel="preload" href="<?= e(asset('assets/fonts/AtkinsonNext-normal-latin.woff2')) ?>" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="<?= e(asset('assets/fonts/Caveat-logo.woff2')) ?>" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="<?= e(asset('assets/css/site.css')) ?>">
 
 <meta property="og:type" content="website">

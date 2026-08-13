@@ -25,10 +25,10 @@ $areText = fn(?string $t): bool => $curat($t) !== '';
 
 <?= view('public/_hero', [
   'h_eticheta' => 'Echipa',
-  'h_titlu'    => 'Cabinetul și cine îl formează',
-  'h_sub'      => e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie'))
-    . ' este forma sub care profesăm, în Timișoara. Sub ea lucrează două psiholoage; '
-    . 'fiecare are formarea și specializările ei — le găsești mai jos, cu codul CPR '
+  'h_titlu'    => 'Cristina și Amalia',
+  'h_sub'      => 'Lucrăm împreună în Timișoara, sub forma cabinetului '
+    . e(setare('cabinet_entitate', 'ADAM ȘI BABOTAN, Societate civilă profesională de psihologie'))
+    . '. Mai jos e povestea fiecăreia — formarea, specializările și codul CPR, '
     . 'verificabil în registrul Colegiului Psihologilor.',
 ]) ?>
 

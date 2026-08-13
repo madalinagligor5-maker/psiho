@@ -39,11 +39,12 @@ $psihologi = $psihologi ?? [];
 <!-- Manifest scurt, sub hero: intai asociatia, apoi ce facem -->
 <section class="sectiune reveal">
   <p class="introducere">
-    <strong><?= e(setare('cabinet_nume', 'Adam și Babotan')) ?></strong> este o
-    societate civilă profesională de psihologie din Timișoara. Lucrăm cu adulți și
-    adolescenți care trec prin anxietate, depresie sau epuizare și oferim evaluare
-    și documentație psihologică — sistemic, adică privind tiparele dintre tine și
-    contextul din care faci parte, nu un simptom rupt de tot restul.
+    Suntem <strong>Cristina</strong> și <strong>Amalia</strong> — psihologe în
+    Timișoara, sub forma cabinetului <?= e(setare('cabinet_nume', 'Adam și Babotan')) ?>.
+    Lucrăm cu adulți și adolescenți care trec prin anxietate, depresie sau
+    epuizare, și facem evaluări și documentație psihologică. Ne uităm la tine în
+    contextul tău — la tiparele dintre tine și oamenii din jur — nu la un simptom
+    rupt de tot restul.
   </p>
 </section>
 
@@ -108,12 +109,12 @@ $psihologi = $psihologi ?? [];
 <!-- Echipa, pe scurt -->
 <?php if (!empty($psihologi)): ?>
 <section class="sectiune reveal">
-  <p class="eticheta">Membrii cabinetului</p>
-  <h2>Cele două psiholoage</h2>
+  <p class="eticheta">Cine suntem</p>
+  <h2>Cristina și Amalia</h2>
   <p style="margin-top: var(--s3)">
-    Sub această formă de exercitare lucrează două psiholoage. Fiecare are formarea
-    și specializările ei, verificabile prin codul CPR în registrul Colegiului
-    Psihologilor — dar împărtășesc aceeași abordare sistemică și caldă.
+    Lucrăm împreună, sub forma cabinetului. Fiecare cu drumul ei — pe pagina
+    fiecăreia găsești formarea și codul CPR, verificabil la Colegiul Psihologilor.
+    Ne leagă același fel de a fi în cameră cu tine: cald, atent, fără grabă.
   </p>
   <div class="servicii" style="margin-top: var(--s4)">
     <?php foreach ($psihologi as $idx => $p): ?>
