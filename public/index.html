@@ -75,6 +75,13 @@
 
   /* ---- hero ---- */
   .hero{position:relative; min-height:92vh; display:flex; align-items:center; overflow:hidden; padding:5rem 0 4rem}
+  .hero__photo{position:absolute; inset:0; z-index:-3; pointer-events:none;
+    background:url("/assets/images/hero.webp") center/cover no-repeat; opacity:.5}
+  .hero__photo::after{content:""; position:absolute; inset:0;
+    background:
+      linear-gradient(100deg, var(--bg) 8%, color-mix(in srgb,var(--bg) 60%,transparent) 42%, transparent 74%),
+      linear-gradient(0deg, var(--bg), transparent 34%)}
+  @media (prefers-color-scheme:dark){ .hero__photo{opacity:.22} }
   .hero__glow{position:absolute; inset:0; z-index:-2; pointer-events:none;
     background:
       radial-gradient(50% 55% at 78% 18%, color-mix(in srgb,var(--lav-bg) 90%,transparent), transparent 70%),
@@ -212,6 +219,7 @@
 <main>
   <!-- HERO -->
   <section class="hero">
+    <div class="hero__photo"></div>
     <div class="hero__glow"></div>
     <svg class="stars" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <g fill="var(--sage)" opacity=".45"><circle cx="270" cy="150" r="4"/><circle cx="320" cy="120" r="2.4"/><circle cx="1150" cy="540" r="4"/><circle cx="1100" cy="580" r="2.4"/></g>
