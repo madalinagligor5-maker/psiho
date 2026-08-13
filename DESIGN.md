@@ -24,6 +24,11 @@ typography:
   hero:
     fontFamily: "Source Serif 4"
     fontSize: clamp(2.4rem, 1.5rem + 3.4vw, 3.75rem)
+  # Marca din antet, scrisă de mână — semnătura caldă a cabinetului. Caveat (OFL),
+  # self-hostat, subset la latine + diacritice RO. Folosit DOAR pentru nume.
+  marca:
+    fontFamily: "Caveat"
+    fontSize: 1.5rem
 colors:
   # PALETA OFICIALA a clientei (coduri hex furnizate în kitul de ilustrație).
   # Rece, soft, aerisită. Pale = suprafețe/decor; închise = text/interactiv.
