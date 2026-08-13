@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adam și Babotan, cabinet de psihologie în Timișoara</title>
+<meta name="description" content="Cabinet de psihologie în Timișoara. Cristina și Amalia: anxietate, depresie, epuizare, evaluări și documentație psihologică. Nu caut vinovatul, caut tiparul.">
+<link rel="preload" href="/assets/fonts/Caveat-logo.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face{
+    font-family:"Caveat"; font-style:normal; font-weight:400 700; font-display:swap;
+    src:url("/assets/fonts/Caveat-logo.woff2") format("woff2");
+  }
+  :root{
+    --bg:#F4F8F9; --surface:#FFFFFF; --surface-2:#EEF5F4;
+    --ink:#1E2F36; --ink-soft:#52656C; --ink-faint:#7C8D93;
+    --line:#E0E9EA; --line-2:#CFDCDD;
+    --sage:#3E6152; --sage-bg:#E6F0E5;
+    --lav:#5E4E86; --lav-bg:#EDE9F5;
+    --bleu:#2E5A6B; --azur:#E3F0F5;
+    --accent:var(--sage);
+    --shadow:0 1px 2px rgba(30,47,54,.04), 0 14px 40px rgba(30,47,54,.07);
+    --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --r:16px; --ease:cubic-bezier(.16,1,.3,1);
+    --wrap:min(1200px,92vw);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#141F25; --surface:#1C2A31; --surface-2:#18262C;
+      --ink:#E9F1F3; --ink-soft:#A7B8BE; --ink-faint:#7F9197;
+      --line:#2A3B43; --line-2:#37505A;
+      --sage:#A6CEB4; --sage-bg:#21322C;
+      --lav:#C7BCE6; --lav-bg:#2A2740;
+      --bleu:#8FBECF; --azur:#1E3038;
+      --shadow:0 1px 2px rgba(0,0,0,.25), 0 18px 50px rgba(0,0,0,.32);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:1.0625rem; line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:var(--serif); font-weight:600; line-height:1.1; letter-spacing:-.01em; margin:0; text-wrap:balance}
+  p{margin:0}
+  a{color:inherit}
+  .wrap{width:var(--wrap); margin-inline:auto}
+
+  /* ---- header ---- */
+  header.top{position:sticky; top:0; z-index:40; background:color-mix(in srgb,var(--bg) 82%,transparent);
+    backdrop-filter:saturate(140%) blur(12px); border-bottom:1px solid var(--line)}
+  .bar{width:var(--wrap); margin-inline:auto; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; height:74px}
+  .marca{font-family:"Caveat",var(--serif); font-weight:700; font-size:1.7rem; line-height:1; text-decoration:none; color:var(--ink); white-space:nowrap}
+  .marca small{display:block; font-family:var(--sans); font-size:.72rem; font-weight:500; letter-spacing:.04em; color:var(--ink-soft); margin-top:.15rem}
+  nav.main{display:none; gap:1.6rem; align-items:center}
+  nav.main a{text-decoration:none; color:var(--ink-soft); font-size:.95rem; font-weight:500; transition:color .2s}
+  nav.main a:hover{color:var(--ink)}
+  .btn{display:inline-flex; align-items:center; gap:.5rem; font:inherit; font-weight:600; font-size:.95rem;
+    text-decoration:none; cursor:pointer; border:0; border-radius:999px; padding:.7rem 1.35rem;
+    background:var(--sage); color:#fff; transition:transform .15s var(--ease), box-shadow .2s, background .2s;
+    box-shadow:0 6px 18px color-mix(in srgb,var(--sage) 30%,transparent)}
+  @media (prefers-color-scheme:dark){ .btn{color:#10201A} }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0)}
+  .btn--ghost{background:transparent; color:var(--ink); box-shadow:none; border:1px solid var(--line-2)}
+  .btn--ghost:hover{border-color:var(--sage); color:var(--sage)}
+  @media (min-width:900px){ nav.main{display:flex} }
+
+  /* ---- reveal ---- */
+  .rise{opacity:0; transform:translateY(26px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
+  .rise.in{opacity:1; transform:none}
+  .rise.d1{transition-delay:.08s} .rise.d2{transition-delay:.16s} .rise.d3{transition-delay:.24s} .rise.d4{transition-delay:.32s}
+
+  /* ---- hero ---- */
+  .hero{position:relative; min-height:92vh; display:flex; align-items:center; overflow:hidden; padding:5rem 0 4rem}
+  .hero__glow{position:absolute; inset:0; z-index:-2; pointer-events:none;
+    background:
+      radial-gradient(50% 55% at 78% 18%, color-mix(in srgb,var(--lav-bg) 90%,transparent), transparent 70%),
+      radial-gradient(46% 50% at 12% 82%, color-mix(in srgb,var(--sage-bg) 90%,transparent), transparent 70%),
+      radial-gradient(40% 45% at 60% 90%, color-mix(in srgb,var(--azur) 70%,transparent), transparent 72%)}
+  .hero__leaf{position:absolute; z-index:-1; opacity:.9; pointer-events:none; will-change:transform}
+  .hero__leaf.l1{top:6%; right:5%; width:min(24vw,300px)}
+  .hero__leaf.l2{bottom:-4%; left:-2%; width:min(20vw,240px); transform:scaleX(-1)}
+  .hero h1{font-size:clamp(2.9rem,1.5rem+6vw,6.2rem); margin:.6rem 0 0}
+  .hero .lede{margin-top:1.4rem; max-width:34ch; font-size:1.2rem; color:var(--ink-soft)}
+  .eyebrow{display:inline-flex; align-items:center; gap:.55rem; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--sage)}
+  .eyebrow::before{content:""; width:26px; height:1px; background:var(--sage); opacity:.6}
+  .hero__cta{margin-top:2rem; display:flex; gap:1rem; align-items:center; flex-wrap:wrap}
+  .hero__note{font-size:.9rem; color:var(--ink-faint)}
+  .stars{position:absolute; inset:0; z-index:-1; pointer-events:none}
+
+  /* ---- generic section ---- */
+  section.band{padding:clamp(4rem,9vw,8rem) 0; position:relative}
+  .band__eyebrow{margin-bottom:1rem}
+  .lead{font-size:clamp(1.4rem,1rem+2vw,2.1rem); font-family:var(--serif); line-height:1.32; max-width:24ch}
+  .muted{color:var(--ink-soft)}
+  .divider{height:1px; background:var(--line); width:var(--wrap); margin-inline:auto}
+
+  /* intro personal */
+  .intro__grid{display:grid; gap:2.5rem}
+  .intro p.big{font-size:clamp(1.35rem,1rem+1.6vw,1.9rem); font-family:var(--serif); line-height:1.4; max-width:22ch}
+  .intro .who{font-family:"Caveat",var(--serif); font-weight:700; color:var(--sage)}
+  @media(min-width:820px){ .intro__grid{grid-template-columns:1.1fr .9fr; align-items:center} }
+
+  /* empatie list */
+  .feel{list-style:none; margin:2.5rem 0 0; padding:0; display:grid; gap:1rem}
+  @media(min-width:720px){ .feel{grid-template-columns:1fr 1fr; gap:1.1rem} }
+  .feel li{display:flex; gap:1rem; align-items:flex-start; background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--r); padding:1.15rem 1.25rem; box-shadow:var(--shadow); transition:transform .3s var(--ease), border-color .3s}
+  .feel li:hover{transform:translateY(-3px); border-color:var(--line-2)}
+  .badge{flex:none; width:2.6rem; height:2.6rem; border-radius:50%; display:grid; place-items:center; background:var(--sage-bg); color:var(--sage)}
+  .badge.lav{background:var(--lav-bg); color:var(--lav)}
+  .badge.az{background:var(--azur); color:var(--bleu)}
+  .badge svg{width:1.35rem; height:1.35rem}
+
+  /* cum lucram + quote */
+  .quote{margin-top:2.5rem; border-left:3px solid var(--sage); padding:.4rem 0 .4rem 1.6rem; max-width:34ch}
+  .quote p{font-family:var(--serif); font-size:clamp(1.4rem,1rem+1.8vw,2rem); line-height:1.3}
+  .quote cite{display:block; margin-top:.8rem; font-style:normal; font-size:.9rem; color:var(--ink-faint)}
+
+  /* servicii */
+  .svc{display:grid; gap:1.2rem; margin-top:2.6rem}
+  @media(min-width:640px){ .svc{grid-template-columns:1fr 1fr} }
+  @media(min-width:1000px){ .svc{grid-template-columns:repeat(4,1fr)} }
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:1.5rem 1.4rem;
+    box-shadow:var(--shadow); position:relative; overflow:hidden; transition:transform .35s var(--ease), border-color .35s}
+  .card:hover{transform:translateY(-5px); border-color:var(--sage)}
+  .card .ic{width:2.5rem; height:2.5rem; border-radius:12px; display:grid; place-items:center; background:var(--sage-bg); color:var(--sage); margin-bottom:1rem}
+  .card:nth-child(2) .ic{background:var(--azur); color:var(--bleu)}
+  .card:nth-child(3) .ic{background:var(--lav-bg); color:var(--lav)}
+  .card:nth-child(4) .ic{background:var(--sage-bg); color:var(--sage)}
+  .card .ic svg{width:1.4rem;height:1.4rem}
+  .card h3{font-size:1.2rem; margin-bottom:.4rem}
+  .price{font-family:var(--serif); font-size:1.7rem; color:var(--ink); margin:.2rem 0}
+  .price small{font-size:.85rem; color:var(--ink-faint); font-family:var(--sans)}
+  .card p.desc{font-size:.92rem; color:var(--ink-soft); margin-top:.5rem}
+
+  /* pasi */
+  .steps{counter-reset:s; display:grid; gap:1.1rem; margin-top:2.6rem}
+  @media(min-width:720px){ .steps{grid-template-columns:repeat(4,1fr)} }
+  .step{position:relative; padding:1.6rem 1.2rem 1.3rem; border-top:2px solid var(--line); }
+  .step::before{counter-increment:s; content:"0" counter(s); font-family:"Caveat",var(--serif); font-weight:700;
+    font-size:2.2rem; color:var(--sage); line-height:1; display:block; margin-bottom:.5rem}
+  .step h3{font-size:1.05rem; margin-bottom:.3rem}
+  .step p{font-size:.9rem; color:var(--ink-soft)}
+
+  /* faq */
+  .faq{margin-top:2.4rem; border-top:1px solid var(--line)}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{cursor:pointer; list-style:none; padding:1.25rem .2rem; font-family:var(--serif); font-size:1.15rem;
+    display:flex; justify-content:space-between; gap:1rem; align-items:center}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .plus{flex:none; width:1.4rem; height:1.4rem; position:relative; transition:transform .3s var(--ease)}
+  .faq summary .plus::before,.faq summary .plus::after{content:""; position:absolute; inset:50% 0 auto 0; height:2px; background:var(--sage); transform:translateY(-50%)}
+  .faq summary .plus::after{transform:translateY(-50%) rotate(90deg)}
+  .faq details[open] summary .plus{transform:rotate(45deg)}
+  .faq .ans{padding:0 .2rem 1.3rem; color:var(--ink-soft); max-width:62ch; font-size:.98rem}
+
+  /* CTA final */
+  .final{position:relative; overflow:hidden; border-radius:calc(var(--r) + 8px); background:var(--surface); border:1px solid var(--line);
+    box-shadow:var(--shadow); padding:clamp(2.5rem,5vw,4.5rem); text-align:center}
+  .final__glow{position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(60% 80% at 50% 0%, var(--sage-bg), transparent 70%)}
+  .final>*{position:relative; z-index:1}
+  .final h2{font-size:clamp(2rem,1.4rem+2.4vw,3rem)}
+  .final p{margin:1rem auto 0; max-width:46ch; color:var(--ink-soft)}
+  .final .btn{margin-top:1.8rem; padding:.9rem 1.8rem; font-size:1.05rem}
+
+  /* footer */
+  footer.foot{padding:3.5rem 0 3rem; border-top:1px solid var(--line); margin-top:2rem}
+  .foot__grid{display:grid; gap:2rem}
+  @media(min-width:720px){ .foot__grid{grid-template-columns:1.4fr 1fr 1fr} }
+  .foot h4{font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-faint); margin:0 0 .8rem}
+  .foot ul{list-style:none; margin:0; padding:0; display:grid; gap:.5rem}
+  .foot a{color:var(--ink-soft); text-decoration:none; font-size:.95rem}
+  .foot a:hover{color:var(--ink)}
+  .foot .marca{font-size:2rem}
+  .foot__bottom{margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line); font-size:.85rem; color:var(--ink-faint); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap}
+
+  .leaf-svg .stem{stroke:var(--sage); fill:none; stroke-width:1.4; stroke-linecap:round}
+  .leaf-svg .lf{fill:var(--sage); opacity:.85}
+  .leaf-svg .lf.b{fill:var(--lav); opacity:.7}
+  .leaf-svg .bob{fill:var(--lav)}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .rise{opacity:1 !important; transform:none !important; transition:none}
+    .hero__leaf{transform:none !important}
+    .btn:hover,.card:hover,.feel li:hover{transform:none}
+  }
+  :focus-visible{outline:2px solid var(--sage); outline-offset:3px; border-radius:6px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="bar">
+    <a class="marca" href="/">Adam și Babotan<small>Cabinet de psihologie · Timișoara</small></a>
+    <nav class="main">
+      <a href="#servicii">Servicii</a>
+      <a href="#cum">Cum lucrăm</a>
+      <a href="#echipa">Cine suntem</a>
+      <a href="#intrebari">Întrebări</a>
+      <a class="btn" href="#contact">Programează o ședință</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__glow"></div>
+    <svg class="stars" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="var(--sage)" opacity=".45"><circle cx="270" cy="150" r="4"/><circle cx="320" cy="120" r="2.4"/><circle cx="1150" cy="540" r="4"/><circle cx="1100" cy="580" r="2.4"/></g>
+      <path fill="var(--lav)" opacity=".7" d="M1230 150 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6 Z"/>
+    </svg>
+    <svg class="hero__leaf l1 leaf-svg" data-speed="0.12" viewBox="0 0 70 150" aria-hidden="true">
+      <path class="stem" d="M35 148 C 31 110 39 78 35 40 C 33 22 35 12 35 4"/>
+      <path class="lf" d="M35 108 C 48 104 60 108 66 120 C 53 122 41 118 35 108 Z"/>
+      <path class="lf b" d="M35 76 C 22 72 10 76 4 88 C 17 90 29 84 35 76 Z"/>
+      <path class="lf" d="M35 46 C 48 42 59 46 64 56 C 52 58 41 54 35 46 Z"/>
+      <circle class="bob" cx="35" cy="9" r="3.4"/>
+    </svg>
+    <svg class="hero__leaf l2 leaf-svg" data-speed="0.2" viewBox="0 0 70 150" aria-hidden="true">
+      <path class="stem" d="M35 148 C 31 110 39 78 35 40 C 33 22 35 12 35 4"/>
+      <path class="lf b" d="M35 108 C 48 104 60 108 66 120 C 53 122 41 118 35 108 Z"/>
+      <path class="lf" d="M35 76 C 22 72 10 76 4 88 C 17 90 29 84 35 76 Z"/>
+      <circle class="bob" cx="35" cy="9" r="3.4"/>
+    </svg>
+    <div class="wrap">
+      <p class="eyebrow rise in">Psihoterapie sistemică</p>
+      <h1 class="rise in d1">Nu caut vinovatul,<br>caut tiparul.</h1>
+      <p class="lede rise in d2">Nu te-ai stricat tu. De multe ori s-a rupt echilibrul din jurul tău, în familie, în cuplu, la muncă. Suntem aici să-l privim împreună.</p>
+      <div class="hero__cta rise in d3">
+        <a class="btn" href="#contact">Programează o ședință de cunoaștere</a>
+        <span class="hero__note">Gratuită, 20 de minute, fără obligație.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO PERSONAL -->
+  <section class="band intro" id="echipa">
+    <div class="wrap intro__grid">
+      <div>
+        <p class="eyebrow band__eyebrow rise">Cine suntem</p>
+        <p class="big rise d1">Suntem <span class="who">Cristina</span> și <span class="who">Amalia</span>, psihologe în Timișoara.</p>
+      </div>
+      <div class="rise d2">
+        <p class="muted">Lucrăm cu adulți și adolescenți care trec prin anxietate, depresie sau epuizare, și facem evaluări și documentație psihologică. Ne uităm la tine în contextul tău, la tiparele dintre tine și oamenii din jur, nu la un simptom rupt de tot restul.</p>
+        <p class="muted" style="margin-top:1rem">Fiecare cu drumul ei, dar cu același fel de a fi în cameră cu tine: cald, atent, fără grabă.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- AI AJUNS AICI -->
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow band__eyebrow rise">Ai ajuns aici pentru că</p>
+      <h2 class="lead rise d1">Nu e nevoie de un diagnostic ca să meriți să vorbești cu cineva.</h2>
+      <ul class="feel">
+        <li class="rise"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg></span><span>Te trezești dimineața deja obosit, și nu mai știi de când.</span></li>
+        <li class="rise d1"><span class="badge lav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg></span><span>Faci totul „bine", dar simți că nu mai e nimeni care să te întrebe pe tine ce faci.</span></li>
+        <li class="rise d2"><span class="badge az"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 10a4 4 0 1 1 8 0c0 3-4 4-4 7"/><circle cx="12" cy="20" r="0.6" fill="currentColor"/></svg></span><span>Aceeași ceartă se repetă, cu oameni diferiți, și începi să te întrebi dacă nu e ceva la tine.</span></li>
+        <li class="rise d3"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 15c0-4 3-7 7-7s7 3 7 7M9 15v3M15 15v3"/></svg></span><span>Gândurile nu se opresc seara, iar dimineața o iau de la capăt.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CUM LUCRAM -->
+  <section class="band" id="cum" style="background:var(--surface-2)">
+    <div class="wrap">
+      <p class="eyebrow band__eyebrow rise">Cum lucrăm</p>
+      <h2 class="lead rise d1">Simptomul e vârful. Pe noi ne interesează ce ține de el.</h2>
+      <p class="muted rise d2" style="margin-top:1.2rem; max-width:60ch">Terapia sistemică pornește de la o idee simplă: nimeni nu se simte rău într-un vid. Anxietatea, oboseala, felul în care reacționezi, toate există într-o rețea de relații. Când tiparul devine vizibil, încetează să te mai conducă din umbră.</p>
+      <blockquote class="quote rise d2">
+        <p>Nu te-ai stricat tu. S-a rupt echilibrul din jurul tău.</p>
+        <cite>abordarea noastră, pe scurt</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- SERVICII -->
+  <section class="band" id="servicii">
+    <div class="wrap">
+      <p class="eyebrow band__eyebrow rise">Ședințe și evaluări</p>
+      <h2 class="lead rise d1">Prețurile, de la început.</h2>
+      <p class="muted rise d2" style="margin-top:1rem; max-width:52ch">Le punem aici pentru că a fi nevoit să întrebi cât costă e, pentru mulți oameni, încă un motiv de amânat.</p>
+      <div class="svc">
+        <div class="card rise"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 18c0-4 3-6 8-6s8 2 8 6"/><circle cx="12" cy="7" r="3"/></svg></span><h3>Ședință individuală</h3><p class="price">250 lei <small>· 50 min</small></p><p class="desc">Un spațiu care nu e nici casa, nici biroul tău. Pentru cine are nevoie să iasă din context ca să se poată gândi.</p></div>
+        <div class="card rise d1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><h3>Ședință online</h3><p class="price">220 lei <small>· 50 min</small></p><p class="desc">Aceeași ședință, de oriunde ai un colț liniștit. Pentru program imprevizibil sau drum lung.</p></div>
+        <div class="card rise d2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 3h6l-1 6h3l-8 12 2-8H6z"/></svg></span><h3>Evaluare psihologică</h3><p class="price">180 lei <small>· 50 min</small></p><p class="desc">Una sau mai multe întâlniri, instrumente standardizate, discuția rezultatelor. Rezultă un raport de evaluare.</p></div>
+        <div class="card rise d3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><h3>Fișe CES și încadrare grad</h3><p class="price">180 lei</p><p class="desc">Documentație psihologică pentru comisiile de evaluare: cerințe educaționale speciale, încadrare în grad.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASI -->
+  <section class="band" style="background:var(--surface-2)">
+    <div class="wrap">
+      <p class="eyebrow band__eyebrow rise">De la gând la prima ședință</p>
+      <h2 class="lead rise d1">Patru pași, niciunul complicat.</h2>
+      <div class="steps">
+        <div class="step rise"><h3>Scrii, sau suni</h3><p>Un formular scurt, un mesaj, un email. Nu trebuie să explici tot, un rând ajunge.</p></div>
+        <div class="step rise d1"><h3>Ședința de cunoaștere</h3><p>Douăzeci de minute, gratuit. Afli cum lucrăm, îți spui ce cauți. Fără angajament.</p></div>
+        <div class="step rise d2"><h3>Decizi tu</h3><p>Dacă ți se pare că ne potrivim, stabilim prima ședință. Dacă nu, e la fel de în regulă.</p></div>
+        <div class="step rise d3"><h3>Începem</h3><p>La cabinet sau online, la un interval pe care îl alegem împreună.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="band" id="intrebari">
+    <div class="wrap" style="max-width:min(820px,92vw)">
+      <p class="eyebrow band__eyebrow rise">Întrebări frecvente</p>
+      <h2 class="lead rise d1">Ce se întreabă cel mai des.</h2>
+      <div class="faq rise d1">
+        <details><summary>De unde știu dacă am nevoie de terapie?<span class="plus"></span></summary><div class="ans">Nu există un prag de suferință de la care „se justifică". Dacă te-ai întrebat, întrebarea în sine e un motiv suficient să vorbim o dată. Ședința de cunoaștere există exact pentru asta.</div></details>
+        <details><summary>Cât durează o ședință și cât de des ne vedem?<span class="plus"></span></summary><div class="ans">O ședință durează 50 de minute. Ritmul îl stabilim împreună, în funcție de ce ai nevoie. De obicei, la început, o dată pe săptămână.</div></details>
+        <details><summary>Ce se întâmplă cu ce spun acolo?<span class="plus"></span></summary><div class="ans">Tot ce vorbim rămâne confidențial, conform Codului deontologic al Colegiului Psihologilor. Fac excepție doar situațiile de pericol pentru viață, prevăzute de lege.</div></details>
+        <details><summary>Online sau la cabinet, care e mai bine?<span class="plus"></span></summary><div class="ans">Depinde mai puțin de preferință decât pare. Online funcționează bine când programul e imprevizibil. La cabinet, când ai nevoie de un spațiu care nu e casa ta. Putem începe într-un fel și schimba pe parcurs.</div></details>
+        <details><summary>Cum plătesc?<span class="plus"></span></summary><div class="ans">La sfârșitul ședinței, prin transfer sau numerar. Pentru online, transferul se face în ziua ședinței.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="band" id="contact">
+    <div class="wrap">
+      <div class="final rise">
+        <div class="final__glow"></div>
+        <p class="eyebrow" style="justify-content:center">Când ești gata</p>
+        <h2>Nu trebuie să te hotărăști azi.</h2>
+        <p>O ședință de cunoaștere durează 20 de minute, e gratuită și nu te obligă la nimic. E doar o conversație în care afli cum lucrăm și vezi dacă te simți în largul tău.</p>
+        <a class="btn" href="mailto:terapiecunico@gmail.com?subject=Programare%20%C8%99edin%C8%9B%C4%83%20de%20cunoa%C8%99tere">Programează o ședință de cunoaștere</a>
+        <p style="margin-top:1.2rem; font-size:.9rem; color:var(--ink-faint)">Îți răspundem în maximum 48 de ore lucrătoare.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <span class="marca" style="color:var(--ink)">Adam și Babotan</span>
+        <p class="muted" style="margin-top:.8rem; max-width:32ch; font-size:.92rem">Societate civilă profesională de psihologie, Timișoara. Cristina și Amalia.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:terapiecunico@gmail.com">terapiecunico@gmail.com</a></li>
+          <li class="muted" style="font-size:.9rem">Luni - joi, 10:00 - 19:00<br>Vineri, 10:00 - 15:00</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Pagini</h4>
+        <ul>
+          <li><a href="#servicii">Servicii</a></li>
+          <li><a href="#cum">Cum lucrăm</a></li>
+          <li><a href="#echipa">Cine suntem</a></li>
+          <li><a href="#intrebari">Întrebări</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 Adam și Babotan</span>
+      <span>Dacă ești în criză acum, sună la 112.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Reveal on scroll
+    var risers = document.querySelectorAll('.rise:not(.in)');
+    if('IntersectionObserver' in window && !reduce){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+      risers.forEach(function(el){ io.observe(el); });
+    } else {
+      risers.forEach(function(el){ el.classList.add('in'); });
+    }
+    // Parallax botanicals (rAF, no scroll-state in framework)
+    if(!reduce){
+      var leaves = [].slice.call(document.querySelectorAll('.hero__leaf'));
+      var ticking = false;
+      function onScroll(){
+        if(ticking) return; ticking = true;
+        requestAnimationFrame(function(){
+          var y = window.scrollY || 0;
+          leaves.forEach(function(l){
+            var s = parseFloat(l.getAttribute('data-speed')) || .1;
+            var flip = l.classList.contains('l2') ? ' scaleX(-1)' : '';
+            l.style.transform = 'translate3d(0,' + (y*s) + 'px,0)' + flip;
+          });
+          ticking = false;
+        });
+      }
+      window.addEventListener('scroll', onScroll, {passive:true});
+    }
+    // Accordion: close siblings (one open at a time)
+    var dets = [].slice.call(document.querySelectorAll('.faq details'));
+    dets.forEach(function(d){
+      d.addEventListener('toggle', function(){
+        if(d.open){ dets.forEach(function(o){ if(o!==d) o.open=false; }); }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
