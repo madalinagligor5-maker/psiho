@@ -75,14 +75,8 @@
 
   /* ---- hero ---- */
   .hero{position:relative; min-height:92vh; display:flex; align-items:center; overflow:hidden; padding:5rem 0 4rem}
-  .hero__photo{position:absolute; inset:0; z-index:-3; pointer-events:none;
-    background:url("/assets/images/hero.webp") center/cover no-repeat; opacity:.5}
-  .hero__photo::after{content:""; position:absolute; inset:0;
-    background:
-      linear-gradient(100deg, var(--bg) 8%, color-mix(in srgb,var(--bg) 60%,transparent) 42%, transparent 74%),
-      linear-gradient(0deg, var(--bg), transparent 34%)}
-  @media (prefers-color-scheme:dark){ .hero__photo{opacity:.22} }
-  .hero__glow{position:absolute; inset:0; z-index:-2; pointer-events:none;
+  .hero__canvas{position:absolute; inset:0; z-index:-2; width:100%; height:100%; pointer-events:none; opacity:.9}
+  .hero__glow{position:absolute; inset:0; z-index:-3; pointer-events:none;
     background:
       radial-gradient(50% 55% at 78% 18%, color-mix(in srgb,var(--lav-bg) 90%,transparent), transparent 70%),
       radial-gradient(46% 50% at 12% 82%, color-mix(in srgb,var(--sage-bg) 90%,transparent), transparent 70%),
@@ -219,12 +213,8 @@
 <main>
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__photo"></div>
+    <canvas class="hero__canvas" aria-hidden="true"></canvas>
     <div class="hero__glow"></div>
-    <svg class="stars" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <g fill="var(--sage)" opacity=".45"><circle cx="270" cy="150" r="4"/><circle cx="320" cy="120" r="2.4"/><circle cx="1150" cy="540" r="4"/><circle cx="1100" cy="580" r="2.4"/></g>
-      <path fill="var(--lav)" opacity=".7" d="M1230 150 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6 Z"/>
-    </svg>
     <svg class="hero__leaf l1 leaf-svg" data-speed="0.12" viewBox="0 0 70 150" aria-hidden="true">
       <path class="stem" d="M35 148 C 31 110 39 78 35 40 C 33 22 35 12 35 4"/>
       <path class="lf" d="M35 108 C 48 104 60 108 66 120 C 53 122 41 118 35 108 Z"/>
@@ -241,7 +231,7 @@
     <div class="wrap">
       <p class="eyebrow rise in">Psihoterapie sistemică</p>
       <h1 class="rise in d1">Nu caut vinovatul,<br>caut tiparul.</h1>
-      <p class="lede rise in d2">Nu te-ai stricat tu. De multe ori s-a rupt echilibrul din jurul tău, în familie, în cuplu, la muncă. Suntem aici să-l privim împreună.</p>
+      <p class="lede rise in d2">Nu te-ai stricat tu. Uneori doar s-a clătinat echilibrul din jur, în familie, în cuplu, în tăcerile de acasă. Îl privim împreună, cu răbdare și fără judecată.</p>
       <div class="hero__cta rise in d3">
         <a class="btn" href="#contact">Programează o ședință de cunoaștere</a>
         <span class="hero__note">Gratuită, 20 de minute, fără obligație.</span>
@@ -257,7 +247,7 @@
         <p class="big rise d1">Suntem <span class="who">Cristina</span> și <span class="who">Amalia</span>, psihologe în Timișoara.</p>
       </div>
       <div class="rise d2">
-        <p class="muted">Lucrăm cu adulți și adolescenți care trec prin anxietate, depresie sau epuizare, și facem evaluări și documentație psihologică. Ne uităm la tine în contextul tău, la tiparele dintre tine și oamenii din jur, nu la un simptom rupt de tot restul.</p>
+        <p class="muted">Ne așezăm lângă tine, nu în fața ta. Lucrăm cu adulți și adolescenți care duc în spate anxietate, tristețe sau o oboseală fără nume, și ascultăm firele care se leagă: între tine și cei din jur, între ce simți acum și ce ai purtat până aici.</p>
         <p class="muted" style="margin-top:1rem">Fiecare cu drumul ei, dar cu același fel de a fi în cameră cu tine: cald, atent, fără grabă.</p>
       </div>
     </div>
@@ -269,7 +259,7 @@
   <section class="band">
     <div class="wrap">
       <p class="eyebrow band__eyebrow rise">Ai ajuns aici pentru că</p>
-      <h2 class="lead rise d1">Nu e nevoie de un diagnostic ca să meriți să vorbești cu cineva.</h2>
+      <h2 class="lead rise d1">Nu ai nevoie de un diagnostic ca să meriți să fii ascultat.</h2>
       <ul class="feel">
         <li class="rise"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg></span><span>Te trezești dimineața deja obosit, și nu mai știi de când.</span></li>
         <li class="rise d1"><span class="badge lav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg></span><span>Faci totul „bine", dar simți că nu mai e nimeni care să te întrebe pe tine ce faci.</span></li>
@@ -283,8 +273,8 @@
   <section class="band" id="cum" style="background:var(--surface-2)">
     <div class="wrap">
       <p class="eyebrow band__eyebrow rise">Cum lucrăm</p>
-      <h2 class="lead rise d1">Simptomul e vârful. Pe noi ne interesează ce ține de el.</h2>
-      <p class="muted rise d2" style="margin-top:1.2rem; max-width:60ch">Terapia sistemică pornește de la o idee simplă: nimeni nu se simte rău într-un vid. Anxietatea, oboseala, felul în care reacționezi, toate există într-o rețea de relații. Când tiparul devine vizibil, încetează să te mai conducă din umbră.</p>
+      <h2 class="lead rise d1">Simptomul e doar vârful. Pe noi ne interesează rădăcina care îl ține.</h2>
+      <p class="muted rise d2" style="margin-top:1.2rem; max-width:60ch">Terapia sistemică pornește de la o idee simplă: nimeni nu doare într-un vid. Anxietatea, oboseala, felul în care te aprinzi sau te retragi, toate cresc într-o rețea de legături. Când tiparul iese la lumină, încetează să te mai conducă din umbră.</p>
       <blockquote class="quote rise d2">
         <p>Nu te-ai stricat tu. S-a rupt echilibrul din jurul tău.</p>
         <cite>abordarea noastră, pe scurt</cite>
@@ -311,7 +301,7 @@
   <section class="band" style="background:var(--surface-2)">
     <div class="wrap">
       <p class="eyebrow band__eyebrow rise">De la gând la prima ședință</p>
-      <h2 class="lead rise d1">Patru pași, niciunul complicat.</h2>
+      <h2 class="lead rise d1">Patru pași, în ritmul tău.</h2>
       <div class="steps">
         <div class="step rise"><h3>Scrii, sau suni</h3><p>Un formular scurt, un mesaj, un email. Nu trebuie să explici tot, un rând ajunge.</p></div>
         <div class="step rise d1"><h3>Ședința de cunoaștere</h3><p>Douăzeci de minute, gratuit. Afli cum lucrăm, îți spui ce cauți. Fără angajament.</p></div>
@@ -343,7 +333,7 @@
         <div class="final__glow"></div>
         <p class="eyebrow" style="justify-content:center">Când ești gata</p>
         <h2>Nu trebuie să te hotărăști azi.</h2>
-        <p>O ședință de cunoaștere durează 20 de minute, e gratuită și nu te obligă la nimic. E doar o conversație în care afli cum lucrăm și vezi dacă te simți în largul tău.</p>
+        <p>O ședință de cunoaștere durează douăzeci de minute, e gratuită și nu te leagă cu nimic. E doar o conversație, un prim pas făcut în siguranță, în care vezi dacă te simți în largul tău.</p>
         <a class="btn" href="mailto:terapiecunico@gmail.com?subject=Programare%20%C8%99edin%C8%9B%C4%83%20de%20cunoa%C8%99tere">Programează o ședință de cunoaștere</a>
         <p style="margin-top:1.2rem; font-size:.9rem; color:var(--ink-faint)">Îți răspundem în maximum 48 de ore lucrătoare.</p>
       </div>
@@ -413,6 +403,68 @@
       }
       window.addEventListener('scroll', onScroll, {passive:true});
     }
+    // Fundal viu: rețea de fire și noduri care se leagă (tiparul). Culori exacte
+    // din brand, citite din CSS. Calm, respiră. Se oprește la reduced-motion.
+    (function network(){
+      var canvas = document.querySelector('.hero__canvas');
+      if(!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var host = canvas.parentElement;
+      var css = getComputedStyle(document.documentElement);
+      function hexToRgb(h){ h=(h||'').trim().replace('#',''); if(h.length===3){h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2];} var n=parseInt(h,16); return [(n>>16)&255,(n>>8)&255,n&255]; }
+      var palette = [ hexToRgb(css.getPropertyValue('--sage')), hexToRgb(css.getPropertyValue('--lav')), hexToRgb(css.getPropertyValue('--bleu')) ];
+      var W=0, H=0, DPR=Math.min(window.devicePixelRatio||1, 2), nodes=[], t=0;
+      function size(){
+        var r = host.getBoundingClientRect(); W=r.width; H=r.height;
+        canvas.width=W*DPR; canvas.height=H*DPR; canvas.style.width=W+'px'; canvas.style.height=H+'px';
+        ctx.setTransform(DPR,0,0,DPR,0,0);
+        var count = Math.max(22, Math.min(52, Math.round(W*H/26000)));
+        nodes = []; for(var i=0;i<count;i++){ nodes.push({
+          x:Math.random()*W, y:Math.random()*H,
+          vx:(Math.random()-.5)*0.22, vy:(Math.random()-.5)*0.22,
+          r:1.4+Math.random()*2.2, c:palette[i%palette.length], ph:Math.random()*6.28
+        }); }
+      }
+      var LINK=150;
+      function draw(){
+        ctx.clearRect(0,0,W,H);
+        var breath = 0.6 + 0.4*Math.sin(t*0.6); // respiră lent
+        for(var i=0;i<nodes.length;i++){
+          var a=nodes[i];
+          for(var j=i+1;j<nodes.length;j++){
+            var b=nodes[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.sqrt(dx*dx+dy*dy);
+            if(d<LINK){
+              var al=(1-d/LINK)*0.22*breath;
+              ctx.strokeStyle='rgba('+a.c[0]+','+a.c[1]+','+a.c[2]+','+al+')';
+              ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+            }
+          }
+        }
+        for(var k=0;k<nodes.length;k++){
+          var p=nodes[k], pr=p.r*(0.8+0.35*Math.sin(t*0.9+p.ph));
+          ctx.fillStyle='rgba('+p.c[0]+','+p.c[1]+','+p.c[2]+','+(0.5*breath+0.2)+')';
+          ctx.beginPath(); ctx.arc(p.x,p.y,pr,0,6.2832); ctx.fill();
+        }
+      }
+      function step(){
+        t+=0.016;
+        for(var i=0;i<nodes.length;i++){ var p=nodes[i];
+          p.x+=p.vx; p.y+=p.vy;
+          if(p.x<-20)p.x=W+20; if(p.x>W+20)p.x=-20; if(p.y<-20)p.y=H+20; if(p.y>H+20)p.y=-20;
+        }
+        draw();
+        if(!document.hidden) raf=requestAnimationFrame(step);
+      }
+      var raf;
+      size();
+      if(reduce){ draw(); }
+      else {
+        step();
+        document.addEventListener('visibilitychange', function(){ if(!document.hidden){ cancelAnimationFrame(raf); step(); } });
+      }
+      var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt=setTimeout(function(){ size(); if(reduce) draw(); }, 200); }, {passive:true});
+    })();
+
     // Accordion: close siblings (one open at a time)
     var dets = [].slice.call(document.querySelectorAll('.faq details'));
     dets.forEach(function(d){
