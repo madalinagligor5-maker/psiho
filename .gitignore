@@ -29,3 +29,6 @@ Thumbs.db
 
 # Orice arhiva zip — artefacte de urcare/backup, nu fac parte din cod.
 *.zip
+node_modules/
+dist/
+.astro/

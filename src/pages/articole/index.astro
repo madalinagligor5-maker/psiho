@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import Pagina from '../../layouts/Pagina.astro';
+const arts = (await getCollection('articole')).sort(
+  (a, b) => (b.data.data || '').localeCompare(a.data.data || '')
+);
+---
+<Pagina titlu="Articole — Adam și Babotan" descriere="Texte despre anxietate, burnout și tiparele care se repetă. Scrise ca să fie de folos.">
+  <section class="wrap head">
+    <p class="eyebrow">Articole</p>
+    <h1>Texte care merită timpul tău</h1>
+  </section>
+  <div class="wrap">
+    <ul class="lista">
+      {arts.map((a) => (
+        <li>
+          <a class="art-card" href={`/articole/${a.slug}`}>
+            {a.data.categorie && <span class="cat">{a.data.categorie}</span>}
+            <h2>{a.data.titlu}</h2>
+            <p>{a.data.rezumat}</p>
+            <span class="mai">Citește →</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Pagina>

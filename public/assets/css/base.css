@@ -1,0 +1,83 @@
+/* Stiluri comune pentru paginile generate (blog). Aceleasi tokenuri ca pagina principala. */
+@font-face{
+  font-family:"Caveat"; font-style:normal; font-weight:400 700; font-display:swap;
+  src:url("/assets/fonts/Caveat-logo.woff2") format("woff2");
+}
+:root{
+  --bg:#F4F8F9; --surface:#FFFFFF; --surface-2:#EEF5F4;
+  --ink:#1E2F36; --ink-soft:#52656C; --ink-faint:#7C8D93;
+  --line:#E0E9EA; --line-2:#CFDCDD;
+  --sage:#3E6152; --sage-bg:#E6F0E5;
+  --lav:#5E4E86; --lav-bg:#EDE9F5;
+  --bleu:#2E5A6B; --azur:#E3F0F5;
+  --shadow:0 1px 2px rgba(30,47,54,.04), 0 14px 40px rgba(30,47,54,.07);
+  --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --r:16px; --ease:cubic-bezier(.16,1,.3,1); --wrap:min(1200px,92vw);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#141F25; --surface:#1C2A31; --surface-2:#18262C;
+    --ink:#E9F1F3; --ink-soft:#A7B8BE; --ink-faint:#7F9197;
+    --line:#2A3B43; --line-2:#37505A;
+    --sage:#A6CEB4; --sage-bg:#21322C; --lav:#C7BCE6; --lav-bg:#2A2740; --bleu:#8FBECF; --azur:#1E3038;
+    --shadow:0 1px 2px rgba(0,0,0,.25), 0 18px 50px rgba(0,0,0,.32);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:1.0625rem; line-height:1.65; -webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif); font-weight:600; line-height:1.15; letter-spacing:-.01em; margin:0; text-wrap:balance}
+a{color:var(--sage)}
+.wrap{width:var(--wrap); margin-inline:auto}
+.eyebrow{display:inline-flex; align-items:center; gap:.55rem; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--sage)}
+.eyebrow::before{content:""; width:26px; height:1px; background:var(--sage); opacity:.6}
+
+/* header */
+header.top{position:sticky; top:0; z-index:40; background:color-mix(in srgb,var(--bg) 82%,transparent); backdrop-filter:saturate(140%) blur(12px); border-bottom:1px solid var(--line)}
+.bar{width:var(--wrap); margin-inline:auto; display:flex; align-items:center; gap:1.5rem; height:74px}
+.bar .marca{margin-right:auto}
+.marca{font-family:"Caveat",var(--serif); font-weight:700; font-size:1.7rem; line-height:1; text-decoration:none; color:var(--ink); white-space:nowrap}
+.marca small{display:block; font-family:var(--sans); font-size:.72rem; font-weight:500; letter-spacing:.04em; color:var(--ink-soft); margin-top:.15rem}
+nav.main{display:none; gap:1.6rem; align-items:center}
+nav.main a{text-decoration:none; color:var(--ink-soft); font-size:.95rem; font-weight:500}
+nav.main a:hover{color:var(--ink)}
+@media (min-width:900px){ nav.main{display:flex} }
+.btn{display:inline-flex; align-items:center; gap:.5rem; font:inherit; font-weight:600; font-size:.95rem; text-decoration:none; cursor:pointer; border:0; border-radius:999px; padding:.7rem 1.35rem; background:var(--sage); color:#fff; transition:transform .15s var(--ease); box-shadow:0 6px 18px color-mix(in srgb,var(--sage) 30%,transparent); flex:none}
+@media (prefers-color-scheme:dark){ .btn{color:#10201A} }
+.btn:hover{transform:translateY(-2px)}
+
+/* article listing */
+.head{padding:clamp(3rem,7vw,6rem) 0 1rem}
+.head h1{font-size:clamp(2.4rem,1.4rem+4vw,4rem)}
+.lista{list-style:none; margin:2.5rem 0 4rem; padding:0; display:grid; gap:1.2rem}
+@media(min-width:720px){ .lista{grid-template-columns:1fr 1fr} }
+.art-card{display:block; background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:1.6rem 1.5rem; box-shadow:var(--shadow); text-decoration:none; color:inherit; transition:transform .3s var(--ease), border-color .3s}
+.art-card:hover{transform:translateY(-4px); border-color:var(--sage)}
+.art-card .cat{font-size:.75rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sage)}
+.art-card h2{font-size:1.35rem; margin:.5rem 0 .5rem}
+.art-card p{color:var(--ink-soft); font-size:.98rem; margin:0}
+.art-card .mai{display:inline-block; margin-top:.9rem; color:var(--sage); font-weight:600; font-size:.92rem}
+
+/* article body (proza) */
+.proza-wrap{padding:clamp(2.5rem,6vw,5rem) 0 4rem}
+.proza{width:min(680px,92vw); margin-inline:auto}
+.proza .cat{font-size:.75rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sage)}
+.proza h1{font-size:clamp(2rem,1.4rem+2.6vw,3.1rem); margin:.6rem 0 .4rem}
+.proza .rezumat{font-size:1.2rem; color:var(--ink-soft); font-family:var(--serif); line-height:1.4; margin-bottom:2rem}
+.proza h2{font-size:1.5rem; margin:2.4rem 0 .8rem}
+.proza p{margin:0 0 1.2rem; max-width:65ch}
+.proza ul{margin:0 0 1.2rem; padding-left:1.2rem}
+.proza li{margin:.4rem 0}
+.proza strong{color:var(--ink)}
+.proza em{color:var(--ink-soft)}
+.proza hr{border:0; height:1px; background:var(--line); margin:2.5rem 0}
+.inapoi{display:inline-block; margin-bottom:2rem; color:var(--ink-soft); text-decoration:none; font-size:.95rem}
+.inapoi:hover{color:var(--sage)}
+
+/* footer */
+footer.foot{padding:3rem 0; border-top:1px solid var(--line); margin-top:2rem; color:var(--ink-faint); font-size:.9rem}
+.foot .wrap{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; align-items:center}
+.foot a{color:var(--ink-soft); text-decoration:none}
+.foot a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--sage); outline-offset:3px; border-radius:6px}

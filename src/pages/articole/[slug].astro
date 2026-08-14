@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import Pagina from '../../layouts/Pagina.astro';
+
+export async function getStaticPaths() {
+  const arts = await getCollection('articole');
+  return arts.map((a) => ({ params: { slug: a.slug }, props: { a } }));
+}
+
+const { a } = Astro.props;
+const { Content } = await a.render();
+---
+<Pagina titlu={`${a.data.titlu} — Adam și Babotan`} descriere={a.data.rezumat}>
+  <div class="proza-wrap">
+    <article class="proza">
+      <a class="inapoi" href="/articole">← Toate articolele</a>
+      {a.data.categorie && <p class="cat">{a.data.categorie}</p>}
+      <h1>{a.data.titlu}</h1>
+      <p class="rezumat">{a.data.rezumat}</p>
+      <Content />
+    </article>
+  </div>
+</Pagina>

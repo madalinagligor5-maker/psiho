@@ -35,3 +35,28 @@ content:
       - name: pret_fise
         label: "Preț fișe CES / încadrare grad (lei)"
         type: string
+
+  - name: articole
+    label: "Articole (blog)"
+    type: collection
+    path: src/content/articole
+    filename: "{fields.titlu}.md"
+    view:
+      fields: [titlu, categorie, data]
+      sort: [data]
+    fields:
+      - name: titlu
+        label: "Titlu"
+        type: string
+      - name: rezumat
+        label: "Rezumat (apare în listă și în Google)"
+        type: text
+      - name: categorie
+        label: "Categorie"
+        type: string
+      - name: data
+        label: "Data"
+        type: date
+      - name: body
+        label: "Conținut"
+        type: rich-text

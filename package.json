@@ -1,26 +1,13 @@
 {
-  "name": "site-psihologie-editor",
-  "version": "1.0.0",
+  "name": "psiho",
   "private": true,
-  "description": "Doar unealta de build pentru editorul din admin. Nu ruleaza pe server: esbuild produce un singur fisier, care se comite in public_html/assets/js/. Serverul nu are pas de build.",
   "type": "module",
   "scripts": {
-    "build": "esbuild assets-src/admin.mjs --bundle --minify --format=iife --outfile=public_html/assets/js/admin.js --legal-comments=none"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
-    "@tiptap/core": "2.27.2",
-    "@tiptap/pm": "2.27.2",
-    "@tiptap/starter-kit": "2.27.2",
-    "@tiptap/extension-image": "2.27.2",
-    "@tiptap/extension-link": "2.27.2",
-    "tiptap-markdown": "0.8.10"
-  },
-  "devDependencies": {
-    "esbuild": "0.24.2"
-  },
-  "comment-overrides": "Fortam TOATE pachetele @tiptap tranzitorii la aceeasi versiune ca nucleul. Fara asta, starter-kit trage sub-extensii cu interval caret care se pot decala fata de core si rup build-ul (ex. import canInsertNode inexistent intr-un core mai vechi).",
-  "overrides": {
-    "@tiptap/core": "2.27.2",
-    "@tiptap/pm": "2.27.2"
+    "astro": "^4.16.18"
   }
 }

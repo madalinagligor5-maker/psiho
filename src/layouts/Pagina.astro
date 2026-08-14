@@ -1,0 +1,37 @@
+---
+const { titlu = 'Adam și Babotan', descriere = '' } = Astro.props;
+---
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{titlu}</title>
+  {descriere && <meta name="description" content={descriere} />}
+  <link rel="preload" href="/assets/fonts/Caveat-logo.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="bar">
+      <a class="marca" href="/">Adam și Babotan<small>Cabinet de psihologie · Timișoara</small></a>
+      <nav class="main">
+        <a href="/#servicii">Servicii</a>
+        <a href="/#cum">Cum lucrăm</a>
+        <a href="/#echipa">Cine suntem</a>
+        <a href="/articole">Articole</a>
+      </nav>
+      <a class="btn" href="/#contact">Programează</a>
+    </div>
+  </header>
+  <main>
+    <slot />
+  </main>
+  <footer class="foot">
+    <div class="wrap">
+      <span>© 2026 Adam și Babotan</span>
+      <span>Dacă ești în criză acum, sună la 112.</span>
+    </div>
+  </footer>
+</body>
+</html>
