@@ -169,6 +169,21 @@
   .final p{margin:1rem auto 0; max-width:46ch; color:var(--ink-soft)}
   .final .btn{margin-top:1.8rem; padding:.9rem 1.8rem; font-size:1.05rem}
 
+  /* formular de contact */
+  .form{max-width:520px; margin:1.8rem auto 0; text-align:left; position:relative}
+  .form-row{display:grid; gap:.8rem}
+  @media(min-width:560px){ .form-row{grid-template-columns:1fr 1fr} }
+  .form input[type=text], .form textarea{width:100%; font:inherit; color:var(--ink); background:var(--surface); border:1px solid var(--line-2); border-radius:12px; padding:.75rem .9rem; margin-top:.8rem}
+  .form-row input[type=text]{margin-top:0}
+  .form input:focus, .form textarea:focus{outline:2px solid var(--sage); outline-offset:1px; border-color:var(--sage)}
+  .form .btn{margin-top:1rem; width:100%; justify-content:center; padding:.85rem}
+  .form .btn[disabled]{opacity:.6; cursor:default}
+  .form .hp{position:absolute; left:-9999px; width:1px; height:1px}
+  .form-note{font-size:.82rem; color:var(--ink-faint); margin-top:.9rem; text-align:center}
+  .form-msg{margin-top:.8rem; text-align:center; font-weight:600; font-size:.95rem; min-height:1.2em}
+  .form-msg.ok{color:var(--sage)} .form-msg.err{color:#B4462E}
+  @media (prefers-color-scheme:dark){ .form-msg.err{color:#E7A08E} }
+
   /* footer */
   footer.foot{padding:3.5rem 0 3rem; border-top:1px solid var(--line); margin-top:2rem}
   .foot__grid{display:grid; gap:2rem}
@@ -230,6 +245,7 @@
       <div class="rise d2">
         <p class="muted" data-c="cine_p1">Ne fascinează cum se leagă lucrurile în viața unui om: ce se ascunde în spatele unei reacții, al unei tăceri, al unui tipar care se tot repetă. Punem întrebări, ascultăm cu adevărat și căutăm împreună cu tine firul.</p>
         <p class="muted" style="margin-top:1rem" data-c="cine_p2">Nu venim cu răspunsuri gata făcute. Te însoțim, cu blândețe și curiozitate, până începi să le vezi pe ale tale, în ritmul tău. Suntem psihologe acreditate, dar mai întâi suntem oameni lângă tine.</p>
+        <p style="margin-top:1.3rem"><a href="/echipa" style="color:var(--sage); font-weight:600; text-decoration:none">Despre fiecare dintre noi →</a></p>
       </div>
     </div>
   </section>
@@ -315,8 +331,20 @@
         <p class="eyebrow" style="justify-content:center">Când ești gata</p>
         <h2>Nu trebuie să te hotărăști azi.</h2>
         <p>O ședință de cunoaștere durează douăzeci de minute, e gratuită și nu implică niciun angajament. E o conversație în care ne cunoaștem și în care poți vedea dacă te simți în largul tău.</p>
-        <a class="btn" href="mailto:terapiecunico@gmail.com?subject=Programare%20%C8%99edin%C8%9B%C4%83%20de%20cunoa%C8%99tere">Programează o ședință de cunoaștere</a>
-        <p style="margin-top:1.2rem; font-size:.9rem; color:var(--ink-faint)">Îți răspundem în maximum 48 de ore lucrătoare.</p>
+        <form class="form" id="contact-form">
+          <input type="hidden" name="access_key" id="w3key" value="">
+          <input type="hidden" name="subject" value="Mesaj nou de pe site (ședință de cunoaștere)">
+          <input type="hidden" name="from_name" value="Site Adam și Babotan">
+          <div class="form-row">
+            <input type="text" name="nume" required placeholder="Cum să-ți spunem?" autocomplete="name">
+            <input type="text" name="contact" required placeholder="Email sau telefon" autocomplete="email">
+          </div>
+          <textarea name="mesaj" rows="3" placeholder="Vrei să adaugi ceva? (opțional)"></textarea>
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="btn" id="form-btn">Trimite mesajul</button>
+          <p class="form-note">Îți răspundem în maximum 48 de ore lucrătoare. Datele tale nu apar nicăieri public. <a href="/confidentialitate">Confidențialitate</a>.</p>
+          <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -362,11 +390,39 @@
     // pentru SEO și pentru cazul fără JS; aici doar îl înlocuim cu ce e salvat.
     fetch('/content.json', {cache:'no-store'}).then(function(r){ return r.json(); }).then(function(d){
       if(!d) return;
+      window.__content = d;
+      var wk = document.getElementById('w3key');
+      if(wk && d.web3_key) wk.value = d.web3_key;
       document.querySelectorAll('[data-c]').forEach(function(el){
         var k = el.getAttribute('data-c');
         if(d[k] != null && d[k] !== '') el.textContent = d[k];
       });
     }).catch(function(){});
+
+    // Formular de contact (Web3Forms). Trimite fara backend; cheia vine din content.json.
+    var cf = document.getElementById('contact-form');
+    if(cf){
+      cf.addEventListener('submit', function(e){
+        e.preventDefault();
+        var msg = document.getElementById('form-msg');
+        var btn = document.getElementById('form-btn');
+        if(cf.botcheck && cf.botcheck.checked) return;
+        var key = (window.__content && window.__content.web3_key) || document.getElementById('w3key').value;
+        if(!key){ msg.textContent = 'Formularul nu e încă activat. Scrie-ne direct la terapiecunico@gmail.com.'; msg.className = 'form-msg err'; return; }
+        document.getElementById('w3key').value = key;
+        btn.disabled = true; btn.textContent = 'Se trimite...'; msg.textContent = ''; msg.className = 'form-msg';
+        var data = {}; new FormData(cf).forEach(function(v,k){ data[k] = v; });
+        fetch('https://api.web3forms.com/submit', {
+          method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data)
+        }).then(function(r){ return r.json(); }).then(function(j){
+          if(j.success){ cf.reset(); msg.textContent = 'Mesaj trimis. Îți răspundem în maximum 48 de ore lucrătoare.'; msg.className = 'form-msg ok'; btn.textContent = 'Trimis'; }
+          else { throw new Error(j.message || 'eroare'); }
+        }).catch(function(){
+          msg.textContent = 'Nu s-a putut trimite. Scrie-ne direct la terapiecunico@gmail.com.'; msg.className = 'form-msg err';
+          btn.disabled = false; btn.textContent = 'Trimite mesajul';
+        });
+      });
+    }
     // Reveal on scroll
     var risers = document.querySelectorAll('.rise:not(.in)');
     if('IntersectionObserver' in window && !reduce){

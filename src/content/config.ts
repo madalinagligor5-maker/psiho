@@ -17,4 +17,16 @@ const pagini = defineCollection({
   }),
 });
 
-export const collections = { articole, pagini };
+const echipa = defineCollection({
+  type: 'content',
+  schema: z.object({
+    nume: z.string(),
+    titlu: z.string(),
+    cpr: z.string(),
+    judet: z.string().optional(),
+    regim: z.string().optional(),
+    ordine: z.number().default(1),
+  }),
+});
+
+export const collections = { articole, pagini, echipa };

@@ -35,6 +35,10 @@ content:
       - name: pret_fise
         label: "Preț fișe CES / încadrare grad (lei)"
         type: string
+      - name: web3_key
+        label: "Cheie formular contact (Web3Forms)"
+        type: string
+        description: "Cheia de la web3forms.com care activează formularul de pe site."
 
   - name: articole
     label: "Articole (blog)"
@@ -73,4 +77,34 @@ content:
         type: string
       - name: body
         label: "Conținut"
+        type: rich-text
+
+  - name: echipa
+    label: "Echipa"
+    type: collection
+    path: src/content/echipa
+    view:
+      fields: [nume, titlu]
+      sort: [ordine]
+    fields:
+      - name: nume
+        label: "Nume"
+        type: string
+      - name: titlu
+        label: "Titlu profesional"
+        type: string
+      - name: cpr
+        label: "Cod CPR"
+        type: string
+      - name: judet
+        label: "Filiala / județ"
+        type: string
+      - name: regim
+        label: "Regim (autonom / supervizare)"
+        type: string
+      - name: ordine
+        label: "Ordine"
+        type: number
+      - name: body
+        label: "Biografie"
         type: rich-text

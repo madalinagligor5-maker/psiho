@@ -75,6 +75,14 @@ nav.main a:hover{color:var(--ink)}
 .inapoi{display:inline-block; margin-bottom:2rem; color:var(--ink-soft); text-decoration:none; font-size:.95rem}
 .inapoi:hover{color:var(--sage)}
 
+/* echipa */
+.membru{padding:2.5rem 0; border-top:1px solid var(--line); max-width:760px}
+.membru h2{font-size:clamp(1.6rem,1.2rem+1.6vw,2.2rem)}
+.membru .rol{color:var(--sage); font-weight:600; margin:.3rem 0 .6rem}
+.membru .acred{font-size:.9rem; color:var(--ink-faint); margin-bottom:1.4rem}
+.membru .proza{margin:0}
+.membru .proza h2{font-size:1.2rem; margin:1.8rem 0 .6rem}
+
 /* footer */
 footer.foot{padding:3rem 0; border-top:1px solid var(--line); margin-top:2rem; color:var(--ink-faint); font-size:.9rem}
 .foot .wrap{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; align-items:center}
