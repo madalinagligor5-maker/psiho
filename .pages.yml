@@ -60,3 +60,17 @@ content:
       - name: body
         label: "Conținut"
         type: rich-text
+
+  - name: pagini
+    label: "Pagini legale"
+    type: collection
+    path: src/content/pagini
+    view:
+      fields: [titlu]
+    fields:
+      - name: titlu
+        label: "Titlu"
+        type: string
+      - name: body
+        label: "Conținut"
+        type: rich-text

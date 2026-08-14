@@ -10,4 +10,11 @@ const articole = defineCollection({
   }),
 });
 
-export const collections = { articole };
+const pagini = defineCollection({
+  type: 'content',
+  schema: z.object({
+    titlu: z.string(),
+  }),
+});
+
+export const collections = { articole, pagini };
