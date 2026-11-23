@@ -2,42 +2,25 @@
 titlu: "Politica de cookies"
 ---
 
-Ultima actualizare: august 2026
+Ultima actualizare: noiembrie 2026
 
-Site-ul folosește cât mai puțin cu putință. Nicio reclamă, niciun tracker
-publicitar, niciun buton de social media care te urmărește.
+Site-ul cristinaadam.ro nu folosește cookies publicitare și nu urmărește
+vizitatorii între site-uri.
 
-## Ce e strict necesar
+## Cookies și stocare locală
 
-Un singur cookie de sesiune, care ține minte că ai un formular deschis și
-protejează formularele împotriva abuzului. Nu conține date personale, nu
-te identifică și dispare când închizi browserul. Fără el site-ul nu poate
-funcționa, deci nu poate fi oprit.
+În versiunea actuală, paginile publice nu setează cookies de analiză sau de
+marketing. Preferințele tehnice ale browserului, precum tema luminoasă sau
+întunecată, sunt respectate direct din setările dispozitivului și nu sunt salvate
+într-un profil de utilizator.
 
-## Statistici — doar dacă accepți
+## Servicii externe
 
-Aș vrea să știu câți oameni ajung pe fiecare pagină, ca să înțeleg ce e de
-folos. Pentru asta folosesc (se completează), un serviciu
-de statistici care:
+Doar atunci când trimiți formularul de contact, datele introduse sunt transmise
+către Web3Forms pentru livrarea mesajului. Detaliile despre datele formularului
+sunt explicate în [politica de confidențialitate](/confidentialitate).
 
-- nu folosește cookies;
+## Modificări
 
-- nu colectează date personale și nu te identifică;
-
-- nu construiește niciun profil și nu urmărește între site-uri.
-
-Scriptul lui nu se încarcă deloc până nu apeși „Salvează alegerea” cu
-opțiunea de statistici bifată. Dacă refuzi, nu se întâmplă nimic — site-ul
-merge la fel.
-
-## Cum îți schimbi alegerea
-
-Alegerea ta e ținută local, în browserul tău. Ca să o schimbi, șterge
-datele site-ului din setările browserului, iar bannerul va apărea din nou
-la următoarea vizită.
-
-## De ce nu folosesc Google Analytics
-
-Pentru că ar transfera date către servere din afara Uniunii Europene și ar
-construi profiluri — ceva ce nu se potrivește cu un site pe teme de
-sănătate. Am ales deliberat o alternativă care respectă viața privată.
+Dacă vor fi adăugate ulterior instrumente de analiză sau alte tehnologii care
+necesită consimțământ, această pagină va fi actualizată înainte de activarea lor.

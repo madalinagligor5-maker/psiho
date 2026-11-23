@@ -1,0 +1,30 @@
+---
+import { getEntry } from 'astro:content';
+import Pagina from '../layouts/Pagina.astro';
+
+const profil = await getEntry('echipa', '1-cristina');
+if (!profil) throw new Error('Profilul Adam Cristina lipsește din colecția de conținut.');
+const { Content } = await profil.render();
+const { nume, titlu, cpr, judet, regim } = profil.data;
+---
+<Pagina titlu="Despre mine — Adam Cristina" descriere="Adam Cristina, psiholog clinician în Timișoara. Formare, abordare și cod CPR 26689.">
+  <section class="wrap head profil-head">
+    <p class="eyebrow">Despre mine</p>
+    <h1>{nume}</h1>
+    <p class="lead muted">
+      Psiholog clinician în Timișoara și psihoterapeut în formare. Lucrez cu atenție la
+      contextul relațiilor, nu doar la simptomul care se vede primul.
+    </p>
+  </section>
+  <article class="wrap membru profil-card">
+    <header>
+      <p class="rol">{titlu}</p>
+      <p class="acred">
+        Cod CPR <strong>{cpr}</strong>
+        {judet && <> · Filiala {judet}</>}
+        {' · '}{regim === 'autonom' ? 'regim autonom' : regim}
+      </p>
+    </header>
+    <div class="proza"><Content /></div>
+  </article>
+</Pagina>

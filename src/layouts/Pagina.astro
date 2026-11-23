@@ -12,19 +12,20 @@ const { titlu = 'Adam Cristina', descriere = '' } = Astro.props;
   <link rel="stylesheet" href="/assets/css/base.css" />
 </head>
 <body>
+  <a class="skip-link" href="#continut">Sari la conținut</a>
   <header class="top">
     <div class="bar">
       <a class="marca" href="/">Adam Cristina<small>Cabinet de psihologie · Timișoara</small></a>
       <nav class="main">
         <a href="/#servicii">Servicii</a>
         <a href="/#cum">Cum lucrez</a>
-        <a href="/#echipa">Despre mine</a>
+        <a href="/despre">Despre mine</a>
         <a href="/articole">Articole</a>
       </nav>
       <a class="btn" href="/#contact">Programează</a>
     </div>
   </header>
-  <main>
+  <main id="continut">
     <slot />
   </main>
   <footer class="foot">

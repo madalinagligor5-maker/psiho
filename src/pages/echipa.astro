@@ -1,32 +1,12 @@
----
-import { getCollection } from 'astro:content';
-import Pagina from '../layouts/Pagina.astro';
-
-const membri = (await getCollection('echipa')).filter((m) => m.slug === '1-cristina').sort((a, b) => a.data.ordine - b.data.ordine);
-const rendered = await Promise.all(
-  membri.map(async (m) => ({ data: m.data, Content: (await m.render()).Content }))
-);
----
-<Pagina titlu="Despre mine — Adam Cristina" descriere="Adam Cristina, psiholog clinician în Timișoara. Formare, specializări și cod CPR.">
-  <section class="wrap head">
-    <p class="eyebrow">Despre mine</p>
-    <h1>Adam Cristina</h1>
-    <p class="muted" style="max-width:60ch; margin-top:1rem">
-      Sunt Adam Cristina, psiholog clinician în Timișoara și psihoterapeut în formare.
-      Mai jos găsești formarea, specializările și codul meu CPR, verificabil în registrul
-      Colegiului Psihologilor din România.
-    </p>
-  </section>
-  {rendered.map(({ data, Content }) => (
-    <section class="wrap membru">
-      <h2>{data.nume}</h2>
-      <p class="rol">{data.titlu}</p>
-      <p class="acred">
-        Cod CPR <strong>{data.cpr}</strong>
-        {data.judet && <> · Filiala {data.judet}</>}
-        {' · '}{data.regim === 'autonom' ? 'regim autonom' : 'sub supervizare'}
-      </p>
-      <div class="proza"><Content /></div>
-    </section>
-  ))}
-</Pagina>
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=/despre" />
+    <link rel="canonical" href="https://cristinaadam.ro/despre" />
+    <title>Despre mine — Adam Cristina</title>
+  </head>
+  <body>
+    <p>Pagina s-a mutat la <a href="/despre">Despre mine</a>.</p>
+  </body>
+</html>

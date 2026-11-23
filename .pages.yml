@@ -14,14 +14,14 @@ content:
         type: text
         description: "Paragraful mare de sub „Nu caut vinovatul, caut tiparul.”"
       - name: cine_tail
-        label: "Cine suntem — completarea titlului"
+        label: "Despre mine — completarea titlului"
         type: string
-        description: "Vine după „Suntem Cristina și Amalia,”"
+        description: "Vine după „Sunt Adam Cristina,”"
       - name: cine_p1
-        label: "Cine suntem — primul paragraf"
+        label: "Despre mine — primul paragraf"
         type: text
       - name: cine_p2
-        label: "Cine suntem — al doilea paragraf"
+        label: "Despre mine — al doilea paragraf"
         type: text
       - name: pret_individual
         label: "Preț ședință individuală (lei)"
@@ -80,12 +80,11 @@ content:
         type: rich-text
 
   - name: echipa
-    label: "Echipa"
+    label: "Profil profesional"
     type: collection
     path: src/content/echipa
     view:
       fields: [nume, titlu]
-      sort: [ordine]
     fields:
       - name: nume
         label: "Nume"
@@ -102,9 +101,6 @@ content:
       - name: regim
         label: "Regim (autonom / supervizare)"
         type: string
-      - name: ordine
-        label: "Ordine"
-        type: number
       - name: body
         label: "Biografie"
         type: rich-text
