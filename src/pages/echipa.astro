@@ -2,19 +2,19 @@
 import { getCollection } from 'astro:content';
 import Pagina from '../layouts/Pagina.astro';
 
-const membri = (await getCollection('echipa')).sort((a, b) => a.data.ordine - b.data.ordine);
+const membri = (await getCollection('echipa')).filter((m) => m.slug === '1-cristina').sort((a, b) => a.data.ordine - b.data.ordine);
 const rendered = await Promise.all(
   membri.map(async (m) => ({ data: m.data, Content: (await m.render()).Content }))
 );
 ---
-<Pagina titlu="Cine suntem — Adam și Babotan" descriere="Cristina și Amalia, psihologe în Timișoara. Formare, specializări și codul CPR, verificabil la Colegiul Psihologilor.">
+<Pagina titlu="Despre mine — Adam Cristina" descriere="Adam Cristina, psiholog clinician în Timișoara. Formare, specializări și cod CPR.">
   <section class="wrap head">
-    <p class="eyebrow">Cine suntem</p>
-    <h1>Cristina și Amalia</h1>
+    <p class="eyebrow">Despre mine</p>
+    <h1>Adam Cristina</h1>
     <p class="muted" style="max-width:60ch; margin-top:1rem">
-      Lucrăm împreună, sub forma cabinetului ADAM și BABOTAN, în Timișoara. Mai jos e povestea
-      fiecăreia: formarea, specializările și codul CPR, verificabil în registrul Colegiului
-      Psihologilor din România.
+      Sunt Adam Cristina, psiholog clinician în Timișoara și psihoterapeut în formare.
+      Mai jos găsești formarea, specializările și codul meu CPR, verificabil în registrul
+      Colegiului Psihologilor din România.
     </p>
   </section>
   {rendered.map(({ data, Content }) => (

@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 const { x } = Astro.props;
 const { Content } = await x.render();
 ---
-<Pagina titlu={`${x.data.titlu} — Adam și Babotan`} descriere={x.data.titlu}>
+<Pagina titlu={`${x.data.titlu} — Adam Cristina`} descriere={x.data.titlu}>
   <div class="proza-wrap">
     <article class="proza">
       <h1>{x.data.titlu}</h1>

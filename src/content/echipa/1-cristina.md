@@ -1,5 +1,5 @@
 ---
-nume: "Adam Nicoleta-Cristina"
+nume: "Adam Cristina"
 titlu: "Psiholog clinician · psihoterapeut în formare"
 cpr: "26689"
 judet: "Timiș"
