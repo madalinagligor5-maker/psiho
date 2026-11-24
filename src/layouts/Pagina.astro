@@ -41,6 +41,13 @@ const path = Astro.url.pathname;
   {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   <link rel="preload" href="/assets/fonts/Caveat-logo.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/base.css" />
+  <!-- Google Tag Manager -->
+  <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-M3VZTFLL"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#continut">Sari la conținut</a>

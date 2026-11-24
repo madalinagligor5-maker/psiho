@@ -108,6 +108,13 @@ $analiza  = config('analiza');
 <meta name="analiza-script"  content="<?= e($analiza['script']) ?>">
 <meta name="analiza-domeniu" content="<?= e($analiza['domeniu']) ?>">
 <?php endif ?>
+<!-- Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-M3VZTFLL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
 </head>
 
 <body>
