@@ -9,13 +9,29 @@ export async function getStaticPaths() {
 
 const { a } = Astro.props;
 const { Content } = await a.render();
+const canonical = `https://cristinaadam.ro/articole/${a.slug}`;
+const formatData = a.data.data
+  ? new Intl.DateTimeFormat('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${a.data.data}T12:00:00`))
+  : '';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: a.data.titlu,
+  description: a.data.rezumat,
+  mainEntityOfPage: canonical,
+  inLanguage: 'ro-RO',
+  ...(a.data.data ? { datePublished: a.data.data, dateModified: a.data.data } : {}),
+  author: { '@type': 'Person', '@id': 'https://cristinaadam.ro/#cristina-adam', name: 'Adam Cristina' },
+  publisher: { '@type': 'Person', '@id': 'https://cristinaadam.ro/#cristina-adam', name: 'Adam Cristina' },
+};
 ---
-<Pagina titlu={`${a.data.titlu} — Adam Cristina`} descriere={a.data.rezumat}>
+<Pagina titlu={`${a.data.titlu} | Adam Cristina`} descriere={a.data.rezumat} tip="article" dataPublicare={a.data.data} schema={schema}>
   <div class="proza-wrap">
     <article class="proza">
       <a class="inapoi" href="/articole">← Toate articolele</a>
       {a.data.categorie && <p class="cat">{a.data.categorie}</p>}
       <h1>{a.data.titlu}</h1>
+      {a.data.data && <p class="meta">Publicat de Adam Cristina · <time datetime={a.data.data}>{formatData}</time></p>}
       <p class="rezumat">{a.data.rezumat}</p>
       <Content />
     </article>

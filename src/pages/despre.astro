@@ -6,14 +6,23 @@ const profil = await getEntry('echipa', '1-cristina');
 if (!profil) throw new Error('Profilul Adam Cristina lipsește din colecția de conținut.');
 const { Content } = await profil.render();
 const { nume, titlu, cpr, judet, regim } = profil.data;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://cristinaadam.ro/#cristina-adam',
+  name: nume,
+  url: 'https://cristinaadam.ro/despre',
+  jobTitle: 'Psiholog clinician',
+  description: 'Psiholog clinician în Timișoara, cod CPR 26689, cu ședințe la cabinet și online.',
+};
 ---
-<Pagina titlu="Despre mine — Adam Cristina" descriere="Adam Cristina, psiholog clinician în Timișoara. Formare, abordare și cod CPR 26689.">
+<Pagina titlu="Adam Cristina · psiholog clinician în Timișoara" descriere="Formarea, acreditarea și abordarea profesională a psihologului clinician Adam Cristina din Timișoara. Cod CPR 26689, regim autonom." schema={schema}>
   <section class="wrap head profil-head">
     <p class="eyebrow">Despre mine</p>
     <h1>{nume}</h1>
     <p class="lead muted">
-      Psiholog clinician în Timișoara și psihoterapeut în formare. Lucrez cu atenție la
-      contextul relațiilor, nu doar la simptomul care se vede primul.
+      Sunt psiholog clinician în Timișoara și psihoterapeut în formare. În ședințe,
+      privim atât dificultatea de acum, cât și contextul în care a apărut și se menține.
     </p>
   </section>
   <article class="wrap membru profil-card">

@@ -4,11 +4,15 @@ import Pagina from '../../layouts/Pagina.astro';
 const arts = (await getCollection('articole')).sort(
   (a, b) => (b.data.data || '').localeCompare(a.data.data || '')
 );
+const formatData = (data) => data
+  ? new Intl.DateTimeFormat('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${data}T12:00:00`))
+  : '';
 ---
-<Pagina titlu="Articole — Adam Cristina" descriere="Texte despre anxietate, burnout și tiparele care se repetă. Scrise ca să fie de folos.">
+<Pagina titlu="Articole de psihologie | Adam Cristina, Timișoara" descriere="Articole scrise de Adam Cristina despre anxietate, epuizare și tipare relaționale, explicate clar și fără promisiuni simpliste.">
   <section class="wrap head">
-    <p class="eyebrow">Articole</p>
-    <h1>Texte care merită timpul tău</h1>
+    <p class="eyebrow">Psihologie, pe înțeles</p>
+    <h1>Articole despre anxietate, epuizare și relații</h1>
+    <p class="muted" style="max-width:62ch;margin-top:1rem">Texte care te ajută să recunoști un mecanism și să formulezi întrebări mai bune. Nu înlocuiesc evaluarea sau ședințele individuale.</p>
   </section>
   <div class="wrap">
     <ul class="lista">
@@ -16,9 +20,10 @@ const arts = (await getCollection('articole')).sort(
         <li>
           <a class="art-card" href={`/articole/${a.slug}`}>
             {a.data.categorie && <span class="cat">{a.data.categorie}</span>}
+            {a.data.data && <p class="meta"><time datetime={a.data.data}>{formatData(a.data.data)}</time> · Adam Cristina</p>}
             <h2>{a.data.titlu}</h2>
             <p>{a.data.rezumat}</p>
-            <span class="mai">Citește</span>
+            <span class="mai">Citește articolul →</span>
           </a>
         </li>
       ))}

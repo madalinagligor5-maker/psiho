@@ -1,27 +1,30 @@
 ---
-titlu: "De ce se repetă aceleași certuri, cu oameni diferiți"
-rezumat: "A treia relație în care se întâmplă exact același lucru nu e ghinion. E un tipar, și tiparele se pot vedea, ceea ce le face să se poată schimba."
+titlu: "De ce repetăm aceleași certuri în relații"
+rezumat: "O ceartă repetitivă nu spune neapărat cine are dreptate. De multe ori arată o secvență în care reacția unuia o intensifică pe a celuilalt."
 categorie: "Tipare relaționale"
 data: "2026-05-20"
 ---
 
-Cineva îmi povestește a treia relație. Alt om, alt oraș, altă vârstă. Aceeași ceartă.
-
-Momentul în care își dă seama singur, în timp ce vorbește, e aproape întotdeauna același: se oprește la mijlocul propoziției.
+Partenerul se schimbă, contextul se schimbă, dar uneori aceeași ceartă revine.
+Nu înseamnă automat că alegi „greșit”. Poate însemna că un anumit mod de a te
+proteja se întâlnește, din nou, cu răspunsul celuilalt.
 
 ## Ce e un tipar
 
 Un tipar nu e o trăsătură de caracter. E o secvență: ce faci tu, ce face celălalt ca răspuns, ce faci tu ca răspuns la răspuns. Buclă închisă, care se autoîntreține.
 
-Cel mai frecvent din câte văd arată așa: unul se apropie când e neliniștit, celălalt se retrage când e presat. Apropierea produce retragere. Retragerea produce mai multă apropiere. Amândoi fac exact lucrul care declanșează ce se tem cel mai tare.
+Un exemplu des întâlnit arată așa: unul caută apropiere când este neliniștit, iar
+celălalt se retrage când se simte presat. Apropierea produce retragere; retragerea
+produce și mai multă insistență.
 
 Niciunul nu e vinovat. Ambii sunt în buclă.
 
 ## De ce se schimbă partenerul dar nu și cearta
 
-Pentru că nu alegi partenerul la întâmplare. Alegi, fără să vrei, pe cineva a cărui mișcare completează mișcarea ta. Cineva care se retrage e greu de observat pentru un om care nu se apropie. Devine vizibil, și important, exact pentru cel care se apropie.
-
-Nu e ghinion. E potrivire de formă.
+Intrăm în relații cu așteptări, temeri și strategii învățate anterior. Unele se
+potrivesc cu strategiile celuilalt într-un mod care reactivează aceeași secvență.
+Nu este o regulă și nu explică orice conflict, dar poate fi o ipoteză utilă de
+explorat.
 
 ## De ce nu caut vinovatul
 
@@ -33,9 +36,9 @@ Terapia sistemică se uită la **secvență**, nu la persoane. Întrebarea nu e 
 
 ## Ce se schimbă când vezi tiparul
 
-Mai puțin decât speră oamenii, și mai mult decât cred.
-
-Nu dispare. Prima schimbare reală e că îl recunoști în timp ce se întâmplă, nu la trei zile după. Sună mic. Nu e: un tipar recunoscut la mijloc se poate întrerupe. Unul recunoscut la sfârșit se poate doar regreta.
+Prima schimbare este să recunoști secvența mai devreme: nu la trei zile după
+conflict, ci în timp ce începe. Asta creează o pauză în care poți încerca un
+răspuns diferit.
 
 A doua schimbare e că încetezi să-l citești ca pe o dovadă despre cine ești tu sau cine e celălalt. Devine ceva ce faceți împreună, nu ceva ce sunteți.
 

@@ -1,21 +1,23 @@
 ---
-titlu: "Anxietatea nu e o defecțiune. E un semnal citit greșit"
-rezumat: "Corpul tău nu s-a stricat. Face exact ce a învățat să facă. Întrebarea utilă nu e cum să opresc asta, ci ce încearcă să-mi spună."
+titlu: "Anxietatea: de ce apare și cum ajunge să se mențină"
+rezumat: "Anxietatea este un răspuns de alarmă. Devine dificilă atunci când apare prea des, prea intens sau în situații care nu mai sunt periculoase."
 categorie: "Anxietate"
 data: "2026-03-10"
 ---
 
-Cei mai mulți oameni care ajung la mine cu anxietate au încercat deja să scape de ea. Au citit, au respirat cum scria în aplicație, s-au certat cu propriile gânduri. Unii au reușit o vreme. Aproape toți s-au întors cu senzația că e ceva stricat la ei.
-
-Nu e nimic stricat.
+Mulți oameni încearcă mai întâi să alunge anxietatea: controlează respirația,
+evită situațiile care o declanșează sau își verifică permanent corpul. Uneori
+ajută pe moment. Alteori, lupta cu anxietatea devine încă o sursă de teamă.
 
 ## Ce face corpul
 
-Anxietatea e un sistem de alarmă care funcționează. Problema nu e că sună, problema e că sună la lucruri care nu mai sunt periculoase, pentru că a învățat cândva că sunt.
+Anxietatea este un răspuns de alarmă. Problema nu este existența lui, ci faptul
+că se poate activa prea des, prea intens sau în contexte care nu mai reprezintă
+un pericol real.
 
 Un copil care crește într-o casă unde tonul vocii tatălui prevestea ce urmează învață să citească tonurile. Devine foarte bun la asta. Douăzeci de ani mai târziu, într-o ședință de la birou, cineva își schimbă tonul și corpul lui e deja în alertă înainte ca el să apuce să se gândească.
 
-Nu e o exagerare. E o competență veche, aplicată într-un context nou.
+Reacția nu este inventată. Este un răspuns învățat, activat într-un context nou.
 
 ## De ce lupta cu ea o face mai mare
 
@@ -27,15 +29,22 @@ Asta e mecanismul prin care o anxietate ținută sub control ani de zile ajunge,
 
 Nu întreb *cum oprim asta*. Întreb **când a fost util**.
 
-Aproape întotdeauna a fost. Aproape întotdeauna a fost util într-un sistem, o familie, o relație, un loc de muncă, unde vigilența era singura formă de siguranță disponibilă. Anxietatea a fost o soluție. A rămas pe loc după ce contextul s-a schimbat.
+Uneori, vigilența a fost utilă într-o familie, într-o relație sau într-un mediu
+de lucru imprevizibil. În alte situații, anxietatea are mai mulți factori și nu
+poate fi explicată printr-o singură experiență. De aceea, evaluarea pornește de
+la istoria și contextul fiecărei persoane.
 
 Asta schimbă complet natura muncii. Nu demontăm un defect. Actualizăm o hartă.
 
-## Ce se schimbă concret
+## Ce se poate schimba
 
-În primele luni, majoritatea oamenilor nu raportează că simt mai puțină anxietate. Raportează că li se pare mai puțin urgentă. Că se trezesc noaptea și nu mai intră imediat în panică din cauza faptului că s-au trezit.
+Un prim obiectiv realist este să recunoști mai repede ce se întâmplă și să nu
+interpretezi automat fiecare senzație ca pe un pericol. Apoi putem lucra cu
+situațiile evitate, cu gândurile care întrețin alarma și cu relațiile sau
+contextele care o reactivează.
 
-Intensitatea scade după. Aproape niciodată înainte.
+Ritmul diferă de la o persoană la alta. Nu există o promisiune universală, dar
+există pași concreți pe care îi putem observa și ajusta împreună.
 
 ---
 

@@ -4,12 +4,12 @@
   src:url("/assets/fonts/Caveat-logo.woff2") format("woff2");
 }
 :root{
-  --bg:#F4F8F9; --surface:#FFFFFF; --surface-2:#EEF5F4;
-  --ink:#1E2F36; --ink-soft:#52656C; --ink-faint:#7C8D93;
-  --line:#E0E9EA; --line-2:#CFDCDD;
-  --sage:#3E6152; --sage-bg:#E6F0E5;
-  --lav:#5E4E86; --lav-bg:#EDE9F5;
-  --bleu:#2E5A6B; --azur:#E3F0F5;
+  --bg:#F6F3ED; --surface:#FFFDFA; --surface-2:#EAEFEA;
+  --ink:#24312A; --ink-soft:#59665F; --ink-faint:#7A867F;
+  --line:#E3DED4; --line-2:#D2D8D1;
+  --sage:#496456; --sage-bg:#E2EAE3;
+  --lav:#5D7266; --lav-bg:#E8EDE8;
+  --bleu:#3F5D50; --azur:#E4ECE7;
   --shadow:0 1px 2px rgba(30,47,54,.04), 0 14px 40px rgba(30,47,54,.07);
   --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -17,10 +17,10 @@
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --bg:#141F25; --surface:#1C2A31; --surface-2:#18262C;
-    --ink:#E9F1F3; --ink-soft:#A7B8BE; --ink-faint:#7F9197;
-    --line:#2A3B43; --line-2:#37505A;
-    --sage:#A6CEB4; --sage-bg:#21322C; --lav:#C7BCE6; --lav-bg:#2A2740; --bleu:#8FBECF; --azur:#1E3038;
+    --bg:#17201B; --surface:#202A24; --surface-2:#1B261F;
+    --ink:#EDF2EE; --ink-soft:#B4BFB8; --ink-faint:#8D9A92;
+    --line:#314038; --line-2:#405249;
+    --sage:#B2D0BC; --sage-bg:#27382E; --lav:#AFC8B7; --lav-bg:#26352C; --bleu:#A8C6B3; --azur:#22342B;
     --shadow:0 1px 2px rgba(0,0,0,.25), 0 18px 50px rgba(0,0,0,.32);
   }
 }
@@ -44,10 +44,12 @@ header.top{position:sticky; top:0; z-index:40; background:color-mix(in srgb,var(
 nav.main{display:none; gap:1.6rem; align-items:center}
 nav.main a{text-decoration:none; color:var(--ink-soft); font-size:.95rem; font-weight:500}
 nav.main a:hover{color:var(--ink)}
+nav.main a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--sage);text-underline-offset:.45rem}
 @media (min-width:900px){ nav.main{display:flex} }
-.btn{display:inline-flex; align-items:center; gap:.5rem; font:inherit; font-weight:600; font-size:.95rem; text-decoration:none; cursor:pointer; border:0; border-radius:999px; padding:.7rem 1.35rem; background:var(--sage); color:#fff; transition:transform .15s var(--ease); box-shadow:0 6px 18px color-mix(in srgb,var(--sage) 30%,transparent); flex:none}
+.btn{display:inline-flex; align-items:center; gap:.5rem; font:inherit; font-weight:600; font-size:.95rem; text-decoration:none; cursor:pointer; border:0; border-radius:999px; padding:.7rem 1.35rem; background:var(--sage); color:#fff; transition:transform .2s var(--ease),background .2s; box-shadow:0 6px 18px color-mix(in srgb,var(--sage) 30%,transparent); flex:none}
 @media (prefers-color-scheme:dark){ .btn{color:#10201A} }
-.btn:hover{transform:translateY(-2px)}
+.btn:hover{transform:translateY(-2px);background:color-mix(in srgb,var(--sage) 88%,var(--ink))}
+.btn:active{transform:translateY(0) scale(.98)}
 
 /* article listing */
 .head{padding:clamp(3rem,7vw,6rem) 0 1rem}
@@ -57,6 +59,7 @@ nav.main a:hover{color:var(--ink)}
 .art-card{display:block; background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:1.6rem 1.5rem; box-shadow:var(--shadow); text-decoration:none; color:inherit; transition:transform .3s var(--ease), border-color .3s}
 .art-card:hover{transform:translateY(-4px); border-color:var(--sage)}
 .art-card .cat{font-size:.75rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sage)}
+.art-card .meta,.proza .meta{font-size:.84rem;color:var(--ink-faint);font-variant-numeric:tabular-nums}
 .art-card h2{font-size:1.35rem; margin:.5rem 0 .5rem}
 .art-card p{color:var(--ink-soft); font-size:.98rem; margin:0}
 .art-card .mai{display:inline-block; margin-top:.9rem; color:var(--sage); font-weight:600; font-size:.92rem}
@@ -94,7 +97,7 @@ footer.foot{padding:3rem 0; border-top:1px solid var(--line); margin-top:2rem; c
 
 /* Shared visual language with the homepage. */
 :root{--wrap:min(1160px,90vw);--r:24px}
-body{background:radial-gradient(ellipse at 100% 0,var(--lav-bg),transparent 55%),radial-gradient(ellipse at 0 70%,var(--sage-bg),transparent 55%),var(--bg)}
+body{background:radial-gradient(ellipse at 100% 0,color-mix(in srgb,var(--sage-bg) 70%,transparent),transparent 55%),radial-gradient(ellipse at 0 70%,color-mix(in srgb,var(--sage-bg) 55%,transparent),transparent 55%),var(--bg)}
 .bar{height:88px}
 .marca{font-family:var(--serif);font-weight:500;letter-spacing:-.04em}
 .marca small{font-size:.875rem;letter-spacing:0;line-height:1.4;margin-top:.35rem}
@@ -102,5 +105,8 @@ body{background:radial-gradient(ellipse at 100% 0,var(--lav-bg),transparent 55%)
 .art-card{box-shadow:none;padding:2rem}
 .membru{background:var(--surface);padding:2rem;border:1px solid var(--line);border-radius:24px;margin-block:2rem}
 .membru .proza{width:100%}
+.profil-head .lead{max-width:42rem;margin-top:1.25rem;font:400 clamp(1.2rem,2vw,1.55rem)/1.55 var(--serif)}
+.profil-card{display:grid;gap:1.25rem 3rem}
+.profil-card header{padding-bottom:1rem;border-bottom:1px solid var(--line)}
 .muted{color:var(--ink-soft)}
 @media(max-width:600px){.bar{gap:.5rem}.marca{font-size:1.35rem}.marca small{font-size:.75rem}.bar .btn{font-size:.875rem;padding:.7rem .85rem}.membru{padding:1.4rem}}

@@ -1,5 +1,13 @@
 ---
-const { titlu = 'Adam Cristina', descriere = '' } = Astro.props;
+const {
+  titlu = 'Adam Cristina · Psiholog Timișoara',
+  descriere = 'Adam Cristina, psiholog clinician în Timișoara. Ședințe la cabinet și online.',
+  tip = 'website',
+  dataPublicare,
+  schema,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+const path = Astro.url.pathname;
 ---
 <!doctype html>
 <html lang="ro">
@@ -7,7 +15,23 @@ const { titlu = 'Adam Cristina', descriere = '' } = Astro.props;
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{titlu}</title>
-  {descriere && <meta name="description" content={descriere} />}
+  <meta name="description" content={descriere} />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Adam Cristina" />
+  <meta name="theme-color" content="#F6F3ED" />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:site_name" content="Adam Cristina · Psiholog Timișoara" />
+  <meta property="og:type" content={tip} />
+  <meta property="og:title" content={titlu} />
+  <meta property="og:description" content={descriere} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={titlu} />
+  <meta name="twitter:description" content={descriere} />
+  {dataPublicare && <meta property="article:published_time" content={dataPublicare} />}
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   <link rel="preload" href="/assets/fonts/Caveat-logo.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/base.css" />
 </head>
@@ -16,11 +40,11 @@ const { titlu = 'Adam Cristina', descriere = '' } = Astro.props;
   <header class="top">
     <div class="bar">
       <a class="marca" href="/">Adam Cristina<small>Cabinet de psihologie · Timișoara</small></a>
-      <nav class="main">
+      <nav class="main" aria-label="Navigație principală">
         <a href="/#servicii">Servicii</a>
         <a href="/#cum">Cum lucrez</a>
-        <a href="/despre">Despre mine</a>
-        <a href="/articole">Articole</a>
+        <a href="/despre" aria-current={path === '/despre' ? 'page' : undefined}>Despre mine</a>
+        <a href="/articole" aria-current={path.startsWith('/articole') ? 'page' : undefined}>Articole</a>
       </nav>
       <a class="btn" href="/#contact">Programează</a>
     </div>
