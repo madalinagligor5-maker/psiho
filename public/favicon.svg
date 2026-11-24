@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="15" fill="#496456"/>
-  <path d="M18 45 29.5 17h5L46 45h-6.5l-2.4-6.5H26.5L24 45Zm10.4-12h6.8l-3.4-9.4Z" fill="#FFFDFA"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Monograma CA">
+  <circle cx="48" cy="48" r="45" fill="#F8F1EA" stroke="#D7A48E" stroke-width="3"/>
+  <path d="M45 30.5c-3.5-4.2-8.4-6.3-14-6.3-10.5 0-18.8 9-18.8 23.8S20.5 71.8 31 71.8c5.8 0 10.8-2.2 14.4-6.7" fill="none" stroke="#747860" stroke-width="7" stroke-linecap="round"/>
+  <path d="M42 70 58.2 26h5.6L80 70h-7.4l-3.8-10.8H52.9L49.2 70Zm13.2-17.4h11.3l-5.7-16.8Z" fill="#A96F5F"/>
+  <path d="M73 21c6.2-7.6 11-6.8 12.5-6.2-1.4 6.1-5.7 10.1-12.5 11.1" fill="#747860" opacity=".8"/>
 </svg>
