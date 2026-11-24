@@ -61,6 +61,7 @@
       scrie(analiza);
       aplica(analiza);
       banner.hidden = true;
+      document.dispatchEvent(new CustomEvent('consimtamant', { detail: { analiza: analiza } }));
     });
 
     document.addEventListener('click', function (ev) {
