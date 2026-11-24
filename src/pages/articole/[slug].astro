@@ -9,13 +9,13 @@ export async function getStaticPaths() {
 
 const { a } = Astro.props;
 const { Content } = await a.render();
-const canonical = `https://cristinaadam.ro/articole/${a.slug}`;
+const canonical = `https://cristinaadam.ro/articole/${a.slug}/`;
 const formatData = a.data.data
   ? new Intl.DateTimeFormat('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${a.data.data}T12:00:00`))
   : '';
-const schema = {
-  '@context': 'https://schema.org',
+const articleSchema = {
   '@type': 'Article',
+  '@id': `${canonical}#article`,
   headline: a.data.titlu,
   description: a.data.rezumat,
   mainEntityOfPage: canonical,
@@ -23,12 +23,31 @@ const schema = {
   ...(a.data.data ? { datePublished: a.data.data, dateModified: a.data.data } : {}),
   author: { '@type': 'Person', '@id': 'https://cristinaadam.ro/#cristina-adam', name: 'Adam Cristina' },
   publisher: { '@type': 'Person', '@id': 'https://cristinaadam.ro/#cristina-adam', name: 'Adam Cristina' },
+  image: 'https://cristinaadam.ro/assets/images/adam-cristina-psiholog.jpeg',
+};
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    articleSchema,
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Acasă', item: 'https://cristinaadam.ro/' },
+        { '@type': 'ListItem', position: 2, name: 'Articole', item: 'https://cristinaadam.ro/articole/' },
+        { '@type': 'ListItem', position: 3, name: a.data.titlu, item: canonical },
+      ],
+    },
+  ],
 };
 ---
 <Pagina titlu={`${a.data.titlu} | Adam Cristina`} descriere={a.data.rezumat} tip="article" dataPublicare={a.data.data} schema={schema}>
   <div class="proza-wrap">
     <article class="proza">
-      <a class="inapoi" href="/articole">← Toate articolele</a>
+      <nav class="breadcrumb" aria-label="Fir de navigare">
+        <a href="/">Acasă</a><span aria-hidden="true">/</span>
+        <a href="/articole">Articole</a><span aria-hidden="true">/</span>
+        <span aria-current="page">{a.data.categorie || 'Articol'}</span>
+      </nav>
       {a.data.categorie && <p class="cat">{a.data.categorie}</p>}
       <h1>{a.data.titlu}</h1>
       {a.data.data && <p class="meta">Publicat de Adam Cristina · <time datetime={a.data.data}>{formatData}</time></p>}

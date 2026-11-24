@@ -20,6 +20,8 @@ const path = Astro.url.pathname;
   <meta name="author" content="Adam Cristina" />
   <meta name="theme-color" content="#F8F1EA" />
   <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="ro-RO" href={canonical} />
+  <link rel="alternate" type="application/rss+xml" title="Articole Adam Cristina" href="https://cristinaadam.ro/rss.xml" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <meta property="og:locale" content="ro_RO" />
   <meta property="og:site_name" content="Adam Cristina · Psiholog Timișoara" />
@@ -29,6 +31,8 @@ const path = Astro.url.pathname;
   <meta property="og:url" content={canonical} />
   <meta property="og:image" content="https://cristinaadam.ro/assets/images/adam-cristina-psiholog.jpeg" />
   <meta property="og:image:alt" content="Adam Cristina, psiholog clinician în Timișoara" />
+  <meta property="og:image:width" content="1254" />
+  <meta property="og:image:height" content="1254" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={titlu} />
   <meta name="twitter:description" content={descriere} />
@@ -61,7 +65,7 @@ const path = Astro.url.pathname;
   <footer class="foot">
     <div class="wrap">
       <span>© 2026 Adam Cristina</span>
-      <span><a href="/confidentialitate">Confidențialitate</a> · <a href="/cookies">Cookies</a> · <a href="/termeni">Termeni</a></span>
+      <span><a href="/confidentialitate">Confidențialitate</a> · <a href="/cookies">Cookies</a> · <a href="/termeni">Termeni</a> · <a href="/sitemap.xml">Sitemap</a> · <a href="/rss.xml">RSS</a></span>
       <span>Dacă ești în criză acum, sună la 112.</span>
     </div>
   </footer>

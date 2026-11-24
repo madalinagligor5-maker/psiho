@@ -7,8 +7,24 @@ const arts = (await getCollection('articole')).sort(
 const formatData = (data) => data
   ? new Intl.DateTimeFormat('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${data}T12:00:00`))
   : '';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Articole de psihologie — Adam Cristina',
+  url: 'https://cristinaadam.ro/articole/',
+  inLanguage: 'ro-RO',
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: arts.map((a, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `https://cristinaadam.ro/articole/${a.slug}/`,
+      name: a.data.titlu,
+    })),
+  },
+};
 ---
-<Pagina titlu="Articole de psihologie | Adam Cristina, Timișoara" descriere="Articole scrise de Adam Cristina despre anxietate, epuizare și tipare relaționale, explicate clar și fără promisiuni simpliste.">
+<Pagina titlu="Articole de psihologie | Adam Cristina, Timișoara" descriere="Articole scrise de Adam Cristina despre anxietate, epuizare și tipare relaționale, explicate clar și fără promisiuni simpliste." schema={schema}>
   <section class="wrap head">
     <p class="eyebrow">Psihologie, pe înțeles</p>
     <h1>Articole despre anxietate, epuizare și relații</h1>

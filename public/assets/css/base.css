@@ -81,6 +81,10 @@ nav.main a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-
 .proza hr{border:0; height:1px; background:var(--line); margin:2.5rem 0}
 .inapoi{display:inline-block; margin-bottom:2rem; color:var(--ink-soft); text-decoration:none; font-size:.95rem}
 .inapoi:hover{color:var(--sage)}
+.breadcrumb{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;margin-bottom:1.25rem;color:var(--ink-faint);font-size:.9rem}
+.breadcrumb a{color:var(--ink-soft);text-decoration:none}
+.breadcrumb a:hover{color:var(--sage)}
+.breadcrumb span[aria-hidden="true"]{opacity:.55}
 
 /* profil profesional */
 .membru{padding:2.5rem 0; border-top:1px solid var(--line); max-width:760px}

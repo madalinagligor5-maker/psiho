@@ -9,6 +9,8 @@
 <meta name="author" content="Adam Cristina">
 <meta name="theme-color" content="#F8F1EA">
 <link rel="canonical" href="https://cristinaadam.ro/">
+<link rel="alternate" hreflang="ro-RO" href="https://cristinaadam.ro/">
+<link rel="alternate" type="application/rss+xml" title="Articole Adam Cristina" href="https://cristinaadam.ro/rss.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:type" content="website">
@@ -18,6 +20,8 @@
 <meta property="og:url" content="https://cristinaadam.ro/">
 <meta property="og:image" content="https://cristinaadam.ro/assets/images/adam-cristina-psiholog.jpeg">
 <meta property="og:image:alt" content="Adam Cristina, psiholog clinician în Timișoara">
+<meta property="og:image:width" content="1254">
+<meta property="og:image:height" content="1254">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Psiholog Timișoara | Adam Cristina">
 <meta name="twitter:description" content="Ședințe individuale și evaluări psihologice, în Timișoara și online.">
@@ -48,7 +52,27 @@
       "email": "terapiecunico@gmail.com",
       "telephone": "+40787541193",
       "priceRange": "150–180 RON",
+      "image": "https://cristinaadam.ro/assets/images/adam-cristina-psiholog.jpeg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Timișoara",
+        "addressRegion": "Timiș",
+        "addressCountry": "RO"
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "10:00", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "10:00", "closes": "15:00" }
+      ],
       "areaServed": ["Timișoara", "România"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicii psihologice",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ședință individuală la cabinet" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ședință psihologică online" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Evaluare psihologică" } }
+        ]
+      },
       "founder": { "@id": "https://cristinaadam.ro/#cristina-adam" }
     },
     {
@@ -266,11 +290,29 @@
   .form input:focus, .form textarea:focus{outline:2px solid var(--sage); outline-offset:1px; border-color:var(--sage)}
   .form .btn{margin-top:1rem; width:100%; justify-content:center; padding:.85rem}
   .form .btn[disabled]{opacity:.6; cursor:default}
-  .form .hp{position:absolute; left:-9999px; width:1px; height:1px}
+  .form .hp,.newsletter .hp{position:absolute; left:-9999px; width:1px; height:1px}
   .form-note{font-size:.82rem; color:var(--ink-faint); margin-top:.9rem; text-align:center}
   .form-msg{margin-top:.8rem; text-align:center; font-weight:600; font-size:.95rem; min-height:1.2em}
   .form-msg.ok{color:var(--sage)} .form-msg.err{color:#B4462E}
   @media (prefers-color-scheme:dark){ .form-msg.err{color:#E7A08E} }
+
+  /* newsletter */
+  .newsletter{display:grid;gap:1.8rem 3rem;align-items:center;background:color-mix(in srgb,var(--lav-bg) 58%,var(--surface));border:1px solid var(--line);border-radius:32px;padding:clamp(2rem,5vw,4rem)}
+  .newsletter h2{font-size:clamp(2rem,4vw,3.4rem);max-width:15ch}
+  .newsletter p{color:var(--ink-soft);max-width:52ch;margin-top:.9rem}
+  .newsletter__form{position:relative}
+  .newsletter__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.7rem}
+  .newsletter input[type=email]{min-width:0;width:100%;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:12px;padding:.85rem 1rem}
+  .newsletter input[type=email]:focus{outline:2px solid var(--sage);outline-offset:1px;border-color:var(--sage)}
+  .newsletter .btn{white-space:nowrap}
+  .newsletter .btn[disabled]{opacity:.6;cursor:default}
+  .newsletter__consent{display:flex;align-items:flex-start;gap:.65rem;margin-top:.9rem;color:var(--ink-soft);font-size:.82rem;line-height:1.5}
+  .newsletter__consent input{margin-top:.25rem;accent-color:var(--sage)}
+  .newsletter__consent a{color:var(--sage)}
+  .newsletter .form-msg{text-align:left}
+  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  @media(min-width:860px){.newsletter{grid-template-columns:.95fr 1.05fr}}
+  @media(max-width:560px){.newsletter__row{grid-template-columns:1fr}.newsletter .btn{width:100%;justify-content:center}}
 
   /* footer */
   footer.foot{padding:3.5rem 0 3rem; border-top:1px solid var(--line); margin-top:2rem}
@@ -510,6 +552,34 @@
       </div>
     </div>
   </section>
+
+  <!-- NEWSLETTER -->
+  <section class="band" id="newsletter">
+    <div class="wrap newsletter rise">
+      <div>
+        <p class="eyebrow">Newsletter</p>
+        <h2>Psihologie explicată fără grabă.</h2>
+        <p>Primești articole noi și idei practice despre anxietate, epuizare, relații și parenting. Fără mesaje dese și fără promisiuni simpliste.</p>
+      </div>
+      <form class="newsletter__form" id="newsletter-form">
+        <input type="hidden" name="access_key" value="beedf521-7a91-4329-9b2f-816696abb58d">
+        <input type="hidden" name="subject" value="Abonare nouă la newsletter — cristinaadam.ro">
+        <input type="hidden" name="from_name" value="Newsletter Adam Cristina">
+        <input type="hidden" name="tip" value="Abonare newsletter">
+        <label class="sr-only" for="newsletter-email">Adresa de email</label>
+        <div class="newsletter__row">
+          <input id="newsletter-email" type="email" name="email" required autocomplete="email" placeholder="adresa@exemplu.ro">
+          <button type="submit" class="btn" id="newsletter-btn">Mă abonez</button>
+        </div>
+        <label class="newsletter__consent">
+          <input type="checkbox" name="consimtamant" value="Da" required>
+          <span>Sunt de acord să primesc newsletterul și am citit <a href="/confidentialitate">politica de confidențialitate</a>. Mă pot retrage oricând.</span>
+        </label>
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="form-msg" id="newsletter-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
 </main>
 
 <footer class="foot">
@@ -534,12 +604,13 @@
           <li><a href="#cum">Cum lucrez</a></li>
           <li><a href="#despre">Despre mine</a></li>
           <li><a href="#intrebari">Întrebări</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
         </ul>
       </div>
     </div>
     <div class="foot__bottom">
       <span>© 2026 Adam Cristina</span>
-      <span class="foot-legal"><a href="/confidentialitate">Confidențialitate</a> · <a href="/cookies">Cookies</a> · <a href="/termeni">Termeni</a> · <a href="/sitemap.xml">Sitemap</a></span>
+      <span class="foot-legal"><a href="/confidentialitate">Confidențialitate</a> · <a href="/cookies">Cookies</a> · <a href="/termeni">Termeni</a> · <a href="/sitemap.xml">Sitemap</a> · <a href="/rss.xml">RSS</a></span>
       <span>Dacă ești în criză acum, sună la 112.</span>
     </div>
   </div>
@@ -583,6 +654,28 @@
         }).catch(function(){
           msg.textContent = 'Nu s-a putut trimite. Scrie-mi direct la terapiecunico@gmail.com.'; msg.className = 'form-msg err';
           btn.disabled = false; btn.textContent = 'Trimite mesajul';
+        });
+      });
+    }
+
+    // Lista de newsletter. Abonările ajung separat în Web3Forms și necesită consimțământ explicit.
+    var nf = document.getElementById('newsletter-form');
+    if(nf){
+      nf.addEventListener('submit', function(e){
+        e.preventDefault();
+        var msg = document.getElementById('newsletter-msg');
+        var btn = document.getElementById('newsletter-btn');
+        if(nf.botcheck && nf.botcheck.checked) return;
+        btn.disabled = true; btn.textContent = 'Se înscrie...'; msg.textContent = ''; msg.className = 'form-msg';
+        var data = {}; new FormData(nf).forEach(function(v,k){ data[k] = v; });
+        fetch('https://api.web3forms.com/submit', {
+          method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data)
+        }).then(function(r){ return r.json(); }).then(function(j){
+          if(j.success){ nf.reset(); msg.textContent = 'Te-ai înscris. Vei primi următorul articol pe email.'; msg.className = 'form-msg ok'; btn.textContent = 'Înscris'; }
+          else { throw new Error(j.message || 'eroare'); }
+        }).catch(function(){
+          msg.textContent = 'Înscrierea nu a reușit. Încearcă din nou sau scrie la terapiecunico@gmail.com.'; msg.className = 'form-msg err';
+          btn.disabled = false; btn.textContent = 'Mă abonez';
         });
       });
     }

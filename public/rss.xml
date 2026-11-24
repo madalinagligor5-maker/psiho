@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Articole de psihologie — Adam Cristina</title>
+    <link>https://cristinaadam.ro/articole/</link>
+    <description>Articole despre anxietate, epuizare și tipare relaționale, scrise de Adam Cristina.</description>
+    <language>ro-RO</language>
+    <lastBuildDate>Tue, 24 Nov 2026 10:00:00 +0200</lastBuildDate>
+    <atom:link href="https://cristinaadam.ro/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>De ce repetăm aceleași certuri în relații</title>
+      <link>https://cristinaadam.ro/articole/de-ce-se-repeta-aceleasi-certuri/</link>
+      <guid>https://cristinaadam.ro/articole/de-ce-se-repeta-aceleasi-certuri/</guid>
+      <pubDate>Wed, 20 May 2026 12:00:00 +0300</pubDate>
+      <description>O ceartă repetitivă poate arăta o secvență în care reacția unuia o intensifică pe a celuilalt.</description>
+    </item>
+    <item>
+      <title>Burnout și epuizare: de ce odihna nu este mereu suficientă</title>
+      <link>https://cristinaadam.ro/articole/burnout-nu-inseamna-ca-ai-muncit-prea-mult/</link>
+      <guid>https://cristinaadam.ro/articole/burnout-nu-inseamna-ca-ai-muncit-prea-mult/</guid>
+      <pubDate>Wed, 15 Apr 2026 12:00:00 +0300</pubDate>
+      <description>Epuizarea poate ține de control, presiune și limite, nu doar de numărul orelor lucrate.</description>
+    </item>
+    <item>
+      <title>Anxietatea: de ce apare și cum ajunge să se mențină</title>
+      <link>https://cristinaadam.ro/articole/anxietatea-nu-e-o-defectiune/</link>
+      <guid>https://cristinaadam.ro/articole/anxietatea-nu-e-o-defectiune/</guid>
+      <pubDate>Tue, 10 Mar 2026 12:00:00 +0200</pubDate>
+      <description>Anxietatea este un răspuns de alarmă care poate deveni prea frecvent sau prea intens.</description>
+    </item>
+  </channel>
+</rss>

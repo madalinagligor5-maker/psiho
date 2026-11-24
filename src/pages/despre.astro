@@ -6,8 +6,7 @@ const profil = await getEntry('echipa', '1-cristina');
 if (!profil) throw new Error('Profilul Adam Cristina lipsește din colecția de conținut.');
 const { Content } = await profil.render();
 const { nume, titlu, cpr, judet, regim } = profil.data;
-const schema = {
-  '@context': 'https://schema.org',
+const personSchema = {
   '@type': 'Person',
   '@id': 'https://cristinaadam.ro/#cristina-adam',
   name: nume,
@@ -32,6 +31,27 @@ const schema = {
     '@type': 'CollegeOrUniversity',
     name: 'Universitatea de Vest din Timișoara',
   },
+};
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    personSchema,
+    {
+      '@type': 'ProfilePage',
+      '@id': 'https://cristinaadam.ro/despre/#profile-page',
+      url: 'https://cristinaadam.ro/despre/',
+      name: 'Despre Adam Cristina, psiholog clinician în Timișoara',
+      mainEntity: { '@id': 'https://cristinaadam.ro/#cristina-adam' },
+      inLanguage: 'ro-RO',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Acasă', item: 'https://cristinaadam.ro/' },
+        { '@type': 'ListItem', position: 2, name: 'Despre mine', item: 'https://cristinaadam.ro/despre/' },
+      ],
+    },
+  ],
 };
 ---
 <Pagina titlu="Adam Cristina · psiholog clinician în Timișoara" descriere="Psiholog clinician autonom în Timișoara, cu formare sistemică, Cercul Siguranței, TBRI și competențe în evaluarea personalității." schema={schema}>
