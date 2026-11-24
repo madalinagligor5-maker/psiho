@@ -12,24 +12,39 @@ const schema = {
   '@id': 'https://cristinaadam.ro/#cristina-adam',
   name: nume,
   url: 'https://cristinaadam.ro/despre',
+  image: 'https://cristinaadam.ro/assets/images/adam-cristina-psiholog.jpeg',
   jobTitle: 'Psiholog clinician',
   description: 'Psiholog clinician în Timișoara, cod CPR 26689, cu ședințe la cabinet și online.',
+  telephone: '+40787541193',
+  memberOf: {
+    '@type': 'Organization',
+    name: 'Colegiul Psihologilor din România',
+  },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Universitatea de Vest din Timișoara',
+  },
 };
 ---
 <Pagina titlu="Adam Cristina · psiholog clinician în Timișoara" descriere="Formarea, acreditarea și abordarea profesională a psihologului clinician Adam Cristina din Timișoara. Cod CPR 26689, regim autonom." schema={schema}>
-  <section class="wrap head profil-head">
-    <p class="eyebrow">Despre mine</p>
-    <h1>{nume}</h1>
-    <p class="lead muted">
-      Sunt psiholog clinician în Timișoara și psihoterapeut în formare. În ședințe,
-      privim atât dificultatea de acum, cât și contextul în care a apărut și se menține.
-    </p>
+  <section class="wrap head profil-head profil-intro">
+    <div>
+      <p class="eyebrow">Despre mine</p>
+      <h1>{nume}</h1>
+      <p class="lead muted">
+        Psiholog clinician autonom și consilier școlar. Lucrez cu adulți, copii și părinți,
+        iar în ședințe privim atât dificultatea de acum, cât și contextul în care se menține.
+      </p>
+    </div>
+    <figure class="profil-portret">
+      <img src="/assets/images/adam-cristina-psiholog.jpeg" width="1254" height="1254" alt="Adam Cristina, psiholog clinician în Timișoara" />
+    </figure>
   </section>
   <article class="wrap membru profil-card">
     <header>
       <p class="rol">{titlu}</p>
       <p class="acred">
-        Cod CPR <strong>{cpr}</strong>
+        Adam Nicoleta Cristina · Cod CPR <strong>{cpr}</strong>
         {judet && <> · Filiala {judet}</>}
         {' · '}{regim === 'autonom' ? 'regim autonom' : regim}
       </p>

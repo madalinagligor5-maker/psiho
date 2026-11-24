@@ -18,7 +18,7 @@ const path = Astro.url.pathname;
   <meta name="description" content={descriere} />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Adam Cristina" />
-  <meta name="theme-color" content="#F6F3ED" />
+  <meta name="theme-color" content="#F8F1EA" />
   <link rel="canonical" href={canonical} />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <meta property="og:locale" content="ro_RO" />
@@ -27,9 +27,12 @@ const path = Astro.url.pathname;
   <meta property="og:title" content={titlu} />
   <meta property="og:description" content={descriere} />
   <meta property="og:url" content={canonical} />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://cristinaadam.ro/assets/images/adam-cristina-psiholog.jpeg" />
+  <meta property="og:image:alt" content="Adam Cristina, psiholog clinician în Timișoara" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={titlu} />
   <meta name="twitter:description" content={descriere} />
+  <meta name="twitter:image" content="https://cristinaadam.ro/assets/images/adam-cristina-psiholog.jpeg" />
   {dataPublicare && <meta property="article:published_time" content={dataPublicare} />}
   {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   <link rel="preload" href="/assets/fonts/Caveat-logo.woff2" as="font" type="font/woff2" crossorigin />

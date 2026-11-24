@@ -4,23 +4,23 @@
   src:url("/assets/fonts/Caveat-logo.woff2") format("woff2");
 }
 :root{
-  --bg:#F6F3ED; --surface:#FFFDFA; --surface-2:#EAEFEA;
-  --ink:#24312A; --ink-soft:#59665F; --ink-faint:#7A867F;
-  --line:#E3DED4; --line-2:#D2D8D1;
-  --sage:#496456; --sage-bg:#E2EAE3;
-  --lav:#5D7266; --lav-bg:#E8EDE8;
-  --bleu:#3F5D50; --azur:#E4ECE7;
-  --shadow:0 1px 2px rgba(30,47,54,.04), 0 14px 40px rgba(30,47,54,.07);
+  --bg:#F8F1EA; --surface:#FFFDFC; --surface-2:#F2E3D8;
+  --ink:#3C2B26; --ink-soft:#6F5B53; --ink-faint:#907B72;
+  --line:#E8D8CD; --line-2:#D9C3B6;
+  --sage:#747860; --sage-bg:#E7E6D8;
+  --lav:#B87665; --lav-bg:#F1DCD3;
+  --bleu:#9A6658; --azur:#F4E4DC;
+  --shadow:0 1px 2px rgba(80,48,37,.04), 0 18px 48px rgba(104,66,50,.09);
   --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --r:16px; --ease:cubic-bezier(.16,1,.3,1); --wrap:min(1200px,92vw);
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --bg:#17201B; --surface:#202A24; --surface-2:#1B261F;
-    --ink:#EDF2EE; --ink-soft:#B4BFB8; --ink-faint:#8D9A92;
-    --line:#314038; --line-2:#405249;
-    --sage:#B2D0BC; --sage-bg:#27382E; --lav:#AFC8B7; --lav-bg:#26352C; --bleu:#A8C6B3; --azur:#22342B;
+    --bg:#241A17; --surface:#30231F; --surface-2:#392721;
+    --ink:#F6ECE6; --ink-soft:#D0BBB0; --ink-faint:#AA9185;
+    --line:#49342D; --line-2:#60463C;
+    --sage:#C4C6A8; --sage-bg:#3E4032; --lav:#DCA997; --lav-bg:#4A302A; --bleu:#D7A18F; --azur:#432E28;
     --shadow:0 1px 2px rgba(0,0,0,.25), 0 18px 50px rgba(0,0,0,.32);
   }
 }
@@ -106,7 +106,11 @@ body{background:radial-gradient(ellipse at 100% 0,color-mix(in srgb,var(--sage-b
 .membru{background:var(--surface);padding:2rem;border:1px solid var(--line);border-radius:24px;margin-block:2rem}
 .membru .proza{width:100%}
 .profil-head .lead{max-width:42rem;margin-top:1.25rem;font:400 clamp(1.2rem,2vw,1.55rem)/1.55 var(--serif)}
+.profil-intro{display:grid;gap:2rem;align-items:center}
+.profil-portret{margin:0;width:min(360px,80vw)}
+.profil-portret img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%;box-shadow:0 22px 58px rgba(104,66,50,.14)}
 .profil-card{display:grid;gap:1.25rem 3rem}
 .profil-card header{padding-bottom:1rem;border-bottom:1px solid var(--line)}
 .muted{color:var(--ink-soft)}
+@media(min-width:820px){.profil-intro{grid-template-columns:minmax(0,1fr) 320px}.profil-portret{justify-self:end}}
 @media(max-width:600px){.bar{gap:.5rem}.marca{font-size:1.35rem}.marca small{font-size:.75rem}.bar .btn{font-size:.875rem;padding:.7rem .85rem}.membru{padding:1.4rem}}
