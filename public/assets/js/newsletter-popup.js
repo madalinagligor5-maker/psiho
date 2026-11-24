@@ -15,6 +15,7 @@
   function citeste(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
   function scrie(v) { try { localStorage.setItem(CHEIE, JSON.stringify(v)); } catch (e) {} }
 
+  if (/^\/newsletter\/?$/.test(location.pathname)) return; // pagina dedicata are deja formularul
   var stare = citeste(CHEIE);
   if (stare && (stare.abonat || (Date.now() - new Date(stare.inchis).getTime()) < ZILE_PAUZA * 864e5)) return;
 

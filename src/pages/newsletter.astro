@@ -1,0 +1,81 @@
+---
+import Pagina from '../layouts/Pagina.astro';
+---
+<Pagina
+  titlu="Newsletter | Adam Cristina · Psiholog Timișoara"
+  descriere="Abonează-te la newsletterul Adam Cristina: articole noi și idei practice despre anxietate, epuizare, relații și parenting."
+>
+  <section class="wrap nl-pagina">
+    <div class="nl-card">
+      <p class="eyebrow">Newsletter</p>
+      <h1>Psihologie explicată fără grabă.</h1>
+      <p class="muted nl-intro">Primești articole noi și idei practice despre anxietate, epuizare, relații și parenting. Fără mesaje dese și fără promisiuni simpliste.</p>
+
+      <form id="nl-form" novalidate>
+        <input type="hidden" name="access_key" value="beedf521-7a91-4329-9b2f-816696abb58d" />
+        <input type="hidden" name="subject" value="Abonare nouă la newsletter — cristinaadam.ro" />
+        <input type="hidden" name="from_name" value="Newsletter Adam Cristina" />
+        <input type="hidden" name="tip" value="Abonare newsletter (link /newsletter)" />
+        <label class="nl-ascuns" for="nl-email">Adresa de email</label>
+        <div class="nl-rand">
+          <input id="nl-email" type="email" name="email" required autocomplete="email" placeholder="adresa@exemplu.ro" />
+          <button type="submit" class="btn" id="nl-btn">Mă abonez</button>
+        </div>
+        <label class="nl-acord">
+          <input type="checkbox" name="consimtamant" value="Da" required />
+          <span>Sunt de acord să primesc newsletterul și am citit <a href="/confidentialitate">politica de confidențialitate</a>. Mă pot retrage oricând.</span>
+        </label>
+        <input type="checkbox" name="botcheck" class="nl-ascuns" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <p class="nl-msg" id="nl-msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="nl-inapoi"><a href="/articole">Citește articolele</a> · <a href="/">Pagina principală</a></p>
+    </div>
+  </section>
+
+  <style>
+    .nl-pagina{padding:clamp(2.5rem,7vw,6rem) 0;min-height:60vh;display:grid;place-items:center}
+    .nl-card{width:min(38rem,100%);background:color-mix(in srgb,var(--lav-bg) 58%,var(--surface));border:1px solid var(--line);border-radius:32px;padding:clamp(1.8rem,5vw,3.2rem)}
+    .nl-card h1{font-size:clamp(2rem,1.3rem+3vw,3rem);margin-top:.6rem}
+    .nl-intro{margin:.9rem 0 1.6rem}
+    .nl-rand{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.7rem}
+    .nl-rand input{min-width:0;width:100%;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:12px;padding:.85rem 1rem}
+    .nl-rand input:focus{outline:2px solid var(--sage);outline-offset:1px;border-color:var(--sage)}
+    .nl-rand .btn[disabled]{opacity:.6;cursor:default}
+    .nl-acord{display:flex;align-items:flex-start;gap:.65rem;margin-top:.9rem;color:var(--ink-soft);font-size:.85rem;line-height:1.5}
+    .nl-acord input{margin-top:.25rem;accent-color:var(--sage)}
+    .nl-ascuns{position:absolute;left:-9999px;width:1px;height:1px}
+    .nl-msg{margin:.9rem 0 0;min-height:1em}
+    .nl-msg.err{color:#A04A3A}
+    .nl-msg.ok{color:var(--sage);font-weight:600}
+    .nl-inapoi{margin:1.6rem 0 0;font-size:.92rem}
+    @media(max-width:560px){.nl-rand{grid-template-columns:1fr}.nl-rand .btn{width:100%;justify-content:center}}
+  </style>
+
+  <script is:inline>
+    (function () {
+      var f = document.getElementById('nl-form');
+      var msg = document.getElementById('nl-msg');
+      var btn = document.getElementById('nl-btn');
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (f.botcheck.checked) return;
+        if (!f.email.value || !f.email.checkValidity()) { msg.textContent = 'Scrie o adresă de email validă.'; msg.className = 'nl-msg err'; f.email.focus(); return; }
+        if (!f.consimtamant.checked) { msg.textContent = 'Bifează acordul ca să te poți abona.'; msg.className = 'nl-msg err'; return; }
+        btn.disabled = true; btn.textContent = 'Se înscrie...'; msg.textContent = ''; msg.className = 'nl-msg';
+        var data = {}; new FormData(f).forEach(function (v, k) { data[k] = v; });
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data)
+        }).then(function (r) { return r.json(); }).then(function (j) {
+          if (!j.success) throw new Error(j.message || 'eroare');
+          try { localStorage.setItem('newsletter-popup-v1', JSON.stringify({ abonat: true, la: new Date().toISOString() })); } catch (e) {}
+          if (window.dataLayer) window.dataLayer.push({ event: 'newsletter_abonare', sursa: 'link' });
+          f.reset(); msg.textContent = 'Te-ai înscris. Vei primi următorul articol pe email. Mulțumesc!'; msg.className = 'nl-msg ok'; btn.textContent = 'Înscris';
+        }).catch(function () {
+          msg.textContent = 'Înscrierea nu a reușit. Încearcă din nou sau scrie la terapiecunico@gmail.com.'; msg.className = 'nl-msg err';
+          btn.disabled = false; btn.textContent = 'Mă abonez';
+        });
+      });
+    })();
+  </script>
+</Pagina>
