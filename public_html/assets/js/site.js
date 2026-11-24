@@ -177,6 +177,9 @@
       var acceptaAnaliza = actiune === 'salveaza' && bifa && bifa.checked;
 
       scrieAlegerea(!!acceptaAnaliza);
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', { analytics_storage: acceptaAnaliza ? 'granted' : 'denied' });
+      }
       banner.hidden = true;
       if (acceptaAnaliza) pornesteAnaliza();
     });

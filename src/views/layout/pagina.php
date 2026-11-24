@@ -108,13 +108,27 @@ $analiza  = config('analiza');
 <meta name="analiza-script"  content="<?= e($analiza['script']) ?>">
 <meta name="analiza-domeniu" content="<?= e($analiza['domeniu']) ?>">
 <?php endif ?>
-<!-- Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-M3VZTFLL"></script>
+<!-- Google Tag Manager, cu Consent Mode v2: totul refuzat pana la accept in banner -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', wait_for_update: 500
+  });
+  try {
+    var c = JSON.parse(localStorage.getItem('consimtamant-v1') || 'null');
+    if (c && c.analiza) gtag('consent', 'update', { analytics_storage: 'granted' });
+  } catch (e) {}
   gtag('js', new Date());
+  dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
 </script>
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-M3VZTFLL"></script>
+<?php /* Bannerul GTM apare doar cand nu e configurata analiza proprie; altfel
+        alegerea din banner-cookies.php actualizeaza consimtamantul (site.js). */ ?>
+<?php if (empty($analiza['domeniu'])): ?>
+<script defer src="<?= e(asset('assets/js/cookies.js')) ?>"></script>
+<?php endif ?>
 </head>
 
 <body>
