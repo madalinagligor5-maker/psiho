@@ -165,7 +165,7 @@
   .bar .marca{margin-right:auto}
   .bar__cta{flex:none}
   .marca{display:inline-flex;align-items:center;gap:.72rem;font-family:"Caveat",var(--serif); font-weight:700; font-size:1.7rem; line-height:1; text-decoration:none; color:var(--ink); white-space:nowrap}
-  .marca__sigil{display:block;width:42px;height:42px;flex:none}
+  .marca__sigil{display:block;width:50px;height:50px;flex:none}
   .marca__text{display:block}
   .marca small{display:block; font-family:var(--sans); font-size:.72rem; font-weight:500; letter-spacing:.04em; color:var(--ink-soft); margin-top:.15rem}
   nav.main{display:none; gap:1.6rem; align-items:center}
@@ -249,6 +249,8 @@
   .price{font-family:var(--serif); font-size:1.7rem; color:var(--ink); margin:.2rem 0}
   .price small{font-size:.85rem; color:var(--ink-faint); font-family:var(--sans)}
   .card p.desc{font-size:.92rem; color:var(--ink-soft); margin-top:.5rem}
+  .card__link{display:inline-block;margin-top:1rem;color:var(--sage);font-weight:600;text-decoration:none;text-underline-offset:4px}
+  .card__link:hover{text-decoration:underline}
 
   /* pasi */
   .steps{counter-reset:s; display:grid; gap:1.1rem; margin-top:2.6rem}
@@ -416,7 +418,7 @@
 <header class="top">
   <div class="bar">
     <a class="marca" href="/">
-      <img class="marca__sigil" src="/favicon.svg" width="42" height="42" alt="">
+      <img class="marca__sigil" src="/favicon.svg" width="50" height="50" alt="">
       <span class="marca__text">Adam Cristina<small>Cabinet de psihologie · Timișoara</small></span>
     </a>
     <nav class="main" aria-label="Navigație principală">
@@ -508,9 +510,9 @@
       <h2 class="lead rise d1">Prețurile, de la început.</h2>
       <p class="muted rise d2" style="margin-top:1rem; max-width:52ch">Afișez costurile direct, ca să poți decide în cunoștință de cauză dacă serviciul ți se potrivește.</p>
       <div class="svc">
-        <div class="card rise"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 18c0-4 3-6 8-6s8 2 8 6"/><circle cx="12" cy="7" r="3"/></svg></span><h3>Ședință individuală</h3><p class="price"><span data-c="pret_individual">150</span> lei <small>· 50 min</small></p><p class="desc">O conversație confidențială, cu obiective stabilite împreună și spațiu pentru ceea ce îți este greu să pui în cuvinte.</p></div>
-        <div class="card rise d1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><h3>Ședință online</h3><p class="price"><span data-c="pret_online">150</span> lei <small>· 50 min</small></p><p class="desc">Aceeași ședință, de oriunde ai un spațiu liniștit. Potrivită pentru un program încărcat sau pentru distanță.</p></div>
-        <div class="card rise d2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 3h6l-1 6h3l-8 12 2-8H6z"/></svg></span><h3>Evaluare psihologică</h3><p class="price"><span data-c="pret_evaluare">180</span> lei <small>· 50 min</small></p><p class="desc">Una sau mai multe întâlniri, instrumente standardizate și discutarea rezultatelor, finalizate cu un raport de evaluare.</p></div>
+        <div class="card rise"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 18c0-4 3-6 8-6s8 2 8 6"/><circle cx="12" cy="7" r="3"/></svg></span><h3>Ședință individuală</h3><p class="price"><span data-c="pret_individual">150</span> lei <small>· 50 min</small></p><p class="desc">O conversație confidențială, cu obiective stabilite împreună și spațiu pentru ceea ce îți este greu să pui în cuvinte.</p><a class="card__link" href="/servicii/consiliere-psihologica-timisoara/">Detalii despre consiliere →</a></div>
+        <div class="card rise d1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><h3>Ședință online</h3><p class="price"><span data-c="pret_online">150</span> lei <small>· 50 min</small></p><p class="desc">Aceeași ședință, de oriunde ai un spațiu liniștit. Potrivită pentru un program încărcat sau pentru distanță.</p><a class="card__link" href="/servicii/psiholog-online/">Cum funcționează online →</a></div>
+        <div class="card rise d2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 3h6l-1 6h3l-8 12 2-8H6z"/></svg></span><h3>Evaluare psihologică</h3><p class="price"><span data-c="pret_evaluare">180</span> lei <small>· 50 min</small></p><p class="desc">Una sau mai multe întâlniri, instrumente standardizate și discutarea rezultatelor, finalizate cu un raport de evaluare.</p><a class="card__link" href="/servicii/evaluare-psihologica-timisoara/">Detalii despre evaluare →</a></div>
         <div class="card rise d3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><h3>Fișe CES și încadrare grad</h3><p class="price"><span data-c="pret_fise">180</span> lei</p><p class="desc">Documentație psihologică pentru comisiile de evaluare: cerințe educaționale speciale și încadrare în grad de handicap.</p></div>
       </div>
     </div>

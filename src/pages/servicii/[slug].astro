@@ -1,0 +1,105 @@
+---
+import Pagina from '../../layouts/Pagina.astro';
+
+const servicii = {
+  'consiliere-psihologica-timisoara': {
+    titlu: 'Consiliere psihologică în Timișoara | Adam Cristina',
+    descriere: 'Consiliere psihologică individuală în Timișoara cu Adam Cristina, psiholog clinician autonom. Ședințe de 50 de minute, obiective clare și cadru confidențial.',
+    h1: 'Consiliere psihologică individuală în Timișoara',
+    rezumat: 'Un spațiu confidențial în care putem înțelege ce întreține dificultatea de acum și ce schimbări sunt realiste pentru tine.',
+    pret: '150 lei · 50 de minute',
+    sectiuni: [
+      ['Când poate fi utilă', 'Poți cere sprijin când anxietatea, epuizarea, tristețea sau dificultățile relaționale persistă și încep să îți restrângă viața. Nu este nevoie să aștepți o criză sau să ai deja un diagnostic. Uneori, punctul de plecare este pur și simplu senzația că aceleași reacții și situații se repetă.'],
+      ['Cum începe procesul', 'Prima întâlnire clarifică motivul pentru care ai venit, contextul în care a apărut dificultatea și ce ai vrea să fie diferit. Stabilim împreună obiective observabile și discutăm ritmul ședințelor. Nu promit o durată standard: procesul se adaptează situației și resurselor fiecărei persoane.'],
+      ['Cum lucrez', 'Privesc persoana în contextul relațiilor, al familiei și al rolurilor sale. Formarea sistemică mă ajută să observ secvențele care se repetă, fără să reduc omul la un simptom sau să caut un vinovat. Lucrăm clar, cu explicații și cu reevaluarea periodică a obiectivelor.'],
+      ['Unde au loc ședințele', 'Ședințele la cabinet au loc în Timișoara. Pentru persoanele care locuiesc în alt oraș sau au un program dificil, există și varianta online. Discuția inițială de 20 de minute este gratuită și ne ajută să vedem dacă abordarea mea ți se potrivește.'],
+    ],
+  },
+  'evaluare-psihologica-timisoara': {
+    titlu: 'Evaluare psihologică în Timișoara | Adam Cristina',
+    descriere: 'Evaluare psihologică în Timișoara realizată de Adam Cristina, psiholog clinician autonom. Interviu clinic, instrumente standardizate și discutarea rezultatelor.',
+    h1: 'Evaluare psihologică în Timișoara',
+    rezumat: 'Evaluarea clarifică o întrebare concretă prin interviu clinic, instrumente adecvate și integrarea rezultatelor într-o imagine coerentă.',
+    pret: 'de la 180 lei · în funcție de solicitare',
+    sectiuni: [
+      ['Ce presupune evaluarea', 'Procesul începe cu o discuție despre motivul solicitării și întrebările la care evaluarea trebuie să răspundă. În funcție de situație, folosesc interviul clinic, observația și instrumente psihologice standardizate. Numărul întâlnirilor diferă în funcție de complexitate.'],
+      ['Evaluarea personalității', 'Formarea mea include stagiul „Evaluarea personalității — de la normalitate la patologie” și licență pentru utilizarea Inventarului de personalitate Big Five Plus. Instrumentele nu sunt interpretate izolat; rezultatele sunt puse în legătură cu istoricul, contextul și obiectivul evaluării.'],
+      ['Cum primești rezultatele', 'La final discutăm concluziile într-un limbaj clar, inclusiv limitele instrumentelor folosite și recomandările care rezultă. Atunci când solicitarea presupune un document profesional, forma și conținutul acestuia sunt stabilite de la început.'],
+      ['Programare și confidențialitate', 'Evaluarea are loc la cabinet în Timișoara, într-un cadru confidențial și conform competențelor profesionale. Pentru a estima durata și costul, este util să menționezi scopul evaluării în mesajul inițial, fără să trimiți documente medicale prin formularul site-ului.'],
+    ],
+  },
+  'psiholog-online': {
+    titlu: 'Psiholog online | Ședințe cu Adam Cristina',
+    descriere: 'Ședințe online cu Adam Cristina, psiholog clinician autonom. Consiliere psihologică pentru adulți, dintr-un spațiu privat, cu aceeași durată ca la cabinet.',
+    h1: 'Ședințe cu psiholog online',
+    rezumat: 'Varianta online păstrează cadrul și durata ședinței de la cabinet și poate fi potrivită când distanța sau programul fac deplasarea dificilă.',
+    pret: '150 lei · 50 de minute',
+    sectiuni: [
+      ['Pentru cine poate funcționa', 'Ședințele online pot fi utile dacă locuiești în alt oraș, călătorești des, ai mobilitate redusă sau un program care face dificilă deplasarea. Ai nevoie de o conexiune stabilă, căști dacă este posibil și un loc în care poți vorbi fără să fii auzit sau întrerupt.'],
+      ['Ce rămâne la fel', 'Durata, confidențialitatea și obiectivele sunt aceleași ca la cabinet. Discutăm motivul pentru care ai cerut sprijin, observăm tiparele care mențin dificultatea și urmărim schimbările de la o întâlnire la alta. Plata se face prin transfer în ziua ședinței.'],
+      ['Când online nu este suficient', 'Unele evaluări, situații de criză sau nevoi care cer intervenție locală pot necesita întâlniri la cabinet ori orientarea către un alt serviciu. Discutăm aceste limite înainte de a începe, astfel încât forma de lucru să fie potrivită și sigură.'],
+      ['Prima discuție', 'Putem începe cu o conversație de 20 de minute, gratuită și fără obligația de a continua. Îmi spui pe scurt ce cauți, îți explic modul de lucru și stabilim dacă ședințele online sunt o variantă potrivită pentru situația ta.'],
+    ],
+  },
+};
+
+export function getStaticPaths() {
+  return [
+    'consiliere-psihologica-timisoara',
+    'evaluare-psihologica-timisoara',
+    'psiholog-online',
+  ].map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const serviciu = servicii[slug];
+const canonical = `https://cristinaadam.ro/servicii/${slug}/`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': `${canonical}#service`,
+      name: serviciu.h1,
+      description: serviciu.descriere,
+      url: canonical,
+      areaServed: slug === 'psiholog-online' ? 'România' : 'Timișoara',
+      provider: { '@type': 'ProfessionalService', '@id': 'https://cristinaadam.ro/#cabinet', name: 'Cabinet de psihologie Adam Cristina' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Acasă', item: 'https://cristinaadam.ro/' },
+        { '@type': 'ListItem', position: 2, name: 'Servicii', item: 'https://cristinaadam.ro/#servicii' },
+        { '@type': 'ListItem', position: 3, name: serviciu.h1, item: canonical },
+      ],
+    },
+  ],
+};
+---
+<Pagina titlu={serviciu.titlu} descriere={serviciu.descriere} schema={schema}>
+  <div class="proza-wrap serviciu-page">
+    <article class="proza">
+      <nav class="breadcrumb" aria-label="Fir de navigare">
+        <a href="/">Acasă</a><span aria-hidden="true">/</span>
+        <a href="/#servicii">Servicii</a><span aria-hidden="true">/</span>
+        <span aria-current="page">{serviciu.h1}</span>
+      </nav>
+      <p class="cat">Servicii psihologice</p>
+      <h1>{serviciu.h1}</h1>
+      <p class="rezumat">{serviciu.rezumat}</p>
+      <p class="serviciu-pret">{serviciu.pret}</p>
+      {serviciu.sectiuni.map(([titlu, continut]) => (
+        <section>
+          <h2>{titlu}</h2>
+          <p>{continut}</p>
+        </section>
+      ))}
+      <aside class="serviciu-cta">
+        <h2>Putem începe cu o discuție scurtă.</h2>
+        <p>Conversația de cunoaștere durează 20 de minute, este gratuită și nu te obligă să continui.</p>
+        <a class="btn" href="/#contact">Programează discuția inițială</a>
+      </aside>
+    </article>
+  </div>
+</Pagina>

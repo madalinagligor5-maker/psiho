@@ -1,6 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Monograma CA">
-  <circle cx="48" cy="48" r="45" fill="#F8F1EA" stroke="#D7A48E" stroke-width="3"/>
-  <path d="M45 30.5c-3.5-4.2-8.4-6.3-14-6.3-10.5 0-18.8 9-18.8 23.8S20.5 71.8 31 71.8c5.8 0 10.8-2.2 14.4-6.7" fill="none" stroke="#747860" stroke-width="7" stroke-linecap="round"/>
-  <path d="M42 70 58.2 26h5.6L80 70h-7.4l-3.8-10.8H52.9L49.2 70Zm13.2-17.4h11.3l-5.7-16.8Z" fill="#A96F5F"/>
-  <path d="M73 21c6.2-7.6 11-6.8 12.5-6.2-1.4 6.1-5.7 10.1-12.5 11.1" fill="#747860" opacity=".8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Monograma botanică CA, Adam Cristina">
+  <circle cx="80" cy="80" r="75" fill="#F8F1EA" stroke="#D7A48E" stroke-width="4"/>
+  <path d="M24 93c8-27 24-48 48-61" fill="none" stroke="#747860" stroke-width="3" stroke-linecap="round"/>
+  <path d="M34 72c-13-4-17-13-16-22 11 2 19 9 19 20M43 58c-6-12-2-21 5-27 8 8 9 18 2 27M54 46c2-13 10-19 19-20 1 11-5 19-16 24" fill="#C88D79" opacity=".82"/>
+  <path d="M29 84c-8-9-7-18-2-25 9 6 12 14 8 25M45 67c2-12 10-18 19-18 0 11-6 18-17 22M58 50c6-10 15-13 23-10-3 10-11 15-22 15" fill="#7C8068"/>
+  <path d="M82 49c-7-7-16-11-27-11-22 0-37 17-37 43s15 42 37 42c11 0 20-4 28-12" fill="none" stroke="#9A6658" stroke-width="7" stroke-linecap="round"/>
+  <path d="M59 122 83 54h7l25 68h-9l-6-17H74l-6 17Zm18-25h20L87 67Z" fill="#A66D5C"/>
+  <path d="M98 42c9 4 15 11 16 19 .5 5-2 8-1 12 1 3 7 4 8 7 1 3-4 5-8 6 1 5-1 8-4 11-3 3-5 8-4 15" fill="none" stroke="#6E544B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M110 91c4 1 7 1 10-1M107 100c4 1 7 0 9-2" fill="none" stroke="#6E544B" stroke-width="2" stroke-linecap="round"/>
 </svg>

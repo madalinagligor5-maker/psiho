@@ -40,7 +40,7 @@ header.top{position:sticky; top:0; z-index:40; background:color-mix(in srgb,var(
 .bar{width:var(--wrap); margin-inline:auto; display:flex; align-items:center; gap:1.5rem; height:74px}
 .bar .marca{margin-right:auto}
 .marca{display:inline-flex;align-items:center;gap:.72rem;font-family:"Caveat",var(--serif); font-weight:700; font-size:1.7rem; line-height:1; text-decoration:none; color:var(--ink); white-space:nowrap}
-.marca__sigil{display:block;width:42px;height:42px;flex:none}
+.marca__sigil{display:block;width:50px;height:50px;flex:none}
 .marca__text{display:block}
 .marca small{display:block; font-family:var(--sans); font-size:.72rem; font-weight:500; letter-spacing:.04em; color:var(--ink-soft); margin-top:.15rem}
 nav.main{display:none; gap:1.6rem; align-items:center}
@@ -85,6 +85,10 @@ nav.main a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-
 .breadcrumb a{color:var(--ink-soft);text-decoration:none}
 .breadcrumb a:hover{color:var(--sage)}
 .breadcrumb span[aria-hidden="true"]{opacity:.55}
+.serviciu-pret{display:inline-block;margin:0 0 1.5rem;padding:.55rem .8rem;background:var(--sage-bg);color:var(--sage);border-radius:9px;font-weight:600}
+.serviciu-cta{margin-top:3rem;padding:clamp(1.5rem,4vw,2.5rem);background:color-mix(in srgb,var(--lav-bg) 55%,var(--surface));border:1px solid var(--line);border-radius:24px}
+.serviciu-cta h2{margin-top:0}
+.serviciu-cta .btn{margin-top:.8rem;color:#fff}
 
 /* profil profesional */
 .membru{padding:2.5rem 0; border-top:1px solid var(--line); max-width:760px}
