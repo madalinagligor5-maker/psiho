@@ -3,6 +3,8 @@ titlu: "De ce repetăm aceleași certuri în relații"
 rezumat: "O ceartă repetitivă nu spune neapărat cine are dreptate. De multe ori arată o secvență în care reacția unuia o intensifică pe a celuilalt."
 categorie: "Tipare relaționale"
 data: "2026-05-20"
+imagine: "/assets/images/articol-tipare-relationale.jpg"
+imagineAlt: "Doi parteneri surprinși într-un tipar repetitiv de apropiere și retragere"
 ---
 
 Partenerul se schimbă, contextul se schimbă, dar uneori aceeași ceartă revine.

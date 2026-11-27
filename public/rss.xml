@@ -3,10 +3,17 @@
   <channel>
     <title>Articole de psihologie — Adam Cristina</title>
     <link>https://cristinaadam.ro/articole/</link>
-    <description>Articole despre anxietate, epuizare și tipare relaționale, scrise de Adam Cristina.</description>
+    <description>Articole despre anxietate, epuizare, relații și parenting, scrise de Adam Cristina.</description>
     <language>ro-RO</language>
-    <lastBuildDate>Tue, 24 Nov 2026 10:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2026 10:00:00 +0200</lastBuildDate>
     <atom:link href="https://cristinaadam.ro/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cercul Siguranței: cum înțelegem nevoile copilului</title>
+      <link>https://cristinaadam.ro/articole/cercul-sigurantei-nevoile-copilului/</link>
+      <guid>https://cristinaadam.ro/articole/cercul-sigurantei-nevoile-copilului/</guid>
+      <pubDate>Fri, 27 Nov 2026 10:00:00 +0200</pubDate>
+      <description>Copilul are nevoie să exploreze și să se întoarcă la un adult disponibil. Cercul Siguranței îi ajută pe părinți să observe nevoia din spatele comportamentului.</description>
+    </item>
     <item>
       <title>De ce repetăm aceleași certuri în relații</title>
       <link>https://cristinaadam.ro/articole/de-ce-se-repeta-aceleasi-certuri/</link>

@@ -10,6 +10,9 @@ export async function getStaticPaths() {
 const { a } = Astro.props;
 const { Content } = await a.render();
 const canonical = `https://cristinaadam.ro/articole/${a.slug}/`;
+const imagineUrl = a.data.imagine
+  ? new URL(a.data.imagine, 'https://cristinaadam.ro').href
+  : 'https://cristinaadam.ro/assets/images/adam-cristina-psiholog.jpeg';
 const formatData = a.data.data
   ? new Intl.DateTimeFormat('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${a.data.data}T12:00:00`))
   : '';
@@ -23,7 +26,7 @@ const articleSchema = {
   ...(a.data.data ? { datePublished: a.data.data, dateModified: a.data.data } : {}),
   author: { '@type': 'Person', '@id': 'https://cristinaadam.ro/#cristina-adam', name: 'Adam Cristina' },
   publisher: { '@type': 'Person', '@id': 'https://cristinaadam.ro/#cristina-adam', name: 'Adam Cristina' },
-  image: 'https://cristinaadam.ro/assets/images/adam-cristina-psiholog.jpeg',
+  image: imagineUrl,
 };
 const schema = {
   '@context': 'https://schema.org',
@@ -40,7 +43,7 @@ const schema = {
   ],
 };
 ---
-<Pagina titlu={`${a.data.titlu} | Adam Cristina`} descriere={a.data.rezumat} tip="article" dataPublicare={a.data.data} schema={schema}>
+<Pagina titlu={`${a.data.titlu} | Adam Cristina`} descriere={a.data.rezumat} tip="article" dataPublicare={a.data.data} schema={schema} imagine={imagineUrl} imagineAlt={a.data.imagineAlt}>
   <div class="proza-wrap">
     <article class="proza">
       <nav class="breadcrumb" aria-label="Fir de navigare">
@@ -52,6 +55,11 @@ const schema = {
       <h1>{a.data.titlu}</h1>
       {a.data.data && <p class="meta">Publicat de Adam Cristina · <time datetime={a.data.data}>{formatData}</time></p>}
       <p class="rezumat">{a.data.rezumat}</p>
+      {a.data.imagine && (
+        <figure class="articol-hero">
+          <img src={a.data.imagine} alt={a.data.imagineAlt || ''} width="1536" height="1024" loading="eager" fetchpriority="high" />
+        </figure>
+      )}
       <Content />
     </article>
   </div>

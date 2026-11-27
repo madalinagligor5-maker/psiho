@@ -7,6 +7,8 @@ const articole = defineCollection({
     rezumat: z.string(),
     categorie: z.string().optional(),
     data: z.string().optional(),
+    imagine: z.string().optional(),
+    imagineAlt: z.string().optional(),
   }),
 });
 

@@ -3,6 +3,8 @@ titlu: "Anxietatea: de ce apare și cum ajunge să se mențină"
 rezumat: "Anxietatea este un răspuns de alarmă. Devine dificilă atunci când apare prea des, prea intens sau în situații care nu mai sunt periculoase."
 categorie: "Anxietate"
 data: "2026-03-10"
+imagine: "/assets/images/articol-anxietate.jpg"
+imagineAlt: "Femeie care își observă calm reacția de alarmă a corpului, într-un spațiu luminos"
 ---
 
 Mulți oameni încearcă mai întâi să alunge anxietatea: controlează respirația,

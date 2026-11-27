@@ -13,9 +13,22 @@
   <url><loc>https://cristinaadam.ro/servicii/evaluare-psihologica-timisoara/</loc><lastmod>2026-11-27</lastmod><priority>0.9</priority></url>
   <url><loc>https://cristinaadam.ro/servicii/psiholog-online/</loc><lastmod>2026-11-27</lastmod><priority>0.8</priority></url>
   <url><loc>https://cristinaadam.ro/articole/</loc><lastmod>2026-11-27</lastmod><priority>0.8</priority></url>
-  <url><loc>https://cristinaadam.ro/articole/anxietatea-nu-e-o-defectiune/</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
-  <url><loc>https://cristinaadam.ro/articole/burnout-nu-inseamna-ca-ai-muncit-prea-mult/</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
-  <url><loc>https://cristinaadam.ro/articole/de-ce-se-repeta-aceleasi-certuri/</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
+  <url>
+    <loc>https://cristinaadam.ro/articole/cercul-sigurantei-nevoile-copilului/</loc><lastmod>2026-11-27</lastmod><priority>0.8</priority>
+    <image:image><image:loc>https://cristinaadam.ro/assets/images/articol-cercul-sigurantei.jpg</image:loc><image:title>Cercul Siguranței și nevoile copilului</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cristinaadam.ro/articole/anxietatea-nu-e-o-defectiune/</loc><lastmod>2026-11-27</lastmod><priority>0.7</priority>
+    <image:image><image:loc>https://cristinaadam.ro/assets/images/articol-anxietate.jpg</image:loc><image:title>Anxietatea și răspunsul de alarmă</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cristinaadam.ro/articole/burnout-nu-inseamna-ca-ai-muncit-prea-mult/</loc><lastmod>2026-11-27</lastmod><priority>0.7</priority>
+    <image:image><image:loc>https://cristinaadam.ro/assets/images/articol-burnout.jpg</image:loc><image:title>Burnout și epuizare</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cristinaadam.ro/articole/de-ce-se-repeta-aceleasi-certuri/</loc><lastmod>2026-11-27</lastmod><priority>0.7</priority>
+    <image:image><image:loc>https://cristinaadam.ro/assets/images/articol-tipare-relationale.jpg</image:loc><image:title>Tipare repetitive în relații</image:title></image:image>
+  </url>
   <url><loc>https://cristinaadam.ro/confidentialitate/</loc><lastmod>2026-11-24</lastmod><priority>0.3</priority></url>
   <url><loc>https://cristinaadam.ro/cookies/</loc><lastmod>2026-11-24</lastmod><priority>0.2</priority></url>
   <url><loc>https://cristinaadam.ro/termeni/</loc><lastmod>2026-11-24</lastmod><priority>0.3</priority></url>

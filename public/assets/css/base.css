@@ -56,14 +56,18 @@ nav.main a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-
 /* article listing */
 .head{padding:clamp(3rem,7vw,6rem) 0 1rem}
 .head h1{font-size:clamp(2.4rem,1.4rem+4vw,4rem)}
-.lista{list-style:none; margin:2.5rem 0 4rem; padding:0; display:grid; gap:1.2rem}
-@media(min-width:720px){ .lista{grid-template-columns:1fr 1fr} }
-.art-card{display:block; background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:1.6rem 1.5rem; box-shadow:var(--shadow); text-decoration:none; color:inherit; transition:transform .3s var(--ease), border-color .3s}
-.art-card:hover{transform:translateY(-4px); border-color:var(--sage)}
+.lista{list-style:none; margin:2.5rem 0 5rem; padding:0; display:grid; gap:clamp(1.4rem,3vw,2.4rem)}
+@media(min-width:760px){.lista{grid-template-columns:repeat(12,1fr)}.lista li{grid-column:span 6}.lista li:first-child{grid-column:span 7}.lista li:nth-child(2){grid-column:span 5;margin-top:4rem}}
+.art-card{display:block;overflow:hidden;background:var(--surface);border-radius:clamp(18px,3vw,32px);box-shadow:0 22px 70px rgba(104,66,50,.10);text-decoration:none;color:inherit;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.art-card:hover{transform:translateY(-6px);box-shadow:0 30px 80px rgba(104,66,50,.16)}
+.art-card:active{transform:translateY(-2px) scale(.99)}
+.art-card__img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;transition:transform .7s var(--ease)}
+.art-card:hover .art-card__img{transform:scale(1.025)}
+.art-card__body{display:block;padding:clamp(1.35rem,3vw,2rem)}
 .art-card .cat{font-size:.75rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sage)}
-.art-card .meta,.proza .meta{font-size:.84rem;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+.art-card .meta,.proza .meta{display:block;font-size:.84rem;color:var(--ink-faint);font-variant-numeric:tabular-nums;margin-top:.45rem}
 .art-card h2{font-size:1.35rem; margin:.5rem 0 .5rem}
-.art-card p{color:var(--ink-soft); font-size:.98rem; margin:0}
+.art-card__rezumat{display:block;color:var(--ink-soft);font-size:.98rem;line-height:1.6}
 .art-card .mai{display:inline-block; margin-top:.9rem; color:var(--sage); font-weight:600; font-size:.92rem}
 
 /* article body (proza) */
@@ -72,6 +76,8 @@ nav.main a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-
 .proza .cat{font-size:.75rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sage)}
 .proza h1{font-size:clamp(2rem,1.4rem+2.6vw,3.1rem); margin:.6rem 0 .4rem}
 .proza .rezumat{font-size:1.2rem; color:var(--ink-soft); font-family:var(--serif); line-height:1.4; margin-bottom:2rem}
+.articol-hero{width:min(920px,94vw);margin:2rem 50% 2.75rem;transform:translateX(-50%)}
+.articol-hero img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:clamp(18px,3vw,34px);box-shadow:0 24px 70px rgba(104,66,50,.14)}
 .proza h2{font-size:1.5rem; margin:2.4rem 0 .8rem}
 .proza p{margin:0 0 1.2rem; max-width:65ch}
 .proza ul{margin:0 0 1.2rem; padding-left:1.2rem}

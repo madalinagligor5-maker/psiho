@@ -24,10 +24,10 @@ const schema = {
   },
 };
 ---
-<Pagina titlu="Articole de psihologie | Adam Cristina, Timișoara" descriere="Articole scrise de Adam Cristina despre anxietate, epuizare și tipare relaționale, explicate clar și fără promisiuni simpliste." schema={schema}>
+<Pagina titlu="Articole de psihologie | Adam Cristina, Timișoara" descriere="Articole scrise de Adam Cristina despre anxietate, epuizare, relații și parenting, explicate clar și fără promisiuni simpliste." schema={schema}>
   <section class="wrap head">
     <p class="eyebrow">Psihologie, pe înțeles</p>
-    <h1>Articole despre anxietate, epuizare și relații</h1>
+    <h1>Articole despre relații, emoții și parenting</h1>
     <p class="muted" style="max-width:62ch;margin-top:1rem">Texte care te ajută să recunoști un mecanism și să formulezi întrebări mai bune. Nu înlocuiesc evaluarea sau ședințele individuale.</p>
   </section>
   <div class="wrap">
@@ -35,11 +35,14 @@ const schema = {
       {arts.map((a) => (
         <li>
           <a class="art-card" href={`/articole/${a.slug}`}>
-            {a.data.categorie && <span class="cat">{a.data.categorie}</span>}
-            {a.data.data && <p class="meta"><time datetime={a.data.data}>{formatData(a.data.data)}</time> · Adam Cristina</p>}
-            <h2>{a.data.titlu}</h2>
-            <p>{a.data.rezumat}</p>
-            <span class="mai">Citește articolul →</span>
+            {a.data.imagine && <img class="art-card__img" src={a.data.imagine} alt={a.data.imagineAlt || ''} width="1536" height="1024" loading="lazy" />}
+            <span class="art-card__body">
+              {a.data.categorie && <span class="cat">{a.data.categorie}</span>}
+              {a.data.data && <span class="meta"><time datetime={a.data.data}>{formatData(a.data.data)}</time> · Adam Cristina</span>}
+              <h2>{a.data.titlu}</h2>
+              <span class="art-card__rezumat">{a.data.rezumat}</span>
+              <span class="mai">Citește articolul →</span>
+            </span>
           </a>
         </li>
       ))}

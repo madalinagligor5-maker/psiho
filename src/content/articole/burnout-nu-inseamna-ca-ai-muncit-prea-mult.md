@@ -3,6 +3,8 @@ titlu: "Burnout și epuizare: de ce odihna nu este mereu suficientă"
 rezumat: "Epuizarea nu ține doar de numărul de ore lucrate. Lipsa controlului, presiunea constantă și imposibilitatea de a pune limite pot conta la fel de mult."
 categorie: "Burnout"
 data: "2026-04-15"
+imagine: "/assets/images/articol-burnout.jpg"
+imagineAlt: "Femeie așezată la birou, lângă un teanc de sarcini, într-un moment de pauză"
 ---
 
 Când cineva spune „cred că am burnout”, discuția ajunge repede la orele lucrate,
